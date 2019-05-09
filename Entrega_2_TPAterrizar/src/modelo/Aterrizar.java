@@ -2,7 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class Aterrizar {
+public class Aterrizar implements AerolineaLanchita {
+	private final double recargoAUsuarioNoEstandar = 20;
 	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>(); 
 
 	public ArrayList<Usuario> getUsuarios() {
@@ -14,8 +15,20 @@ public class Aterrizar {
 	}
 
 	public void registrarUsuario(String nombre, String apellido, int dni) {
-		Usuario usuario = new Usuario(nombre, apellido, dni);
-		usuarios.add(usuario);
+		
+	}
+
+	@Override
+	public ArrayList<ArrayList<String>> asientosDisponibles
+		(String origen, String fechaSalida, String horaSalida,
+		String destino, String fechaLlegada, String horaLlegada) {
+		return null;
+	}
+
+	@Override
+	public void comprar(String codigoAsiento) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
