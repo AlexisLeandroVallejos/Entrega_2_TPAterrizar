@@ -36,7 +36,7 @@ public class Aerolinea implements AerolineaLanchita {
 				.collect(Collectors.toList());
 		new ArrayList<ArrayList<String>>(asientos);
 		*/
-		
+		//Prueba;
 			  
 	}
 
