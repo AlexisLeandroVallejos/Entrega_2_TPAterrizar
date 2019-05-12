@@ -7,4 +7,5 @@ public class UsuarioEstandar extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
+
 }

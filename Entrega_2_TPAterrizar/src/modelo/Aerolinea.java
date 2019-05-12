@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import excepciones.ExcepcionAsientoReservado;
+
 public class Aerolinea implements AerolineaLanchita {
 	// vuelos va a tener el codigo de vuelo, relacionando ese vuelo con el asiento;
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
@@ -18,33 +20,14 @@ public class Aerolinea implements AerolineaLanchita {
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList(origen, destino, fechaSalida,	fechaLlegada, horaSalida, horaLlegada));
 		
-		//Si alguien sabe como pasar esto a ArrayList<ArrayList<String>> estaria muy bien porque funcionaria toda la busqueda...
-		List<Object> streamloco = vuelos.stream()
-					  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
-					  .map(vuelo -> vuelo.obtenerAsientos())
-					  .collect(Collectors.toList());
-		
-		List<ArrayList<Asiento>> l = vuelos.stream()
+		List<ArrayList<Asiento>> listaAsientos = vuelos.stream()
 				  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
 				  .map(vuelo -> vuelo.obtenerAsientos())
 				  .filter(as -> as.size()>0)
 				  .collect(Collectors.toList());
 		
-		return (ArrayList<ArrayList<Asiento>>) l;//(ArrayList<ArrayList<Asiento>>) streamloco;
+		return (ArrayList<ArrayList<Asiento>>) listaAsientos;
 		
-		/*ArrayList<Vuelo> vuelosfiltrados = vuelos.stream()
-			  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
-			  .collect(Collectors.toCollection(ArrayList<Vuelo> :: new));
-		ArrayList<Vuelo> vuelosSinNull = vuelosfiltrados.stream()
-				.filter(vuelo -> vuelo.equals(null))
-				.collect(Collectors.toCollection(ArrayList<Vuelo> :: new));
-		List<String> asientos = vuelosSinNull.stream()
-				.map(vuelo -> vuelo.obtenerAsientos())
-				.map(object -> object.toString())
-				.collect(Collectors.toList());
-		new ArrayList<ArrayList<String>>(asientos);
-		*/
-		//Prueba;
 			  
 	}
 
@@ -58,8 +41,26 @@ public class Aerolinea implements AerolineaLanchita {
 
 	@Override
 	public void comprar(String codigoAsiento) {
-		// TODO Auto-generated method stub
+		try {
+			String CodigoVuelo = codigoAsiento.split("-")[0];
+			Asiento asi = null;
+			for(Vuelo v:vuelos)
+			{
+				if(v.getCodDeVuelo().equalsIgnoreCase(CodigoVuelo))
+				{
 
+					asi = (Asiento) v.obtenerAsientos().stream()
+						.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
+						.toArray()[0];
+					asi.setEstadoAsiento("R");
+					//break;
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			throw ex;
+		}
 	}
 
 	public void agregarVuelo(Vuelo vuelo) {

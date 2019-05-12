@@ -18,4 +18,16 @@ public abstract class Usuario {
 			return null;
 		
 	}
+	
+	public void comprar(String CodAsiento, AerolineaLanchita aero)
+	{
+		try
+		{
+			aero.comprar(CodAsiento);
+		}
+		catch (Exception ex)
+		{
+			throw ex;
+		}
+	};
 }

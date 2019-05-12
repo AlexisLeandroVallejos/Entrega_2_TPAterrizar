@@ -7,4 +7,10 @@ public class UsuarioNoEstandar extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public void comprar(String CodAsiento, AerolineaLanchita aero) {
+		// TODO Auto-generated method stub
+		aero.comprar(CodAsiento);
+	}
+
 }
