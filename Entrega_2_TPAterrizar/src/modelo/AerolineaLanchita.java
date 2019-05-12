@@ -3,8 +3,12 @@ package modelo;
 import java.util.ArrayList;
 
 public interface AerolineaLanchita {
-	public ArrayList<ArrayList<String>> asientos = new ArrayList<ArrayList<String>>();
-	
+	final int asientoTurista = 250;
+	final int asientoEjecutivo = 500;
+	final int asientoPrimeraClase = 1000;
+	final int asientoPasillo = 200;
+	final int asientoCentro = 100;
+	final int asientoVentanilla = 300;
 	final double impuesto = 0.15;
 	
 	public ArrayList<ArrayList<String>> asientosDisponibles 
