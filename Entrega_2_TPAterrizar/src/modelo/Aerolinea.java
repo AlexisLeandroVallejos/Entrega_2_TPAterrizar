@@ -11,18 +11,26 @@ public class Aerolinea implements AerolineaLanchita {
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 
 	@Override
-	public ArrayList<ArrayList<String>> asientosDisponibles
+	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 			(String origen, String fechaSalida, String horaSalida,
 			String destino, String fechaLlegada, String horaLlegada) {
-		ArrayList<String> criterios = 
-				new ArrayList<>(Arrays.asList(origen, destino, fechaSalida,
-						fechaLlegada, horaSalida, horaLlegada));
+		
+		ArrayList<String> criterios = new ArrayList<>(
+				Arrays.asList(origen, destino, fechaSalida,	fechaLlegada, horaSalida, horaLlegada));
+		
 		//Si alguien sabe como pasar esto a ArrayList<ArrayList<String>> estaria muy bien porque funcionaria toda la busqueda...
 		List<Object> streamloco = vuelos.stream()
 					  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
 					  .map(vuelo -> vuelo.obtenerAsientos())
 					  .collect(Collectors.toList());
-		return null;
+		
+		List<ArrayList<Asiento>> l = vuelos.stream()
+				  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
+				  .map(vuelo -> vuelo.obtenerAsientos())
+				  .filter(as -> as.size()>0)
+				  .collect(Collectors.toList());
+		
+		return (ArrayList<ArrayList<Asiento>>) l;//(ArrayList<ArrayList<Asiento>>) streamloco;
 		
 		/*ArrayList<Vuelo> vuelosfiltrados = vuelos.stream()
 			  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
@@ -63,6 +71,7 @@ public class Aerolinea implements AerolineaLanchita {
 		return criterios.stream()
 				.anyMatch(criterio -> vuelo.cumpleAlgunCriterio(criterio));
 	}
+	
 
 	// dado un codDeVuelo obtiene los asientos que coincidan con ese codDeVuelo (que
 	// esta en el codDeAsiento antes del "-")

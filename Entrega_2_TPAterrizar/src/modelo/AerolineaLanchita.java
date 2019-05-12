@@ -11,7 +11,7 @@ public interface AerolineaLanchita {
 	final int asientoVentanilla = 300;
 	final double impuesto = 0.15;
 	
-	public ArrayList<ArrayList<String>> asientosDisponibles 
+	public ArrayList<ArrayList<Asiento>> asientosDisponibles 
 		(String origen, String fechaSalida, String horaSalida,
 		String destino, String fechaLlegada, String horaLlegada);
 	

@@ -19,7 +19,7 @@ public class Aterrizar implements AerolineaLanchita {
 	}
 
 	@Override
-	public ArrayList<ArrayList<String>> asientosDisponibles
+	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 		(String origen, String fechaSalida, String horaSalida,
 		String destino, String fechaLlegada, String horaLlegada) {
 		return null;

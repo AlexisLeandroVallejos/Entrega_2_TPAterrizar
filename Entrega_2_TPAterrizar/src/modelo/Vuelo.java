@@ -31,6 +31,13 @@ public class Vuelo {
 		return criterios.stream().anyMatch(palabra -> palabra == criterio);
 	}
 
+
+	public boolean cumpleAlgunCriterio(ArrayList<String> criterio) {
+		return criterios.stream().anyMatch(
+				palabra -> criterio.stream().anyMatch(palabraCriterio -> palabraCriterio == palabra));
+	}
+
+	
 	public ArrayList<String> setCriterios() {
 		return criterios = new ArrayList<>(
 				Arrays.asList(origen, destino, fechaSalida, fechaLlegada, horaSalida, horaLlegada));
@@ -41,7 +48,7 @@ public class Vuelo {
 	}
 
 	public void agregarAsiento(Asiento asiento) {
-		asientos.add(asiento);
+		asientos.add(asiento); 
 	}
 
 	public boolean esCodDeVuelo(Asiento asiento) {
@@ -53,9 +60,10 @@ public class Vuelo {
 	}
 
 	public ArrayList<Asiento> obtenerAsientos() {
-		return asientos.stream()
+		ArrayList<Asiento> listAsi = asientos.stream()
 				.filter(asiento -> esCodDeVuelo(asiento) && estaDisponible(asiento))
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
+		return listAsi;
 	}
 
 	public int cantidadDeAsientos() {
