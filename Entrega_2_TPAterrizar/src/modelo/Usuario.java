@@ -13,20 +13,16 @@ public abstract class Usuario {
 		this.dni = dni;
 	}
 	
-	public ArrayList<ArrayList<String>> realizarBusqueda
-		(String lugarOrigen, String lugarDestino, String fechaSalida, String fechaLlegada) {
+	public ArrayList<ArrayList<String>> realizarBusqueda (String lugarOrigen, String lugarDestino, String fechaSalida, String fechaLlegada) {
 			return null;
 		
 	}
 	
-	public void comprar(String CodAsiento, AerolineaLanchita aero)
-	{
-		try
-		{
+	public void comprar(String CodAsiento, AerolineaLanchita aero){
+		try{
 			aero.comprar(CodAsiento);
 		}
-		catch (Exception ex)
-		{
+		catch (Exception ex){
 			throw ex;
 		}
 	};

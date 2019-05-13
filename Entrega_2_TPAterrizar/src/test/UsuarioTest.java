@@ -38,8 +38,7 @@ public class UsuarioTest {
 	}
 	
 	@Test
-	public void comprar_UsuarioCompraUnAsiento()
-	{
+	public void comprar_UsuarioCompraUnAsiento(){
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		Aerolinea aero = new Aerolinea();
 		String codDeVuelo1 = "EC0344";
@@ -60,8 +59,7 @@ public class UsuarioTest {
 	
 
 	@Test
-	public void comprar_UsuarioCompraUnAsientoYNoQuedaDisponible()
-	{
+	public void comprar_UsuarioCompraUnAsientoYNoQuedaDisponible(){
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		Aerolinea aero = new Aerolinea();
 		String codDeVuelo1 = "EC0344";
@@ -82,8 +80,7 @@ public class UsuarioTest {
 	}
 	
 	@Test
-	public void comprar_DosUsuariosCompranDifrentesAsientosDsiponiblesDelMismoVuelo()
-	{
+	public void comprar_DosUsuariosCompranDifrentesAsientosDisponiblesDelMismoVuelo(){
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		UsuarioEstandar otroUsuario = new UsuarioEstandar("Mariano","Martinez", 31256484);
 		Aerolinea aero = new Aerolinea();
@@ -101,5 +98,6 @@ public class UsuarioTest {
 		
 		usuario.comprar("EC0344-1", aero);
 		otroUsuario.comprar("EC0344-3", aero);	
-	}
+	}	
+	
 }

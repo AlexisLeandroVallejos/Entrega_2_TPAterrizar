@@ -44,10 +44,8 @@ public class Aerolinea implements AerolineaLanchita {
 		try {
 			String CodigoVuelo = codigoAsiento.split("-")[0];
 			Asiento asi = null;
-			for(Vuelo v:vuelos)
-			{
-				if(v.getCodDeVuelo().equalsIgnoreCase(CodigoVuelo))
-				{
+			for(Vuelo v:vuelos){
+				if(v.getCodDeVuelo().equalsIgnoreCase(CodigoVuelo)){
 
 					asi = (Asiento) v.obtenerAsientos().stream()
 						.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
@@ -57,8 +55,7 @@ public class Aerolinea implements AerolineaLanchita {
 				}
 			}
 		}
-		catch(Exception ex)
-		{
+		catch(Exception ex){
 			throw ex;
 		}
 	}
