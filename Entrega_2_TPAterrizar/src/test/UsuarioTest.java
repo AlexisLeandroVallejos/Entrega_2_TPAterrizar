@@ -59,7 +59,7 @@ public class UsuarioTest {
 	}
 	
 
-	@Test(expected=ExcepcionAsientoReservado.class)
+	@Test
 	public void comprar_UsuarioCompraUnAsientoYNoQuedaDisponible()
 	{
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
@@ -77,7 +77,7 @@ public class UsuarioTest {
 		aero.agregarVuelo(vuelo1);
 		
 		usuario.comprar("EC0344-1", aero);
-		usuario.comprar("EC0344-1", aero);
+		Assert.assertEquals("El asiento no esta reservado", asiento1.getEstadoAsiento(), "R");
 		
 	}
 }
