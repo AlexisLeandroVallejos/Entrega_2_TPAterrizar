@@ -112,7 +112,7 @@ public class UsuarioTest {
 		UsuarioVIP usuario = new UsuarioVIP("Roman","Perez", 24888654, aero);
 		Assert.assertEquals("No Supera compras Compras Por Cien Mil", true, usuario.superaComprasPorCienMil());
 	}
-
+	
 	@Test
 	public void superaComprasPorCienMil_UsuarioEstandarsuperaComprasPorCienMil(){
 		Aerolinea aero = new Aerolinea();

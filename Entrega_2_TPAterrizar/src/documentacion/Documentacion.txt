@@ -25,6 +25,7 @@
 			Atributos: 
 			Metodos:
 			
+			
 		Asiento:
 			Atributos:
 				-vuelo (Conoce a que vuelo pertenece).
