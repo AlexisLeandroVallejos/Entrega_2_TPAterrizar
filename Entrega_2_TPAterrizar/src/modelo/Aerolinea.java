@@ -23,7 +23,7 @@ public class Aerolinea implements AerolineaLanchita {
 		List<ArrayList<Asiento>> listaAsientos = vuelos.stream()
 				  .filter(vuelo -> hayAlgunoQueCumple(criterios,vuelo))
 				  .map(vuelo -> vuelo.obtenerAsientos())
-				  .filter(as -> as.size()>0)
+				  .filter(asiento -> asiento.size()>0)
 				  .collect(Collectors.toList());
 		
 		return (ArrayList<ArrayList<Asiento>>) listaAsientos;

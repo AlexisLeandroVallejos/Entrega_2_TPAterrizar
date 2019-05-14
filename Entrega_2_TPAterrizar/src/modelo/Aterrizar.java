@@ -14,7 +14,7 @@ public class Aterrizar implements AerolineaLanchita {
 		this.usuarios = usuarios;
 	}
 
-	public void registrarUsuario(String nombre, String apellido, int dni) {
+	public void registrarUsuario(Usuario usuario) {
 		
 	}
 

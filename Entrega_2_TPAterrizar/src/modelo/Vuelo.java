@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Vuelo {
+	//private final Aerolinea aerolinea;
 	private final String codDeVuelo;
 	private final String origen;
 	private final String destino;
@@ -17,6 +18,7 @@ public class Vuelo {
 
 	public Vuelo(String codDeVuelo, String origen, String destino, String fechaSalida, String fechaLlegada,
 			String horaSalida, String horaLlegada) {
+		//this.aerolinea = aerolinea;
 		this.codDeVuelo = codDeVuelo;
 		this.origen = origen;
 		this.destino = destino;
@@ -25,6 +27,7 @@ public class Vuelo {
 		this.horaSalida = horaSalida;
 		this.horaLlegada = horaLlegada;
 		this.criterios = setCriterios();
+		
 	}
 
 	public boolean cumpleAlgunCriterio(String criterio) {
@@ -60,12 +63,16 @@ public class Vuelo {
 	}
 
 	public ArrayList<Asiento> obtenerAsientos() {
-		ArrayList<Asiento> listAsi = asientos.stream()
+		ArrayList<Asiento> listaAsientos = asientos.stream()
 				.filter(asiento -> esCodDeVuelo(asiento) && estaDisponible(asiento))
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
-		return listAsi;
+		return listaAsientos;
 	}
-
+	/*
+	public Aerolinea getAerolinea() {
+		return aerolinea;
+	}
+*/
 	public int cantidadDeAsientos() {
 		return asientos.size();
 	}
