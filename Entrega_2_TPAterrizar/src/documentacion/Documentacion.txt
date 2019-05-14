@@ -7,31 +7,59 @@
 	Excepciones:
 		
 		ExecepcionAsientoReservado:
-			Esta excepcion fue creada para los test que prueban 
-		ExcepconPrecioClaseAsiento:
-		
+			Esta excepcion fue creada para los test que prueban la disponibilidad de los asientos ya sean reservados o inexistentes.
+			
+		ExcepcionPrecioClaseAsiento:
+			
 		ExcepcionPrecioUbicacionAsiento:
 	
 	Modelo:
 	
 		Aerolinea:
-		
+			Atributos: 
+			Metodos:
+			
 		AerolineaLanchita:
-		
+			Iterfaz.
+			Atributos: 
+			Metodos:
+			
 		Asiento:
-		
+			Atributos:
+				vuelo (Conoce a que vuelo pertenece)
+				usuarioBuscando (Conoce que usuario esta haciendo la busqueda para calcular el precio)
+				claseAsiento (Turista, Estandar, Primera Clase)
+				ubicacionAsiento (Ventana, Medio, Pasillo)
+				estadoAsiento (Reservado, Disponible)
+				codigoDeAsiento
+				precioFinal (Es el precio final calculado con los condicionantes)
+				
+			Metodos:
+			
 		Aterrizar:
-		
+			Atributos: 
+			Metodos:
+			
 		Usuario:
-		
-		UsuarioEstandar:
-		
-		UsuarioNoEstandar:
-		
-		UsuarioVIP:
-		
+			Atributos: 
+			Metodos:
+			
+			UsuarioEstandar:
+				Atributos: 
+				Metodos:
+				
+			UsuarioNoEstandar:
+				Atributos: 
+				Metodos:
+				
+			UsuarioVIP:
+				Atributos: 
+				Metodos:
+				
 		Vuelo:
-	
+			Atributos: 
+			Metodos:
+			
 	Tests:
 	
 		AerolineaTest:
