@@ -17,6 +17,7 @@
 	
 		Aerolinea:
 			Atributos: 
+				vuelos: Lista de vuelos
 			Metodos:
 			
 		AerolineaLanchita:
@@ -26,16 +27,18 @@
 			
 		Asiento:
 			Atributos:
-				vuelo (Conoce a que vuelo pertenece)
-				usuarioBuscando (Conoce que usuario esta haciendo la busqueda para calcular el precio)
-				claseAsiento (Turista, Estandar, Primera Clase)
-				ubicacionAsiento (Ventana, Medio, Pasillo)
-				estadoAsiento (Reservado, Disponible)
-				codigoDeAsiento
-				precioFinal (Es el precio final calculado con los condicionantes)
+				-vuelo (Conoce a que vuelo pertenece).
+				-usuarioBuscando (Conoce que usuario esta haciendo la busqueda para calcular el precio).
+				-claseAsiento (Turista, Estandar, Primera Clase).
+				-ubicacionAsiento (Ventana, Medio, Pasillo).
+				-estadoAsiento (Reservado, Disponible).
+				-codigoDeAsiento.
+				-precioFinal (Es el precio final calculado con los condicionantes).
 				
 			Metodos:
-			
+				-Asiento: Constructor.
+				-
+				
 		Aterrizar:
 			Atributos: 
 			Metodos:
