@@ -75,7 +75,7 @@ public class UsuarioTest {
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		usuario.comprar("EC0344-1");
-		
+		//test
 	}
 	
 
