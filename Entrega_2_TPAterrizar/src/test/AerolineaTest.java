@@ -13,7 +13,8 @@ public class AerolineaTest {
 	@Test
 	public void agregarAsiento_seAgregaUnAsientoYCambiaElNumeroDeAsientos() {
 		Vuelo vuelo = new Vuelo("EC0344", "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Asiento asiento1 = new Asiento(vuelo, usuario, "P", "P", "D");
 		vuelo.agregarAsiento(asiento1);
 		Asiento asiento3 = new Asiento(vuelo, usuario, "E", "V", "D");
@@ -28,7 +29,8 @@ public class AerolineaTest {
 	public void obtenerAsientos_seObtieneUnAsientoDadoElCodigoDeVuelo() {
 		String codDeVuelo = "EC0344";
 		Vuelo vuelo = new Vuelo(codDeVuelo, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Asiento asiento = new Asiento(vuelo, usuario, "P", "P", "D");
 		vuelo.agregarAsiento(asiento);
 		Assert.assertEquals("No se encontro asiento.", vuelo.obtenerAsientos().get(0), asiento);
@@ -39,7 +41,8 @@ public class AerolineaTest {
 	public void hayAlgunoQueCumple_SeEncuentraAlMenosUnVueloQueCumplaBUE() {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, usuario, "P", "P", "D");
 		vuelo1.agregarAsiento(asiento1);
@@ -48,7 +51,6 @@ public class AerolineaTest {
 		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		Aerolinea lanchita = new Aerolinea();
 		lanchita.agregarVuelo(vuelo1);
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList("BUE", null, null, null, null, null));
@@ -62,7 +64,8 @@ public class AerolineaTest {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -88,7 +91,6 @@ public class AerolineaTest {
 		Asiento asiento9 = new Asiento(vuelo3, usuario, "T", "C", "D");
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
-		Aerolinea lanchita = new Aerolinea();
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
@@ -101,7 +103,8 @@ public class AerolineaTest {
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
 		String codDeVuelo4 = "MIN12";
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -135,8 +138,6 @@ public class AerolineaTest {
 		Asiento asiento12 = new Asiento(vuelo3, usuario, "T", "C", "D");
 		vuelo4.agregarAsiento(asiento12);
 		//Agregar vuelos a aerolinea:
-		Aerolinea lanchita = new Aerolinea();
-		
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
@@ -149,7 +150,8 @@ public class AerolineaTest {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -175,7 +177,6 @@ public class AerolineaTest {
 		Asiento asiento9 = new Asiento(vuelo3, usuario, "T", "C", "D");
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
-		Aerolinea lanchita = new Aerolinea();
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);

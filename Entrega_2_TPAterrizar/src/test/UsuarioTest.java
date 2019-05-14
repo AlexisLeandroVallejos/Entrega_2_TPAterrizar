@@ -1,8 +1,5 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,19 +9,14 @@ import modelo.*;
 public class UsuarioTest {
 	
 	@Test
-	public void usuario_seCreaUnUsuarioNoEstandar() {
-		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Tomas","Perez", 24146654);
-	}
-	
-	@Test
-	public void usuario_seCreaUnUsuarioVIP() {
-		UsuarioVIP usuario = new UsuarioVIP("Jose","Perez", 27946654);
-	}
-	
-	@Test
 	public void realizarBusqueda_usuarioEstandarRealizaUnaBusqueda() {
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
+		String codDeVuelo1 = "EC0344";
+		Aerolinea aero = new Aerolinea();
+		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20121010", "2010111", "20:10", "14:20");
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		aero.agregarVuelo(vuelo1);
 		Aterrizar aterrizar = new Aterrizar();
+		aterrizar.setAerolinea(aero);
 		String lugarOrigen = "BUE";
 		String lugarDestino = "LA";
 		String fechaSalida = "20121010";
@@ -32,15 +24,15 @@ public class UsuarioTest {
 		String horaSalida = null;
 		String horaLlegada = null;
 		Assert.assertEquals("El usuario no realizo la busqueda.", 
-				usuario.realizarBusqueda(lugarOrigen, lugarDestino, fechaSalida, fechaLlegada),
+				usuario.realizarBusqueda(lugarOrigen, fechaSalida, horaSalida, lugarDestino, fechaLlegada, horaLlegada),
 				aterrizar.asientosDisponibles(lugarOrigen, fechaSalida, horaSalida, lugarDestino, fechaLlegada, horaLlegada));
 		
 	}
 	
 	@Test
 	public void comprar_UsuarioCompraUnAsiento(){
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		Aerolinea aero = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -52,16 +44,15 @@ public class UsuarioTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		
-		usuario.comprar("EC0344-1", aero);
+		usuario.comprar("EC0344-1");
 		
 	}
 	
 
 	@Test
 	public void comprar_UsuarioCompraUnAsientoYNoQuedaDisponible(){
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		Aerolinea aero = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -73,17 +64,16 @@ public class UsuarioTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		
-		usuario.comprar("EC0344-1", aero);
+		usuario.comprar("EC0344-1");
 		Assert.assertEquals("El asiento no esta reservado", asiento1.getEstadoAsiento(), "R");
 		
 	}
 	
 	@Test
 	public void comprar_DosUsuariosCompranDifrentesAsientosDisponiblesDelMismoVuelo(){
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
-		UsuarioEstandar otroUsuario = new UsuarioEstandar("Mariano","Martinez", 31256484);
 		Aerolinea aero = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		UsuarioEstandar otroUsuario = new UsuarioEstandar("Mariano","Martinez", 31256484, aero);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -95,16 +85,15 @@ public class UsuarioTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		
-		usuario.comprar("EC0344-1", aero);
-		otroUsuario.comprar("EC0344-3", aero);	
+		usuario.comprar("EC0344-1");
+		otroUsuario.comprar("EC0344-3");	
 	}	
 	
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void comprar_UsuarioCompraUnAsientoYOtroUsuarioIntentaComprarloPeroNoLoEncuentraDisponible(){
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
-		UsuarioEstandar otroUsuario = new UsuarioEstandar("Mariano","Martinez", 31256484);
 		Aerolinea aero = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		UsuarioEstandar otroUsuario = new UsuarioEstandar("Mariano","Martinez", 31256484, aero);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -116,15 +105,14 @@ public class UsuarioTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		
-		usuario.comprar("EC0344-1", aero);
-		otroUsuario.comprar("EC0344-1", aero);
+		usuario.comprar("EC0344-1");
+		otroUsuario.comprar("EC0344-1");
 	}
 	
 	@Test
 	public void comprar_unUsuarioEstandarIntentaComprarUnAsientoConsideradoSuperOferta(){
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654);
 		Aerolinea aero = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -136,7 +124,6 @@ public class UsuarioTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		
-		usuario.comprar("EC0344-1", aero);
+		usuario.comprar("EC0344-1");
 	}
 }

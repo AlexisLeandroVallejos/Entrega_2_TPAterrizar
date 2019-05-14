@@ -13,7 +13,7 @@ public interface AerolineaLanchita {
 	final double asientoVentanilla = 300;
 	//impuesto:
 	final double impuesto = 0.15;
-	//recargo a usuarios no estandar;
+	//recargo a usuarios no estandar:
 	final double recargoAUsuarioNoEstandar = 20;
 	
 	public ArrayList<ArrayList<Asiento>> asientosDisponibles 
