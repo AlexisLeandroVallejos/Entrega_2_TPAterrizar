@@ -5,7 +5,7 @@ import excepciones.ExcepcionPrecioUbicacionAsiento;
 
 public class Asiento {
 	private final Vuelo vuelo;
-	private final Usuario usuario;
+	private final Usuario usuarioBuscando;
 	private final String claseAsiento; // T, E, P - No va cambiar una vez que se defina.
 	private final String ubicacionAsiento; // V, C, P - ^idem.
 	private String estadoAsiento; // D, R - El estado podria cambiar.
@@ -14,7 +14,7 @@ public class Asiento {
 
 	public Asiento(Vuelo vuelo, Usuario usuario, String claseAsiento, String ubicacionAsiento, String estadoAsiento) {
 		this.vuelo = vuelo;
-		this.usuario = usuario;
+		this.usuarioBuscando = usuario;
 		this.claseAsiento = claseAsiento;
 		this.ubicacionAsiento = ubicacionAsiento;
 		this.estadoAsiento = estadoAsiento;
@@ -32,11 +32,11 @@ public class Asiento {
 	}
 
 	public boolean usuarioNoEstandarEstaBuscando() {
-		return usuario.getClass() == UsuarioNoEstandar.class;
+		return usuarioBuscando.getClass() == UsuarioNoEstandar.class;
 	}
 
 	public boolean usuarioVIPEstaBuscando() {
-		return usuario.getClass() == UsuarioVIP.class;
+		return usuarioBuscando.getClass() == UsuarioVIP.class;
 	}
 
 	public double precioAsiento() {

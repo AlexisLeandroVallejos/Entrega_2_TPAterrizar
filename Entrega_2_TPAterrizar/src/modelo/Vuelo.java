@@ -68,11 +68,7 @@ public class Vuelo {
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
 		return listaAsientos;
 	}
-	/*
-	public Aerolinea getAerolinea() {
-		return aerolinea;
-	}
-*/
+	
 	public int cantidadDeAsientos() {
 		return asientos.size();
 	}

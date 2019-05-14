@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 import excepciones.ExcepcionAsientoReservado;
 
 public class Aerolinea implements AerolineaLanchita {
-	// vuelos va a tener el codigo de vuelo, relacionando ese vuelo con el asiento;
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 
 	@Override
@@ -70,8 +69,4 @@ public class Aerolinea implements AerolineaLanchita {
 				.anyMatch(criterio -> vuelo.cumpleAlgunCriterio(criterio));
 	}
 	
-
-	// dado un codDeVuelo obtiene los asientos que coincidan con ese codDeVuelo (que
-	// esta en el codDeAsiento antes del "-")
-
 }
