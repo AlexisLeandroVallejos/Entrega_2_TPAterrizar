@@ -121,5 +121,4 @@ public class UsuarioTest {
 		otroUsuario.comprar("EC0344-1", aero);
 	}
 	
-	
 }

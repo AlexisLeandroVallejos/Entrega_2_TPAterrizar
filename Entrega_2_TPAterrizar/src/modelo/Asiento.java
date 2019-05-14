@@ -43,5 +43,16 @@ public class Asiento {
 	public boolean esDisponible() {
 		return estadoAsiento == "D";
 	}
-
+	
+	public boolean esSuperOferta(float costoTotal) {
+		if(claseAsiento == "P" && costoTotal < 8000){
+			return true;
+		}
+		if (claseAsiento == "E" && costoTotal < 4000) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
