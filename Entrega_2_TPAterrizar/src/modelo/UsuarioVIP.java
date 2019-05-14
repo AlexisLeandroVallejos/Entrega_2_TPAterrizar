@@ -13,5 +13,15 @@ public class UsuarioVIP extends Usuario {
 	public boolean superaComprasPorCienMil() {
 		return true;
 	}
+	
+
+	public void comprar(String CodAsiento){
+		try{
+			aerolinea.comprar(CodAsiento, true);
+		}
+		catch (Exception ex){
+			throw ex;
+		}
+	}
 
 }

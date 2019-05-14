@@ -37,18 +37,35 @@ public class Aerolinea implements AerolineaLanchita {
 		this.vuelos = vuelos;
 	}
 
+
 	@Override
 	public void comprar(String codigoAsiento) {
+		this.comprar(codigoAsiento, false);
+	}
+	
+	public void comprar(String codigoAsiento, boolean aceptaOfertas) {
 		try {
 			String codigoVuelo = codigoAsiento.split("-")[0];
 			Asiento asientoAComprar = null;
 			for(Vuelo v:vuelos){
 				if(v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)){
+					if(aceptaOfertas)
+					{
+						asientoAComprar = (Asiento) v.obtenerAsientos().stream()
+								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
+								.toArray()[0];
+							asientoAComprar.setEstadoAsiento("R");
+						
+					}else
+					{
 
-					asientoAComprar = (Asiento) v.obtenerAsientos().stream()
-						.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
-						.toArray()[0];
-					asientoAComprar.setEstadoAsiento("R");
+						asientoAComprar = (Asiento) v.obtenerAsientos().stream()
+							.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
+							.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
+							.toArray()[0];
+						asientoAComprar.setEstadoAsiento("R");
+					}
+					
 					//break;
 				}
 			}

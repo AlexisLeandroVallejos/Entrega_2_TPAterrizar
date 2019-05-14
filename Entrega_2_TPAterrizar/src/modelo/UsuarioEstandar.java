@@ -10,4 +10,14 @@ public class UsuarioEstandar extends Usuario {
 		return true;
 	}
 	
+	@Override
+	public void comprar(String CodAsiento){
+		try{
+			aerolinea.comprar(CodAsiento);
+		}
+		catch (Exception ex){
+			throw ex;
+		}
+	}
+	
 }

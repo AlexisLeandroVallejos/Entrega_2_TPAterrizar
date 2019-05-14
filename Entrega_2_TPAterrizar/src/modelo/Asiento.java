@@ -140,17 +140,17 @@ public class Asiento {
 		}
 	}
 
-	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000ParaUsuarioVIP() {
-		return usuarioVIPEstaBuscando() && esAsientoPrimeraClase() && Integer.parseInt(precioFinal) < 8000;
+	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000() {
+		return esAsientoPrimeraClase() && Double.parseDouble(precioFinal) < 8000;
 	}
 
-	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000ParaUsuarioVIP() {
-		return usuarioVIPEstaBuscando() && esAsientoEjecutivo() && Integer.parseInt(precioFinal) < 4000;
+	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000() {
+		return esAsientoEjecutivo() && Double.parseDouble(precioFinal) < 4000;
 	}
 
 	public boolean esSuperOferta() {
-		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000ParaUsuarioVIP() || 
-			esAsientoEjecutivoYPrecioFinalMenorA4000ParaUsuarioVIP()) {
+		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || 
+			esAsientoEjecutivoYPrecioFinalMenorA4000()) {
 			return true;
 		} else {
 			return false;
