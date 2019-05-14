@@ -6,7 +6,7 @@ public class UsuarioVIP extends Usuario {
 		super(nombre, apellido, dni, aerolinea);
 	}
 	
-	public boolean puedePagar() {
+	public boolean suscripto() {
 		return true;
 	}
 	

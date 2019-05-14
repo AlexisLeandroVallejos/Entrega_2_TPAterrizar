@@ -30,9 +30,6 @@ public class Vuelo {
 		
 	}
 
-	public boolean cumpleAlgunCriterio(String criterio) {
-		return criterios.stream().anyMatch(palabra -> palabra == criterio);
-	}
 
 
 	public boolean cumpleAlgunCriterio(ArrayList<String> criterio) {
@@ -65,6 +62,14 @@ public class Vuelo {
 	public ArrayList<Asiento> obtenerAsientos() {
 		ArrayList<Asiento> listaAsientos = asientos.stream()
 				.filter(asiento -> esCodDeVuelo(asiento) && estaDisponible(asiento))
+				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
+		return listaAsientos;
+	}
+	
+
+	public ArrayList<Asiento> obtenerAsientosReservados() {
+		ArrayList<Asiento> listaAsientos = asientos.stream()
+				.filter(asiento -> esCodDeVuelo(asiento) && estaDisponible(asiento) == false)
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
 		return listaAsientos;
 	}

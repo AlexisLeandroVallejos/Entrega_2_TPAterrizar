@@ -12,6 +12,7 @@ public class Asiento {
 	private String codigoDeAsiento; // Se agregara despues en un set... que set mas tramposo.
 	private String precioFinal;
 
+	
 	public Asiento(Vuelo vuelo, Usuario usuario, String claseAsiento, String ubicacionAsiento, String estadoAsiento) {
 		this.vuelo = vuelo;
 		this.usuarioBuscando = usuario;
@@ -20,6 +21,10 @@ public class Asiento {
 		this.estadoAsiento = estadoAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
 		this.precioFinal = setPrecio();
+	}
+	
+	public String getPrecioFinal() {
+		return precioFinal;
 	}
 
 	public String setPrecio() {

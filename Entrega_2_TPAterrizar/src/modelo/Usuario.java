@@ -39,7 +39,7 @@ public abstract class Usuario {
 		}
 	}
 	
-	public boolean puedePagar() {
+	public boolean suscripto() {
 		return false;
 	}
 	

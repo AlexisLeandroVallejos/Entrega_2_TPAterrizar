@@ -55,8 +55,8 @@ public class AerolineaTest {
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList("BUE", null, null, null, null, null));
 		
-		Assert.assertEquals("Se encontraron asientos en vuelos a NYC", true, 
-				lanchita.hayAlgunoQueCumple(criterios, vuelo1));
+		Assert.assertEquals("No se encontraron vuelos", true, 
+				lanchita.getVuelos().stream().anyMatch(vuelo -> vuelo.cumpleAlgunCriterio(criterios)));
 	}
 	
 	@Test
