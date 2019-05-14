@@ -10,9 +10,9 @@ public class UsuarioVIP extends Usuario {
 	}
 
 	@Override
-	public void comprar(String CodAsiento, AerolineaLanchita aero) {
+	public void comprar(String codAsiento, AerolineaLanchita aero) {
 		// TODO Auto-generated method stub
-		aero.comprar(CodAsiento);
+		aero.comprar(codAsiento);
 	}
 
 }

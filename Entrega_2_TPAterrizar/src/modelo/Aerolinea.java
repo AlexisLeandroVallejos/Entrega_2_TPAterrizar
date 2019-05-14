@@ -42,15 +42,15 @@ public class Aerolinea implements AerolineaLanchita {
 	@Override
 	public void comprar(String codigoAsiento) {
 		try {
-			String CodigoVuelo = codigoAsiento.split("-")[0];
-			Asiento asi = null;
+			String codigoVuelo = codigoAsiento.split("-")[0];
+			Asiento asientoAComprar = null;
 			for(Vuelo v:vuelos){
-				if(v.getCodDeVuelo().equalsIgnoreCase(CodigoVuelo)){
+				if(v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)){
 
-					asi = (Asiento) v.obtenerAsientos().stream()
+					asientoAComprar = (Asiento) v.obtenerAsientos().stream()
 						.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 						.toArray()[0];
-					asi.setEstadoAsiento("R");
+					asientoAComprar.setEstadoAsiento("R");
 					//break;
 				}
 			}
