@@ -1,1 +1,43 @@
-//Llenar;
+/* Documentacion: Trabajo practico 2da entrega.
+
+		Alexis Vallejos
+		Matias Velazquez
+		Ivan Salomon
+	
+	Excepciones:
+		
+		ExecepcionAsientoReservado:
+			Esta excepcion fue creada para los test que prueban 
+		ExcepconPrecioClaseAsiento:
+		
+		ExcepcionPrecioUbicacionAsiento:
+	
+	Modelo:
+	
+		Aerolinea:
+		
+		AerolineaLanchita:
+		
+		Asiento:
+		
+		Aterrizar:
+		
+		Usuario:
+		
+		UsuarioEstandar:
+		
+		UsuarioNoEstandar:
+		
+		UsuarioVIP:
+		
+		Vuelo:
+	
+	Tests:
+	
+		AerolineaTest:
+		
+		AterrizarTest:
+		
+		UsuarioTest:
+
+*/
