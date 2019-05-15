@@ -12,6 +12,7 @@ public class Asiento {
 	private String codigoDeAsiento; // Se agregara despues en un set... que set mas tramposo.
 	private String precioFinal;
 
+	
 	public Asiento(Vuelo vuelo, Usuario usuario, String claseAsiento, String ubicacionAsiento, String estadoAsiento) {
 		this.vuelo = vuelo;
 		this.usuarioBuscando = usuario;
@@ -20,6 +21,10 @@ public class Asiento {
 		this.estadoAsiento = estadoAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
 		this.precioFinal = setPrecio();
+	}
+	
+	public String getPrecioFinal() {
+		return precioFinal;
 	}
 
 	public String setPrecio() {
@@ -35,9 +40,6 @@ public class Asiento {
 		return usuarioBuscando.getClass() == UsuarioNoEstandar.class;
 	}
 
-	public boolean usuarioVIPEstaBuscando() {
-		return usuarioBuscando.getClass() == UsuarioVIP.class;
-	}
 
 	public double precioAsiento() {
 		return precioClaseAsiento() + precioUbicacionAsiento();
@@ -48,7 +50,7 @@ public class Asiento {
 	}
 
 	public double recargoAUsuarioNoEstandar() {
-		return AerolineaLanchita.recargoAUsuarioNoEstandar;
+		return Aerolinea.recargoAUsuarioNoEstandar;
 	}
 
 	public double precioTotalConRecargoAUsuarioNoEstandar() {
@@ -114,13 +116,13 @@ public class Asiento {
 
 	public double precioClaseAsiento() {
 		if (esAsientoTurista()) {
-			return AerolineaLanchita.asientoTurista;
+			return Aerolinea.asientoTurista;
 		}
 		if (esAsientoEjecutivo()) {
-			return AerolineaLanchita.asientoEjecutivo;
+			return Aerolinea.asientoEjecutivo;
 		}
 		if (esAsientoPrimeraClase()) {
-			return AerolineaLanchita.asientoPrimeraClase;
+			return Aerolinea.asientoPrimeraClase;
 		} else {
 			throw new ExcepcionPrecioClaseAsiento();
 		}
@@ -128,29 +130,29 @@ public class Asiento {
 
 	public double precioUbicacionAsiento() {
 		if (esAsientoVentanilla()) {
-			return AerolineaLanchita.asientoVentanilla;
+			return Aerolinea.asientoVentanilla;
 		}
 		if (esAsientoCentro()) {
-			return AerolineaLanchita.asientoCentro;
+			return Aerolinea.asientoCentro;
 		}
 		if (esAsientoPasillo()) {
-			return AerolineaLanchita.asientoPasillo;
+			return Aerolinea.asientoPasillo;
 		} else {
 			throw new ExcepcionPrecioUbicacionAsiento();
 		}
 	}
 
-	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000ParaUsuarioVIP() {
-		return usuarioVIPEstaBuscando() && esAsientoPrimeraClase() && Integer.parseInt(precioFinal) < 8000;
+	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000() {
+		return esAsientoPrimeraClase() && Double.parseDouble(precioFinal) < 8000;
 	}
 
-	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000ParaUsuarioVIP() {
-		return usuarioVIPEstaBuscando() && esAsientoEjecutivo() && Integer.parseInt(precioFinal) < 4000;
+	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000() {
+		return esAsientoEjecutivo() && Double.parseDouble(precioFinal) < 4000;
 	}
 
 	public boolean esSuperOferta() {
-		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000ParaUsuarioVIP() || 
-			esAsientoEjecutivoYPrecioFinalMenorA4000ParaUsuarioVIP()) {
+		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || 
+			esAsientoEjecutivoYPrecioFinalMenorA4000()) {
 			return true;
 		} else {
 			return false;

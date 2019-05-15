@@ -8,7 +8,7 @@
   </package>  
   <class id="2" language="java" name="modelo.UsuarioNoEstandar" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/UsuarioNoEstandar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="342" y="705"/>    
+    <position height="-1" width="-1" x="264" y="817"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -17,7 +17,7 @@
   </class>  
   <interface id="3" language="java" name="modelo.AerolineaLanchita" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/AerolineaLanchita.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="467" x="970" y="1121"/>    
+    <position height="-1" width="-1" x="1307" y="1416"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -26,108 +26,100 @@
   </interface>  
   <class id="4" language="java" name="modelo.Asiento" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/Asiento.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="653" width="471" x="37" y="-31"/>    
+    <position height="-1" width="-1" x="178" y="314"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="modelo.Usuario" project="Entrega_2_TPAterrizar" 
+    file="/Entrega_2_TPAterrizar/src/modelo/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="680" y="409"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="modelo.Aerolinea" project="Entrega_2_TPAterrizar" 
+    file="/Entrega_2_TPAterrizar/src/modelo/Aerolinea.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="238" width="421" x="959" y="883"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="modelo.Aterrizar" project="Entrega_2_TPAterrizar" 
-    file="/Entrega_2_TPAterrizar/src/modelo/Aterrizar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1203" y="86"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="modelo.Usuario" project="Entrega_2_TPAterrizar" 
-    file="/Entrega_2_TPAterrizar/src/modelo/Usuario.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="858" y="337"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="modelo.Aerolinea" project="Entrega_2_TPAterrizar" 
-    file="/Entrega_2_TPAterrizar/src/modelo/Aerolinea.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="467" x="887" y="892"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="8" language="java" name="modelo.UsuarioEstandar" project="Entrega_2_TPAterrizar" 
+  <class id="7" language="java" name="modelo.UsuarioEstandar" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/UsuarioEstandar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="236" x="362" y="892"/>    
+    <position height="-1" width="-1" x="531" y="817"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="modelo.Vuelo" project="Entrega_2_TPAterrizar" 
+  <class id="8" language="java" name="modelo.Vuelo" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/Vuelo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="531" y="1283"/>    
+    <position height="-1" width="-1" x="265" y="1136"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="modelo.UsuarioVIP" project="Entrega_2_TPAterrizar" 
+  <class id="9" language="java" name="modelo.UsuarioVIP" project="Entrega_2_TPAterrizar" 
     file="/Entrega_2_TPAterrizar/src/modelo/UsuarioVIP.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="209" x="638" y="892"/>    
+    <position height="-1" width="-1" x="769" y="825"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="11">    
-    <bendpoint x="1384" y="645"/>    
-    <bendpoint x="1380" y="1084"/>    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="12">    
-    <bendpoint x="559" y="706"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="6"/>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
   </generalization>  
-  <association id="13">    
-    <bendpoint x="97" y="800"/>    
-    <bendpoint x="69" y="934"/>    
-    <bendpoint x="100" y="1001"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="14" name="vuelo"/>      
-      <multiplicity id="15" minimum="0" maximum="1"/>    
+  <generalization id="11">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <association id="12">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="13" name="vuelos"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
   <association id="16">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="usuarios"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+      <attribute id="17" name="aerolinea"/>      
+      <multiplicity id="18" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="19">    
+    <bendpoint x="12" y="674"/>    
+    <bendpoint x="12" y="957"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="20" name="usuarioBuscando"/>      
+      <attribute id="20" name="vuelo"/>      
       <multiplicity id="21" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="22">    
-    <bendpoint x="119" y="929"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
+    <bendpoint x="33" y="957"/>    
+    <bendpoint x="33" y="674"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
       <attribute id="23" name="asientos"/>      
       <multiplicity id="24" minimum="0" maximum="2147483647"/>    
     </end>    
@@ -135,40 +127,11 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="25">    
-    <bendpoint x="1170" y="642"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="26" name="aerolinea"/>      
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="26" name="usuarioBuscando"/>      
       <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <realization id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <association id="31">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="32" name="vuelos"/>      
-      <multiplicity id="33" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="35" name="aerolinea"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
