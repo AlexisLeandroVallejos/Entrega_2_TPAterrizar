@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import excepciones.ExcepcionAsientoNoDisponible;
 
-public class Aerolinea implements AerolineaLanchita {
+public class Aerolinea {
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 	//claseAsiento:
 	final static double asientoTurista = 250;
@@ -22,12 +22,20 @@ public class Aerolinea implements AerolineaLanchita {
 	//recargo a usuarios no estandar:
 	final static double recargoAUsuarioNoEstandar = 20;
 	
-	@Override
+	AerolineaLanchita aerolinea;
+	
+	
 	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 			(String origen, String fechaSalida, String horaSalida,
 			String destino, String fechaLlegada, String horaLlegada) {
+		
+		
 		//Parsear los vuelos que nos mande aerolineas lanchita.
 		//Para armar los vuelos y asientos
+		
+		//ArrayList<ArrayList<String>> respuestaAero = aerolinea.asientosDisponibles(origen, fechaSalida, horaSalida, destino, fechaLlegada, horaLlegada);
+		//Pido los asientos disponibles a la AerolineaLanchita por medio de la interfaz
+		
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList(origen, destino, fechaSalida,	fechaLlegada, horaSalida, horaLlegada));
 		
@@ -50,7 +58,6 @@ public class Aerolinea implements AerolineaLanchita {
 	}
 
 
-	@Override
 	public void comprar(String codigoAsiento) {
 		this.comprar(codigoAsiento, false);
 	}

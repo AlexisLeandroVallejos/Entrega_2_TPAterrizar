@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface AerolineaLanchita {
 
 	
-	public ArrayList<ArrayList<Asiento>> asientosDisponibles 
+	public ArrayList<ArrayList<String>> asientosDisponibles 
 		(String origen, String fechaSalida, String horaSalida,
 		String destino, String fechaLlegada, String horaLlegada);
 	

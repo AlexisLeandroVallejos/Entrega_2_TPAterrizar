@@ -15,8 +15,6 @@ public class UsuarioTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20121010", "2010111", "20:10", "14:20");
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		aero.agregarVuelo(vuelo1);
-		Aterrizar aterrizar = new Aterrizar();
-		aterrizar.setAerolinea(aero);
 		String lugarOrigen = "BUE";
 		String lugarDestino = "LA";
 		String fechaSalida = "20121010";
@@ -25,7 +23,7 @@ public class UsuarioTest {
 		String horaLlegada = null;
 		Assert.assertEquals("El usuario no realizo la busqueda.", 
 				usuario.realizarBusqueda(lugarOrigen, fechaSalida, horaSalida, lugarDestino, fechaLlegada, horaLlegada),
-				aterrizar.asientosDisponibles(lugarOrigen, fechaSalida, horaSalida, lugarDestino, fechaLlegada, horaLlegada));
+				aero.asientosDisponibles(lugarOrigen, fechaSalida, horaSalida, lugarDestino, fechaLlegada, horaLlegada));
 		
 	}
 	
@@ -45,8 +43,6 @@ public class UsuarioTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20121010", "2010111", "20:10", "14:20");
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		aero.agregarVuelo(vuelo1);
-		Aterrizar aterrizar = new Aterrizar();
-		aterrizar.setAerolinea(aero);
 		String lugarOrigen = "BUE";
 		String lugarDestino = "LA";
 		String fechaSalida = "20121010";
