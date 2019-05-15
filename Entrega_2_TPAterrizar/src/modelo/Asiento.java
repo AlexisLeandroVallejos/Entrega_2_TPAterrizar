@@ -40,9 +40,6 @@ public class Asiento {
 		return usuarioBuscando.getClass() == UsuarioNoEstandar.class;
 	}
 
-	public boolean usuarioVIPEstaBuscando() {
-		return usuarioBuscando.getClass() == UsuarioVIP.class;
-	}
 
 	public double precioAsiento() {
 		return precioClaseAsiento() + precioUbicacionAsiento();
@@ -53,7 +50,7 @@ public class Asiento {
 	}
 
 	public double recargoAUsuarioNoEstandar() {
-		return AerolineaLanchita.recargoAUsuarioNoEstandar;
+		return Aerolinea.recargoAUsuarioNoEstandar;
 	}
 
 	public double precioTotalConRecargoAUsuarioNoEstandar() {
@@ -119,13 +116,13 @@ public class Asiento {
 
 	public double precioClaseAsiento() {
 		if (esAsientoTurista()) {
-			return AerolineaLanchita.asientoTurista;
+			return Aerolinea.asientoTurista;
 		}
 		if (esAsientoEjecutivo()) {
-			return AerolineaLanchita.asientoEjecutivo;
+			return Aerolinea.asientoEjecutivo;
 		}
 		if (esAsientoPrimeraClase()) {
-			return AerolineaLanchita.asientoPrimeraClase;
+			return Aerolinea.asientoPrimeraClase;
 		} else {
 			throw new ExcepcionPrecioClaseAsiento();
 		}
@@ -133,13 +130,13 @@ public class Asiento {
 
 	public double precioUbicacionAsiento() {
 		if (esAsientoVentanilla()) {
-			return AerolineaLanchita.asientoVentanilla;
+			return Aerolinea.asientoVentanilla;
 		}
 		if (esAsientoCentro()) {
-			return AerolineaLanchita.asientoCentro;
+			return Aerolinea.asientoCentro;
 		}
 		if (esAsientoPasillo()) {
-			return AerolineaLanchita.asientoPasillo;
+			return Aerolinea.asientoPasillo;
 		} else {
 			throw new ExcepcionPrecioUbicacionAsiento();
 		}

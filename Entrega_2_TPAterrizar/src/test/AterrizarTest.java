@@ -7,7 +7,7 @@ import modelo.Aterrizar;
 import modelo.UsuarioEstandar;
 
 public class AterrizarTest {
-	
+
 	@Test
 	public void registrarUsuario_usuarioSeRegistraEnAterrizar() {
 		

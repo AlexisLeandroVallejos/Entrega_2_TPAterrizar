@@ -26,10 +26,14 @@ public class Aterrizar implements AerolineaLanchita {
 	}
 
 	@Override
-	public void comprar(String codigoAsiento) {
+	public void comprar(String codigoAsiento){
 		aerolinea.comprar(codigoAsiento);
 	}
-
+	
+	public void comprar(String codigoAsiento, Usuario user){
+		aerolinea.comprar(codigoAsiento);
+	}
+	
 	public Aerolinea getAerolinea() {
 		return aerolinea;
 	}

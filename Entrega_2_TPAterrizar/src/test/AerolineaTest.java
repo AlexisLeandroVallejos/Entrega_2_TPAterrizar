@@ -96,9 +96,9 @@ public class AerolineaTest {
 		lanchita.agregarVuelo(vuelo3);
 		lanchita.asientosDisponibles(null, null, null, "BUE", null, null); //el destino es "BUE"
 	}
-	
+	//Agregar test para buscar vuelos: Destino, fecha, clase de asiento, ubicacion
 	@Test
-	public void asientosDisponibles_seObtienenTresVuelosQueCumplenConLaBusqueda() {
+	public void asientosDisponibles_seObtienenTresVuelosQueCumplenConLaBusquedaDestino() {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";

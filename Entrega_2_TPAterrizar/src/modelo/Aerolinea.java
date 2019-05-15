@@ -9,12 +9,25 @@ import excepciones.ExcepcionAsientoNoDisponible;
 
 public class Aerolinea implements AerolineaLanchita {
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
-
+	//claseAsiento:
+	final static double asientoTurista = 250;
+	final static double asientoEjecutivo = 500;
+	final static double asientoPrimeraClase = 1000;
+	//ubicacionAsiento:
+	final static double asientoPasillo = 200;
+	final static double asientoCentro = 100;
+	final static double asientoVentanilla = 300;
+	//impuesto:
+	final static double impuesto = 0.15;
+	//recargo a usuarios no estandar:
+	final static double recargoAUsuarioNoEstandar = 20;
+	
 	@Override
 	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 			(String origen, String fechaSalida, String horaSalida,
 			String destino, String fechaLlegada, String horaLlegada) {
-		
+		//Parsear los vuelos que nos mande aerolineas lanchita.
+		//Para armar los vuelos y asientos
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList(origen, destino, fechaSalida,	fechaLlegada, horaSalida, horaLlegada));
 		

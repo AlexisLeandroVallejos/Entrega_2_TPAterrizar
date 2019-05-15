@@ -157,6 +157,7 @@ public class UsuarioTest {
 		aero.agregarVuelo(vuelo1);
 		usuario.comprar("EC0344-1");
 		otroUsuario.comprar("EC0344-3");	
+		//agregar assert de estado de asiento
 	}	
 	
 	@Test(expected = ExcepcionAsientoNoDisponible.class)
