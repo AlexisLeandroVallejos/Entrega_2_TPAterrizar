@@ -11,7 +11,7 @@ public class UsuarioNoEstandar extends Usuario {
 	//modificar el comprar para ponerle recargo
 	public void comprar(String CodAsiento){
 		try{
-			aerolinea.comprar(CodAsiento, true);
+			aerolinea.comprar(CodAsiento, false);
 		}
 		catch (Exception ex){
 			throw ex;
