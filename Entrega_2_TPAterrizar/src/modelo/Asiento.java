@@ -1,8 +1,5 @@
 package modelo;
 
-import excepciones.ExcepcionPrecioClaseAsiento;
-import excepciones.ExcepcionPrecioUbicacionAsiento;
-
 public class Asiento {
 	private final Vuelo vuelo;
 	private final Usuario usuarioBuscando;
@@ -91,25 +88,19 @@ public class Asiento {
 		}
 		if (claseAsiento.esEjecutiva()) {
 			return Aerolinea.asientoEjecutivo;
-		}
-		if (claseAsiento.esPrimeraClase()) {
-			return Aerolinea.asientoPrimeraClase;
 		} else {
-			throw new ExcepcionPrecioClaseAsiento();
+			return Aerolinea.asientoPrimeraClase;
 		}
 	}
 
 	public double precioUbicacionAsiento() {
 		if (ubicacionAsiento.esVentana()) {
-			return Aerolinea.asientoVentanilla;
+			return Aerolinea.asientoVentana;
 		}
 		if (ubicacionAsiento.esCentro()) {
 			return Aerolinea.asientoCentro;
-		}
-		if (ubicacionAsiento.esPasillo()) {
-			return Aerolinea.asientoPasillo;
 		} else {
-			throw new ExcepcionPrecioUbicacionAsiento();
+			return Aerolinea.asientoPasillo;
 		}
 	}
 

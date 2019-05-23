@@ -1,14 +1,14 @@
 package modelo;
 
 public enum Clase {
-	TURISTA, EJECUTIVA, PRIMERACLASE;
+	TURISTA, EJECUTIVA, PRIMERA;
 
 	private String descripcion;
 
 	static {
 		TURISTA.descripcion = "Turista";
 		EJECUTIVA.descripcion = "Ejecutiva";
-		PRIMERACLASE.descripcion = "PrimeraClase";
+		PRIMERA.descripcion = "Primera";
 
 	}
 
@@ -25,7 +25,7 @@ public enum Clase {
 	}
 	
 	public boolean esPrimeraClase() {
-		return descripcion == "PrimeraClase";
+		return descripcion == "Primera";
 	}
 
 }

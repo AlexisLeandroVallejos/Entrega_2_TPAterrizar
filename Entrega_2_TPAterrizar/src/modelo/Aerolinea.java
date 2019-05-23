@@ -16,7 +16,7 @@ public class Aerolinea {
 	//ubicacionAsiento:
 	final static double asientoPasillo = 200;
 	final static double asientoCentro = 100;
-	final static double asientoVentanilla = 300;
+	final static double asientoVentana = 300;
 	//impuesto:
 	final static double impuesto = 0.15;
 	//recargo a usuarios no estandar:
