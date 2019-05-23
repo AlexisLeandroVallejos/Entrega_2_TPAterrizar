@@ -1,8 +1,6 @@
 package modelo;
 
 public class UsuarioEstandar extends Usuario {
-	
-	private double dineroTotalGastado;
 
 	public UsuarioEstandar(String nombre, String apellido, int dni, Aerolinea aerolinea) {
 		super(nombre, apellido, dni, aerolinea);

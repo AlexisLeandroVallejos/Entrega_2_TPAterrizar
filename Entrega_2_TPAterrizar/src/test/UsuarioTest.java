@@ -94,27 +94,13 @@ public class UsuarioTest {
 		Assert.assertEquals("Esta suscripto", false, usuario.suscripto());
 	}
 
-	@Test
-	public void superaComprasPorCienMil_UsuarioNoEstandarNosuperaComprasPorCienMil(){
-		Aerolinea aero = new Aerolinea();
-		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aero);
-		Assert.assertEquals("Supera compras Compras Por Cien Mil", false, usuario.superaComprasPorCienMil());
-	}
-
 
 	@Test
-	public void superaComprasPorCienMil_UsuarioVIPsuperaComprasPorCienMil(){
+	public void esUsuarioVIP_UsuarioEstandarSuperaComprasPorCienMilYEsVIP(){
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		usuario.sumarADineroTotalGastado(110000);
-		Assert.assertEquals("No Supera compras Compras Por Cien Mil", true, usuario.esUsuarioVIP());
-	}
-	
-	@Test
-	public void superaComprasPorCienMil_UsuarioEstandarsuperaComprasPorCienMil(){
-		Aerolinea aero = new Aerolinea();
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
-		Assert.assertEquals("Supera compras Compras Por Cien Mil", false, usuario.superaComprasPorCienMil());
+		Assert.assertEquals("No supera compras por cien mil", true, usuario.esUsuarioVIP());
 	}
 
 	@Test

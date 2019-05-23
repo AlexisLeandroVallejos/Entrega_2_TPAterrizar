@@ -2,7 +2,7 @@ package modelo;
 
 public class UsuarioNoEstandar extends Usuario {
 
-	final double recargoAUsuarioNoEstandar = 20;
+	final double recargoAUsuarioNoEstandar = 20; //Esto no se si va, ya esta en asiento...
 	
 	public UsuarioNoEstandar(String nombre, String apellido, int dni, Aerolinea aerolinea) {
 		super(nombre, apellido, dni, aerolinea);

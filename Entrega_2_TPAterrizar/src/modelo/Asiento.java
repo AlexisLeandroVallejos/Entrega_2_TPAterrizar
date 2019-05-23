@@ -33,8 +33,7 @@ public class Asiento {
 	}
 
 	public boolean usuarioNoEstandarEstaBuscando() {
-		return usuarioBuscando.getClass() == UsuarioNoEstandar.class; // TODO: REEEEEEEEEEEEEEEEfactorizar. pero para
-																		// ayer...
+		return !usuarioBuscando.suscripto();
 	}
 
 	public double precioAsiento() {
