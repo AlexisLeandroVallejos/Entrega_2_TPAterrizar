@@ -57,7 +57,7 @@ public class Vuelo {
 	}
 
 	public boolean estaDisponible(Asiento asiento) {
-		return asiento.esDisponible();
+		return asiento.getEstadoAsiento().esDisponible();
 	}
 //agregar filtro por super asientos
 	public ArrayList<Asiento> obtenerAsientos() {

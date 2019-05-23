@@ -6,14 +6,13 @@ import excepciones.ExcepcionPrecioUbicacionAsiento;
 public class Asiento {
 	private final Vuelo vuelo;
 	private final Usuario usuarioBuscando;
-	private final String claseAsiento; // T, E, P - No va cambiar una vez que se defina.
-	private final String ubicacionAsiento; // V, C, P - ^idem.
-	private String estadoAsiento; // D, R - El estado podria cambiar.
-	private String codigoDeAsiento; // Se agregara despues en un set... que set mas tramposo.
+	private final Clase claseAsiento;
+	private final Ubicacion ubicacionAsiento;
+	private Estado estadoAsiento;
+	private String codigoDeAsiento;
 	private String precioFinal;
 
-	
-	public Asiento(Vuelo vuelo, Usuario usuario, String claseAsiento, String ubicacionAsiento, String estadoAsiento) {
+	public Asiento(Vuelo vuelo, Usuario usuario, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
 		this.vuelo = vuelo;
 		this.usuarioBuscando = usuario;
 		this.claseAsiento = claseAsiento;
@@ -22,7 +21,7 @@ public class Asiento {
 		this.codigoDeAsiento = setCodigoDeAsiento();
 		this.precioFinal = setPrecio();
 	}
-	
+
 	public String getPrecioFinal() {
 		return precioFinal;
 	}
@@ -37,9 +36,9 @@ public class Asiento {
 	}
 
 	public boolean usuarioNoEstandarEstaBuscando() {
-		return usuarioBuscando.getClass() == UsuarioNoEstandar.class;
+		return usuarioBuscando.getClass() == UsuarioNoEstandar.class; // TODO: REEEEEEEEEEEEEEEEfactorizar. pero para
+																		// ayer...
 	}
-
 
 	public double precioAsiento() {
 		return precioClaseAsiento() + precioUbicacionAsiento();
@@ -61,11 +60,11 @@ public class Asiento {
 		return precioAsiento() + impuestoAlPrecioAsiento();
 	}
 
-	public String getEstadoAsiento() {
+	public Estado getEstadoAsiento() {
 		return estadoAsiento;
 	}
 
-	public void setEstadoAsiento(String estadoAsiento) {
+	public void setEstadoAsiento(Estado estadoAsiento) {
 		this.estadoAsiento = estadoAsiento;
 	}
 
@@ -86,42 +85,14 @@ public class Asiento {
 		return Integer.toString(sumador);
 	}
 
-	public boolean esDisponible() {
-		return estadoAsiento == "D";
-	}
-
-	public boolean esAsientoTurista() {
-		return claseAsiento == "T";
-	}
-
-	public boolean esAsientoEjecutivo() {
-		return claseAsiento == "E";
-	}
-
-	public boolean esAsientoPrimeraClase() {
-		return claseAsiento == "P";
-	}
-
-	public boolean esAsientoVentanilla() {
-		return ubicacionAsiento == "V";
-	}
-
-	public boolean esAsientoCentro() {
-		return ubicacionAsiento == "C";
-	}
-
-	public boolean esAsientoPasillo() {
-		return ubicacionAsiento == "P";
-	}
-
 	public double precioClaseAsiento() {
-		if (esAsientoTurista()) {
+		if (claseAsiento.esTurista()) {
 			return Aerolinea.asientoTurista;
 		}
-		if (esAsientoEjecutivo()) {
+		if (claseAsiento.esEjecutiva()) {
 			return Aerolinea.asientoEjecutivo;
 		}
-		if (esAsientoPrimeraClase()) {
+		if (claseAsiento.esPrimeraClase()) {
 			return Aerolinea.asientoPrimeraClase;
 		} else {
 			throw new ExcepcionPrecioClaseAsiento();
@@ -129,13 +100,13 @@ public class Asiento {
 	}
 
 	public double precioUbicacionAsiento() {
-		if (esAsientoVentanilla()) {
+		if (ubicacionAsiento.esVentana()) {
 			return Aerolinea.asientoVentanilla;
 		}
-		if (esAsientoCentro()) {
+		if (ubicacionAsiento.esCentro()) {
 			return Aerolinea.asientoCentro;
 		}
-		if (esAsientoPasillo()) {
+		if (ubicacionAsiento.esPasillo()) {
 			return Aerolinea.asientoPasillo;
 		} else {
 			throw new ExcepcionPrecioUbicacionAsiento();
@@ -143,16 +114,15 @@ public class Asiento {
 	}
 
 	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000() {
-		return esAsientoPrimeraClase() && Double.parseDouble(precioFinal) < 8000;
+		return claseAsiento.esPrimeraClase() && Double.parseDouble(precioFinal) < 8000;
 	}
 
 	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000() {
-		return esAsientoEjecutivo() && Double.parseDouble(precioFinal) < 4000;
+		return claseAsiento.esEjecutiva() && Double.parseDouble(precioFinal) < 4000;
 	}
 
 	public boolean esSuperOferta() {
-		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || 
-			esAsientoEjecutivoYPrecioFinalMenorA4000()) {
+		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || esAsientoEjecutivoYPrecioFinalMenorA4000()) {
 			return true;
 		} else {
 			return false;

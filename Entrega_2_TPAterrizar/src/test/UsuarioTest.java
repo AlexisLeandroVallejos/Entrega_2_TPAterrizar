@@ -61,11 +61,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -124,16 +124,16 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		usuario.comprar("EC0344-1");
-		Assert.assertEquals("El asiento no esta reservado", asiento1.getEstadoAsiento(), "R");
+		Assert.assertEquals("El asiento no esta reservado", asiento1.getEstadoAsiento(), Estado.RESERVADO);
 	}
 	
 	@Test
@@ -144,11 +144,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -165,11 +165,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -184,11 +184,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -202,11 +202,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -221,9 +221,9 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuarioEstandar, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuarioEstandar, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento3 = new Asiento(vuelo1, usuarioNoEstandar, "T", "P", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuarioNoEstandar, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -237,11 +237,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "P", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERACLASE, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -255,11 +255,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "P", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERACLASE, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
@@ -273,11 +273,11 @@ public class UsuarioTest {
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, "T", "P", "D");
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, "E", "P", "R");
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, "T", "V", "D");
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);

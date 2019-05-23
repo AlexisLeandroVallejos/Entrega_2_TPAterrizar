@@ -73,7 +73,7 @@ public class Aerolinea {
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
 						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento("R");
+							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -83,7 +83,7 @@ public class Aerolinea {
 							.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 							.collect(Collectors.toList());
 						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento("R");
+							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
