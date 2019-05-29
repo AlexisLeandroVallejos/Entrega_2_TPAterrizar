@@ -1,0 +1,15 @@
+Esto es lo que tengo anotado del martes pasado como fixes a aplicar (algunos ya se hicieron) los anoto aca para que sepan que falta, o agreguen si falta o no quedo claro:
+//tip: Activen la opcion "Toggle Word Wrap" (esta arriba en su eclipse) para no tener que mover el cursor/ventana porque no se ve el texto.
+
++Usuario con metodo (creo que esto es lo de UsuarioVIP, ya fue fix por ivan?)
++estandar es VIP, borrar vip (fix, del primero)
++vip busqueda superoferta (fix, matias con el boolean de segundo parametro en la busqueda?)
+
+-compras guardadas (del usuario)
+-test para cada destino, fecha, claseAsiento, ubicacionAsiento... (esto necesita el parseo de datos que era lo que estaba haciendo el martes, matias con el .json y la libreria dedicada a eso...?)
+-caracteristicas enum criterios, especifico x criterio
+-buscar por precio
+-enum agregar (?)
+-assert de estadoAsiento
+-historial de compras
+

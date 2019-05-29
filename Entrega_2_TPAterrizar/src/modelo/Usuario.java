@@ -8,6 +8,7 @@ public abstract class Usuario {
 	private String apellido;
 	private int dni;
 	protected Aerolinea aerolinea;
+	protected double dineroTotalGastado;
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
 	
@@ -40,10 +41,6 @@ public abstract class Usuario {
 	}
 	
 	public boolean suscripto() {
-		return false;
-	}
-	
-	public boolean superaComprasPorCienMil() {
 		return false;
 	}
 

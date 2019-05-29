@@ -18,7 +18,7 @@ public class Aerolinea {
 	//ubicacionAsiento:
 	final static double asientoPasillo = 200;
 	final static double asientoCentro = 100;
-	final static double asientoVentanilla = 300;
+	final static double asientoVentana = 300;
 	//impuesto:
 	final static double impuesto = 0.15;
 	//recargo a usuarios no estandar:
@@ -112,7 +112,7 @@ public class Aerolinea {
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
 						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento("R");
+							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -122,7 +122,7 @@ public class Aerolinea {
 							.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 							.collect(Collectors.toList());
 						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento("R");
+							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
