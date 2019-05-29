@@ -84,6 +84,7 @@ public class UsuarioTest {
 	public void suscripto_UsuarioVIPEstaSuscripto(){
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		usuario.sumarADineroTotalGastado(100001);
 		Assert.assertEquals("No esta suscripto", true, usuario.suscripto());
 	}
 	
