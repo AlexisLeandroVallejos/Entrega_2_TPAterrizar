@@ -11,7 +11,7 @@ import excepciones.ExcepcionAsientoNoDisponible;
 
 public class Aerolinea {
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
-	//claseAsiento:
+	//claseAsiento
 	final static double asientoTurista = 250;
 	final static double asientoEjecutivo = 500;
 	final static double asientoPrimeraClase = 1000;
