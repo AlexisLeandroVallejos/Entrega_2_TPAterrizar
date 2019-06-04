@@ -1,13 +1,13 @@
 package modelo;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface Oceanic {
 	
 	//busquedas:
-	public ArrayList<ArrayList<AsientoDTO>> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida);
+	public List<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida);
 	
-	public ArrayList<ArrayList<AsientoDTO>> asientosDisponiblesParaOrigenYDestino
+	public List<AsientoDTO> asientosDisponiblesParaOrigenYDestino
 		(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic);
 	
 	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento);
@@ -18,3 +18,4 @@ public interface Oceanic {
 	//reservas:
 	public boolean reservar(String dni, String codigoVuelo, Integer numeroDeAsiento);
 }
+

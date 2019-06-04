@@ -24,7 +24,41 @@ public class Aerolinea {
 	//recargo a usuarios no estandar:
 	final static double recargoAUsuarioNoEstandar = 20;
 	private ArrayList<Asiento> asientosSobreReservados = new ArrayList<Asiento>();
+	
 	AerolineaLanchita aerolinea;
+	Oceanic oceanic;
+
+	public Oceanic getOceanic() {
+		return oceanic;
+	}
+
+	public void setOceanic(Oceanic oceanic) {
+		this.oceanic = oceanic;
+	}
+
+	// busquedas:
+	public List<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
+		return oceanic.asientosDisponiblesParaOrigen(codigoOrigenOceanic, fechaSalida);
+	}
+
+	public List<AsientoDTO> asientosDisponiblesParaOrigenYDestino
+		(String codigoOrigenOceanic,String fechaSalida, String codigoDestinoOceanic) {
+		return oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
+	}
+
+	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento) {
+		return oceanic.estaReservado(codigoDeVuelo, numeroDeAsiento);
+	}
+
+	// compras:
+	public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, Integer numeroDeAsiento) {
+		return oceanic.comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento);
+	}
+
+	// reservas:
+	public boolean reservar(String dni, String codigoVuelo, Integer numeroDeAsiento) {
+		return oceanic.reservar(dni, codigoVuelo, numeroDeAsiento);
+	}
 	
 	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 			(String origen, String fechaSalida, String horaSalida,
