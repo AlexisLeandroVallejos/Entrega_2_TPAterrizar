@@ -13,12 +13,24 @@ public abstract class Usuario {
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
 	
 	public Usuario(String nombre, String apellido, int dni, Aerolinea aerolinea) {
-		this.nombre = nombre;
+		this.setNombre(nombre);
 		this.apellido = apellido;
-		this.dni = dni;
+		this.setDni(dni);
 		this.aerolinea = aerolinea;
 	}
 	
+	private void setDni(int _dni) {
+		this.dni = _dni;
+	}
+	
+	private int getDni(){
+		return dni;
+	}
+
+	private void setNombre(String _nombre) {
+		this.nombre = _nombre;
+	}
+
 	public ArrayList<ArrayList<Asiento>> realizarBusqueda 
 			(String origen, String fechaSalida, String horaSalida,
 			String destino, String fechaLlegada, String horaLlegada) {
@@ -46,6 +58,10 @@ public abstract class Usuario {
 
 	public ArrayList<ArrayList<String>> getHistoricoBusquedas() {
 		return historicoBusquedas;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 }

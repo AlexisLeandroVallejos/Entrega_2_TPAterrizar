@@ -10,4 +10,8 @@ public interface AerolineaLanchita {
 		String destino, String fechaLlegada, String horaLlegada);
 	
 	public void comprar (String codigoAsiento);
+	
+	public void reservar(String codigo, String dni);
+	
+	
 }

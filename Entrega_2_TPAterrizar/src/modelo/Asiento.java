@@ -119,4 +119,8 @@ public class Asiento {
 		}
 	}
 
+	public void setUsuario(String dni) {
+		
+	}
+
 }

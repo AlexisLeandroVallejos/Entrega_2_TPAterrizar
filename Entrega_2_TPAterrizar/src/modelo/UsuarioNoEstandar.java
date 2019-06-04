@@ -11,7 +11,16 @@ public class UsuarioNoEstandar extends Usuario {
 	//modificar el comprar para ponerle recargo
 	public void comprar(String CodAsiento){
 		try{
-			aerolinea.comprar(CodAsiento, false);
+			aerolinea.comprar(CodAsiento, suscripto());
+		}
+		catch (Exception ex){
+			throw ex;
+		}
+	}
+
+	public void reservar(String CodAsiento) {
+		try{
+			aerolinea.reservar(CodAsiento, suscripto());
 		}
 		catch (Exception ex){
 			throw ex;

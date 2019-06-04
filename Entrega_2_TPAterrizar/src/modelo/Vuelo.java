@@ -60,13 +60,19 @@ public class Vuelo {
 		return asiento.getEstadoAsiento().esDisponible();
 	}
 //agregar filtro por super asientos
-	public ArrayList<Asiento> obtenerAsientos() {
+	public ArrayList<Asiento> obtenerAsientosDisponibles() {
 		ArrayList<Asiento> listaAsientos = asientos.stream()
 				.filter(asiento -> esCodDeVuelo(asiento) && estaDisponible(asiento))
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
 		return listaAsientos;
 	}
-	
+//Esta busqueda es para los asientos que se pueden reservar, que son todos los que no fueron comprados, hay que ver si se puede hacer mejor
+	public ArrayList<Asiento> obtenerTodosLosAsientos() {
+		ArrayList<Asiento> listaAsientos = asientos.stream()
+				.filter(asiento -> esCodDeVuelo(asiento))
+				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
+		return listaAsientos;
+	}
 
 	public ArrayList<Asiento> obtenerAsientosReservados() {
 		ArrayList<Asiento> listaAsientos = asientos.stream()

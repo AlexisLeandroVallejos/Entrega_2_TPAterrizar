@@ -33,7 +33,7 @@ public class AerolineaTest {
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Asiento asiento = new Asiento(vuelo, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo.agregarAsiento(asiento);
-		Assert.assertEquals("No se encontro asiento.", vuelo.obtenerAsientos().get(0), asiento);
+		Assert.assertEquals("No se encontro asiento.", vuelo.obtenerAsientosDisponibles().get(0), asiento);
 	}
 	
 
@@ -183,6 +183,5 @@ public class AerolineaTest {
 		Assert.assertEquals("Se encontraron asientos en vuelos a NYC", 0, 
 				lanchita.asientosDisponibles("NYC", null, null, null, null, null).size());
 	}
-	
 	
 }

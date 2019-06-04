@@ -23,9 +23,8 @@ public class Aerolinea {
 	final static double impuesto = 0.15;
 	//recargo a usuarios no estandar:
 	final static double recargoAUsuarioNoEstandar = 20;
-	
+	private ArrayList<Asiento> asientosSobreReservados = new ArrayList<Asiento>();
 	AerolineaLanchita aerolinea;
-	
 	
 	public ArrayList<ArrayList<Asiento>> asientosDisponibles
 			(String origen, String fechaSalida, String horaSalida,
@@ -42,14 +41,12 @@ public class Aerolinea {
 			
 			JSONArray j = (JSONArray) this.parsearJsonAerolinea(deLanchitaJson);
 			
-			
-			
 			ArrayList<String> criterios = new ArrayList<>(
 					Arrays.asList(origen, destino, fechaSalida,	fechaLlegada, horaSalida, horaLlegada));
 			
 			List<ArrayList<Asiento>> listaAsientos = vuelos.stream()
 					  .filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
-					  .map(vuelo -> vuelo.obtenerAsientos())
+					  .map(vuelo -> vuelo.obtenerAsientosDisponibles())
 					  .filter(asiento -> asiento.size()>0)
 					  .collect(Collectors.toList());
 			
@@ -61,7 +58,7 @@ public class Aerolinea {
 			return null;
 		}
 	}
-
+	
 	@SuppressWarnings("unused")
 	private ArrayList<Vuelo> parsearJsonAerolinea(String deLanchitaJson) throws ParseException {
 
@@ -108,7 +105,7 @@ public class Aerolinea {
 			for(Vuelo v:vuelos){
 				if(v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)){
 					if(aceptaOfertas){
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientos().stream()
+						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
 						if(asientoAComprar.size() == 1) {
@@ -117,7 +114,7 @@ public class Aerolinea {
 							throw new ExcepcionAsientoNoDisponible();
 						}
 					}else{
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientos().stream()
+						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
 							.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 							.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 							.collect(Collectors.toList());
@@ -139,5 +136,46 @@ public class Aerolinea {
 		vuelos.add(vuelo);
 
 	}
-	
+
+	public void reservar(String codigoAsiento, boolean aceptaOfertas) {
+		try {
+			String codigoVuelo = codigoAsiento.split("-")[0];
+			ArrayList<Asiento> asientoAReservar = null;
+			for(Vuelo v:vuelos){
+				if(v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)){
+					if(aceptaOfertas){
+						asientoAReservar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream()
+								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
+								.collect(Collectors.toList());
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esReservado()){
+							sobreReservar(asientoAReservar.get(0));
+						}
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esDisponible()) {
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
+						}
+						else {
+							throw new ExcepcionAsientoNoDisponible();
+						}
+					}else{
+						asientoAReservar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
+								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
+								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
+								.collect(Collectors.toList());
+						if(asientoAReservar.size() == 1) {
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
+						}else {
+							throw new ExcepcionAsientoNoDisponible();
+						}
+					}
+				}
+			}
+		}
+		catch(Exception ex){
+			throw ex;
+		}
+	}
+//el asiento se agrega a la lista, dentro tiene la informacion del usuario que lo sobrereservo
+	private void sobreReservar(Asiento asiento) {
+		asientosSobreReservados.add(asiento);
+	}
 }

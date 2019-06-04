@@ -71,6 +71,14 @@
 		AterrizarTest:
 		
 		UsuarioTest:
+		
+	Entrega 3:
+	Comienzo creando un test para que un usuario del nivel mas bajo pueda realizar una reserva, asi pruebo la primer funcion nueva de las aerolineas
+	Creo un metodo para que el usuario pueda reservar un asiento.
+	Veo que ademas cada aerolinea maneja las reservas de forma distinta, asi que creo los metodos necesarios para el pattern Matching
+	Cambie el metodo de busqueda para los asientos, de esta forma puedo ver los asientos que fueron reservados tambien, ya que...
+	El enunciado explica que los usuarios pueden sobre reservar los asientos, implemento el metodos sobreReservar() en la clase aerolineas, para llevar una lista de los asiento sobre_reservados
+	Los asiento ya poseen la informacion de quien los sobre_reservo, esto me permite tenerlos guardados sin alterarlos hasta que se venza una reserva y pueda intercambiar usarios como pide el enunciado
 
 */
 >>>>>>> branch 'master' of https://github.com/AlexisLeandroVallejos/Entrega_2_TPAterrizar.git
