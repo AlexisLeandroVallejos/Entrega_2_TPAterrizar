@@ -134,7 +134,6 @@ public class Aerolinea {
 
 	public void agregarVuelo(Vuelo vuelo) {
 		vuelos.add(vuelo);
-
 	}
 
 	public void reservar(String codigoAsiento, boolean aceptaOfertas) {
@@ -152,16 +151,18 @@ public class Aerolinea {
 						}
 						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esDisponible()) {
 							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
-						}
-						else {
+						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
 					}else{
-						asientoAReservar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
+						asientoAReservar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream()
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 								.collect(Collectors.toList());
-						if(asientoAReservar.size() == 1) {
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esReservado()){
+							sobreReservar(asientoAReservar.get(0));
+						}
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esDisponible()) {
 							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
@@ -177,5 +178,9 @@ public class Aerolinea {
 //el asiento se agrega a la lista, dentro tiene la informacion del usuario que lo sobrereservo
 	private void sobreReservar(Asiento asiento) {
 		asientosSobreReservados.add(asiento);
+	}
+
+	public ArrayList<Asiento> getAsientosSobreReservados() {
+		return asientosSobreReservados;
 	}
 }
