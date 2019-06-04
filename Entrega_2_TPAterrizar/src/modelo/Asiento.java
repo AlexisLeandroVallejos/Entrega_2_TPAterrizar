@@ -1,6 +1,6 @@
 package modelo;
 
-public class Asiento {
+public class Asiento{
 	private final Vuelo vuelo;
 	private final Usuario usuarioBuscando;
 	private final Clase claseAsiento;
@@ -111,6 +111,18 @@ public class Asiento {
 		return claseAsiento.esEjecutiva() && Double.parseDouble(precioFinal) < 4000;
 	}
 
+	public boolean esClaseAsiento(Clase[] clases) {
+		boolean esClase = false;
+		for(int index = 0; index < clases.length || esClase == true; index++)
+		{
+			if(clases[index].equals(this.claseAsiento))
+			{
+				esClase = true;
+			}
+		}
+		return esClase;
+	}
+
 	public boolean esSuperOferta() {
 		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || esAsientoEjecutivoYPrecioFinalMenorA4000()) {
 			return true;
@@ -122,5 +134,23 @@ public class Asiento {
 	public void setUsuario(String dni) {
 		
 	}
+	
+	public Vuelo getVuelo()
+	{
+		return vuelo;
+	}
+	
+
+	public double getPopularidadVuelo()
+	{
+		//algo? definir sistema de popularidad..
+		return 0;
+	}
+	
+	public double duracionVuelo()
+	{
+		return vuelo.getDuracionVuelo();
+	}
+
 
 }

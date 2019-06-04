@@ -4,8 +4,13 @@ import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
 
 import excepciones.ExcepcionAsientoNoDisponible;
 
@@ -46,6 +51,35 @@ public class Aerolinea {
 		return oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
 	}
 
+	public List<Asiento> BuscarAsientos
+		(String origen,String fecha, String destino) {
+		return BuscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
+	}
+
+	public List<Asiento> BuscarAsientos
+	(String origen,String fecha, String destino, Clase[] clase, double precioMin, double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
+		ArrayList<String> criterios = new ArrayList<>(
+				Arrays.asList(origen, destino));
+		
+		List<Asiento> lista = vuelos.stream()
+				  .filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
+				  .filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
+				  //nuevos filtros
+				  .map(vuelo -> ((mostrarReservados) ? vuelo.obtenerTodosLosAsientos() : vuelo.obtenerAsientosDisponibles()) )
+				  .filter(asiento -> asiento.size()>0)
+				  .flatMap(Collection::stream)
+				  .filter(asiento -> precioMin == 0 	|| asiento.precioAsiento() >= precioMin)
+				  .filter(asiento -> precioMax == 0 	|| asiento.precioAsiento() <= precioMax)
+				  .filter(asiento -> clase.length > 0 ||asiento.esClaseAsiento(clase) )
+				  .collect(Collectors.toList());
+		if(orden != null)
+		{
+			lista.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
+			  .collect(Collectors.toList());
+		}
+		return lista;
+	}
+	
 	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento) {
 		return oceanic.estaReservado(codigoDeVuelo, numeroDeAsiento);
 	}

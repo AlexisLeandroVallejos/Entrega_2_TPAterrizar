@@ -441,4 +441,45 @@ public class AerolineaTest {
 		Mockito.verify(oceanic).reservar(dni, codigoVuelo, numeroDeAsiento);
 	}
 	//Prueba.
+	
+
+	
+	@Test
+	public void buscarAsiento_TraeAsientosSinFiltrosOpcionales() {
+		String codDeVuelo1 = "EC0344";
+		String codDeVuelo2 = "TGX2";
+		String codDeVuelo3 = "JAH18";
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
+		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
+		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
+		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
+		//Asientos vuelo1
+		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		vuelo1.agregarAsiento(asiento1);
+		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		vuelo1.agregarAsiento(asiento2);
+		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		vuelo1.agregarAsiento(asiento3);
+		//Asientos vuelo2
+		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		vuelo2.agregarAsiento(asiento4);
+		Asiento asiento5 = new Asiento(vuelo2, usuario, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
+		vuelo2.agregarAsiento(asiento5);
+		Asiento asiento6 = new Asiento(vuelo2, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		vuelo2.agregarAsiento(asiento6);
+		//Asientos vuelo3
+		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento7);
+		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento8);
+		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento9);
+		//Agregar vuelos a aerolinea:
+		lanchita.agregarVuelo(vuelo1);
+		lanchita.agregarVuelo(vuelo2);
+		lanchita.agregarVuelo(vuelo3);
+		Assert.assertEquals("No se encontraron asientos en vuelos a BUE", 1, 
+				lanchita.BuscarAsientos("BUE","2010116" , "LA").size());
+	}
 }

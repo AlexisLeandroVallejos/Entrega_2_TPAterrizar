@@ -55,4 +55,15 @@ public class AsientoDTO {
 		this.comprado = comprado;
 	}
 
+	public boolean esClaseAsiento(Clase[] clases) {
+		boolean esClase = false;
+		for(int index = 0; index < clases.length || esClase == true; index++)
+		{
+			if(clases[index].equals(this.claseAsiento))
+			{
+				esClase = true;
+			}
+		}
+		return esClase;
+	}
 }

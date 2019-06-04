@@ -1,7 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 public class Vuelo {
@@ -38,6 +40,20 @@ public class Vuelo {
 				caracteristica -> criteriosBusqueda.stream().anyMatch(palabraCriterio -> palabraCriterio == caracteristica));
 	}
 
+
+	public boolean fechaEntreSalidaLlegada(String fecha) {
+		//Cambiar busqueda para que sea mas especificamente por criterio
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMdd");
+		try{
+			Date fechaDate = simpleDate.parse(fecha);
+			return simpleDate.parse(this.getFechaLlegada()).before(fechaDate) 
+						&& simpleDate.parse(this.getFechaSalida()).after(fechaDate);
+		}
+		catch(Exception ex){
+			
+		}
+		return false;
+	}
 	
 	public ArrayList<String> setCriterios() {
 		return caracteristicasVuelo = new ArrayList<>(
@@ -107,6 +123,27 @@ public class Vuelo {
 
 	public String getHoraLlegada() {
 		return horaLlegada;
+	}
+	
+	public double getDuracionVuelo()
+	{
+
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMdd kk:mm");
+		try{
+			Date salida = simpleDate.parse(this.getFechaLlegada() + horaSalida);
+			Date llegada = simpleDate.parse(this.getFechaSalida() + this.horaLlegada);
+			long mili = salida.getTime() - llegada.getTime();
+			mili = Math.abs(mili);
+			double dias = mili /1000; //Segundos
+			dias = dias/60; //Minutos
+			dias = dias/60; //Horas
+			dias = dias/24;
+			return (double)dias;
+		}
+		catch(Exception ex){
+			
+		}
+		return 0;
 	}
 
 }
