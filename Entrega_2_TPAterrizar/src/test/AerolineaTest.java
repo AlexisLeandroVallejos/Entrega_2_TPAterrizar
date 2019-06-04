@@ -440,4 +440,5 @@ public class AerolineaTest {
 		Assert.assertEquals(noEstabaReservado, lanchita.reservar(dni, codigoVuelo, numeroDeAsiento));
 		Mockito.verify(oceanic).reservar(dni, codigoVuelo, numeroDeAsiento);
 	}
+	//Prueba.
 }
