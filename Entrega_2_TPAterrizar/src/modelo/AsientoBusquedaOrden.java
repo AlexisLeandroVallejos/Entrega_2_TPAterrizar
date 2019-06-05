@@ -21,26 +21,27 @@ public enum AsientoBusquedaOrden {
 		return descripcion;
 	}
 	
-	public  List<Asiento> Orden(List<Asiento> listaAOrdenar)
+	public  List<Asiento> ordenarListaSegunCriterio(List<Asiento> listaAOrdenar)
 	{
+		//convertir Enum a Clase
 		switch(descripcion)
 		{
-		case "Precio Asc":
-			listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
-			  .collect(Collectors.toList());
-			break;
-		case "Precio Desc":
-			listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal).reversed())
-			  .collect(Collectors.toList());
-			break;
-		case "Tiempo Vuelo":
-			listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::duracionVuelo))
-			  .collect(Collectors.toList());
-			break;
-		case "Popularidad":
-			listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPopularidadVuelo))
-			  .collect(Collectors.toList());
-			break;
+			case "Precio Asc":
+				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
+				  .collect(Collectors.toList());
+				break;
+			case "Precio Desc":
+				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal).reversed())
+				  .collect(Collectors.toList());
+				break;
+			case "Tiempo Vuelo":
+				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::duracionVuelo))
+				  .collect(Collectors.toList());
+				break;
+			case "Popularidad":
+				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPopularidadVuelo))
+				  .collect(Collectors.toList());
+				break;
 		}
 		return listaAOrdenar;
 	}

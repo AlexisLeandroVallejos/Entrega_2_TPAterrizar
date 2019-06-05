@@ -1,13 +1,14 @@
 package modelo;
 
 public enum Estado {
-	DISPONIBLE, RESERVADO;
+	DISPONIBLE, RESERVADO, COMPRADO;
 
 	private String descripcion;
 
 	static {
 		DISPONIBLE.descripcion = "Disponible";
 		RESERVADO.descripcion = "Reservado";
+		COMPRADO.descripcion = "Comprado";
 
 	}
 
@@ -15,11 +16,15 @@ public enum Estado {
 		return descripcion;
 	}
 	
-	public boolean esDisponible() {
+	public boolean estaDisponible() {
 		return descripcion == "Disponible";
 	}
 	
-	public boolean esReservado() {
+	public boolean estaReservado() {
 		return descripcion == "Reservado";
+	}
+	
+	public boolean estaComprado() {
+		return descripcion == "Comprado";
 	}
 }

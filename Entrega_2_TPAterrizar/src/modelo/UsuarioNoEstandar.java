@@ -20,7 +20,7 @@ public class UsuarioNoEstandar extends Usuario {
 
 	public void reservar(String CodAsiento) {
 		try{
-			aerolinea.reservar(CodAsiento, suscripto());
+			aerolinea.reservar(CodAsiento, suscripto(), this);
 		}
 		catch (Exception ex){
 			throw ex;

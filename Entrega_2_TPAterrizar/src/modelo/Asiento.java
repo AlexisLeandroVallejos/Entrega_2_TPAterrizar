@@ -1,8 +1,10 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Asiento{
 	private final Vuelo vuelo;
-	private final Usuario usuarioBuscando;
+	private Usuario usuarioBuscando;
 	private final Clase claseAsiento;
 	private final Ubicacion ubicacionAsiento;
 	private Estado estadoAsiento;
@@ -17,6 +19,10 @@ public class Asiento{
 		this.estadoAsiento = estadoAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
 		this.precioFinal = setPrecio();
+	}
+
+	public Usuario getUsuario() {
+		return usuarioBuscando;
 	}
 
 	public String getPrecioFinal() {
@@ -64,6 +70,11 @@ public class Asiento{
 		this.estadoAsiento = estadoAsiento;
 	}
 
+	public void setEstadoAsiento(Estado estadoAsiento, Usuario user) {
+		this.estadoAsiento = estadoAsiento;
+		this.usuarioBuscando = user;
+	}
+	
 	public String getCodigoDeAsiento() {
 		return codigoDeAsiento;
 	}
@@ -113,11 +124,18 @@ public class Asiento{
 
 	public boolean esClaseAsiento(Clase[] clases) {
 		boolean esClase = false;
-		for(int index = 0; index < clases.length || esClase == true; index++)
-		{
-			if(clases[index].equals(this.claseAsiento))
+		ArrayList<Clase> listaArray = new ArrayList<Clase>();
+		//listaArray.addAll(clases);
+		if(clases != null) {
+			//arreglar condicion de corte en FOR cambiar a Lista
+			
+			for(int index = 0; index < clases.length; index++)
 			{
-				esClase = true;
+				if(clases[index].equals(this.claseAsiento))
+				{
+					esClase = true;
+					return esClase;
+				}
 			}
 		}
 		return esClase;
@@ -131,9 +149,6 @@ public class Asiento{
 		}
 	}
 
-	public void setUsuario(String dni) {
-		
-	}
 	
 	public Vuelo getVuelo()
 	{
@@ -145,6 +160,13 @@ public class Asiento{
 	{
 		//algo? definir sistema de popularidad..
 		return 0;
+	}
+	
+
+	public boolean vencioReserva()
+	{
+		// definir sistema de vencimientos, devuelvo true para testing.
+		return false;
 	}
 	
 	public double duracionVuelo()

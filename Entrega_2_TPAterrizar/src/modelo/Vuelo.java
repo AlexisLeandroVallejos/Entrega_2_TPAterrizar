@@ -46,8 +46,8 @@ public class Vuelo {
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyyMMdd");
 		try{
 			Date fechaDate = simpleDate.parse(fecha);
-			return simpleDate.parse(this.getFechaLlegada()).before(fechaDate) 
-						&& simpleDate.parse(this.getFechaSalida()).after(fechaDate);
+			return (simpleDate.parse(this.getFechaLlegada()).compareTo(fechaDate) >= 0)
+						&& simpleDate.parse(this.getFechaSalida()).compareTo(fechaDate) <= 0;
 		}
 		catch(Exception ex){
 			
@@ -73,7 +73,7 @@ public class Vuelo {
 	}
 
 	public boolean estaDisponible(Asiento asiento) {
-		return asiento.getEstadoAsiento().esDisponible();
+		return asiento.getEstadoAsiento().estaDisponible();
 	}
 //agregar filtro por super asientos
 	public ArrayList<Asiento> obtenerAsientosDisponibles() {
@@ -85,7 +85,7 @@ public class Vuelo {
 //Esta busqueda es para los asientos que se pueden reservar, que son todos los que no fueron comprados, hay que ver si se puede hacer mejor
 	public ArrayList<Asiento> obtenerTodosLosAsientos() {
 		ArrayList<Asiento> listaAsientos = asientos.stream()
-				.filter(asiento -> esCodDeVuelo(asiento))
+				.filter(asiento -> esCodDeVuelo(asiento) && asiento.getEstadoAsiento().estaComprado() == false)
 				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
 		return listaAsientos;
 	}

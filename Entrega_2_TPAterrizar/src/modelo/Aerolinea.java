@@ -57,7 +57,8 @@ public class Aerolinea {
 	}
 
 	public List<Asiento> BuscarAsientos
-	(String origen,String fecha, String destino, Clase[] clase, double precioMin, double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
+	(String origen,String fecha, String destino, Clase[] clase, double precioMin, 
+			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList(origen, destino));
 		
@@ -70,14 +71,26 @@ public class Aerolinea {
 				  .flatMap(Collection::stream)
 				  .filter(asiento -> precioMin == 0 	|| asiento.precioAsiento() >= precioMin)
 				  .filter(asiento -> precioMax == 0 	|| asiento.precioAsiento() <= precioMax)
-				  .filter(asiento -> clase.length > 0 ||asiento.esClaseAsiento(clase) )
+				  .filter(asiento -> clase == null 		|| asiento.esClaseAsiento(clase) )
 				  .collect(Collectors.toList());
+		
 		if(orden != null)
 		{
-			lista.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
-			  .collect(Collectors.toList());
+			lista = orden.ordenarListaSegunCriterio(lista);
 		}
 		return lista;
+	}
+	
+	public void transferenciaDeReserva(Asiento asientoExpirado) {
+		ArrayList<Asiento> siguienteReserva = new ArrayList<Asiento>();
+		siguienteReserva =  (ArrayList<Asiento>) asientosSobreReservados.stream()
+		.filter(asientoSobreReservado -> asientoSobreReservado.getCodigoDeAsiento().equals(asientoExpirado.getCodigoDeAsiento()))
+		.collect(Collectors.toList());
+		if(siguienteReserva.size() == 1) {
+			asientoExpirado.setEstadoAsiento(Estado.DISPONIBLE);
+			reservar(siguienteReserva.get(0).getCodigoDeAsiento(), siguienteReserva.get(0).getUsuario().suscripto(), siguienteReserva.get(0).getUsuario());
+			asientosSobreReservados.remove(siguienteReserva.get(0));
+		}
 	}
 	
 	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento) {
@@ -161,33 +174,40 @@ public class Aerolinea {
 		this.vuelos = vuelos;
 	}
 
-
 	public void comprar(String codigoAsiento) {
 		this.comprar(codigoAsiento, false);
 	}
 	
-	public void comprar(String codigoAsiento, boolean aceptaOfertas) {
+	public void comprar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario)
+	{
 		try {
 			String codigoVuelo = codigoAsiento.split("-")[0];
 			ArrayList<Asiento> asientoAComprar = null;
 			for(Vuelo v:vuelos){
 				if(v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)){
 					if(aceptaOfertas){
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
+						asientoAComprar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream()
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
-						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
-						}else {
+						if(asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaDisponible()) {
+							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO, usuario);
+						}else if(asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaReservado() 
+								&& asientoAComprar.get(0).getUsuario().equals(usuario) ){
+							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO, usuario);
+						}
+						else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
 					}else{
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerAsientosDisponibles().stream()
+						asientoAComprar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream()
 							.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 							.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 							.collect(Collectors.toList());
-						if(asientoAComprar.size() == 1) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.RESERVADO);
+						if(asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaDisponible()) {
+							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO, usuario);
+						}else if(asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaReservado() 
+								&& asientoAComprar.get(0).getUsuario().equals(usuario) ){
+							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO, usuario);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -199,12 +219,19 @@ public class Aerolinea {
 			throw ex;
 		}
 	}
+	
+	
+	public void comprar(String codigoAsiento, boolean aceptaOfertas) {
+		this.comprar(codigoAsiento, aceptaOfertas, null);
+	}
 
 	public void agregarVuelo(Vuelo vuelo) {
 		vuelos.add(vuelo);
 	}
+	
+	//reservar tiene que tener el asiento directamente, mejorar codigo
 
-	public void reservar(String codigoAsiento, boolean aceptaOfertas) {
+	public void reservar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario) { 
 		try {
 			String codigoVuelo = codigoAsiento.split("-")[0];
 			ArrayList<Asiento> asientoAReservar = null;
@@ -214,11 +241,11 @@ public class Aerolinea {
 						asientoAReservar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream()
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
-						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esReservado()){
-							sobreReservar(asientoAReservar.get(0));
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaReservado()){
+							sobreReservar(asientoAReservar.get(0)); //cambiar a un objeto sobreReserva
 						}
-						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esDisponible()) {
-							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
+						else if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaDisponible()) {
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO, usuario);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -227,11 +254,11 @@ public class Aerolinea {
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 								.collect(Collectors.toList());
-						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esReservado()){
+						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaReservado()){
 							sobreReservar(asientoAReservar.get(0));
 						}
-						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().esDisponible()) {
-							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
+						else if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaDisponible()) {
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO, usuario);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}

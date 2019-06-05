@@ -12,6 +12,7 @@ public class AsientoDTO {
 	private boolean reservado = false;
 	private boolean comprado = false;
 
+	
 	public AsientoDTO(String codigoDeVuelo, Integer numeroDeAsiento, String fechaDeSalida, 
 			String horaDeSalida, double precio, Clase claseAsiento, Ubicacion ubicacionAsiento) {
 		this.codigoDeVuelo = codigoDeVuelo;
