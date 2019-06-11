@@ -440,7 +440,6 @@ public class AerolineaTest {
 		Assert.assertEquals(noEstabaReservado, lanchita.reservar(dni, codigoVuelo, numeroDeAsiento));
 		Mockito.verify(oceanic).reservar(dni, codigoVuelo, numeroDeAsiento);
 	}
-	//Prueba.
 	
 
 	
@@ -668,6 +667,7 @@ public class AerolineaTest {
 		Assert.assertEquals("Se encontro el asiento ejecutivo", 0, 
 				lanchita.BuscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
 	}
+	//Prueba/Mantenimiento.
 	
 	
 }
