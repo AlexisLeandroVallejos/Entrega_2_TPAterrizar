@@ -4,36 +4,33 @@ import java.util.ArrayList;
 
 public class Asiento{
 	private final Vuelo vuelo;
-	//private Usuario usuarioBuscando;
 	private final Clase claseAsiento;
 	private final Ubicacion ubicacionAsiento;
 	private Estado estadoAsiento;
 	private String codigoDeAsiento;
 	private String precioFinal;
 
-	public Asiento(Vuelo vuelo, Usuario usuario, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
+	public Asiento(Vuelo vuelo, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
 		this.vuelo = vuelo;
-		//this.usuarioBuscando = usuario;
 		this.claseAsiento = claseAsiento;
 		this.ubicacionAsiento = ubicacionAsiento;
 		this.estadoAsiento = estadoAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
-		//this.precioFinal = setPrecio(usuario);
 	}
-
-	/*public Usuario getUsuario() {
-		return usuarioBuscando;
-	}*/
 
 	public String getPrecioFinal() {
 		return precioFinal;
 	}
+	
+	public void setPrecioFinal() {
+		this.precioFinal = Double.toString(precioTotalSinRecargo());
+	}
 
-	public String setPrecio(Usuario usuario) {
+	public void setPrecioFinal(Usuario usuario) {
 		if (usuarioNoEstandarEstaBuscando(usuario)) {
-			return Double.toString(precioTotalConRecargoAUsuarioNoEstandar());
+			this.precioFinal = Double.toString(precioTotalConRecargoAUsuarioNoEstandar());
 		} else {
-			return Double.toString(precioTotalSinRecargo());
+			setPrecioFinal();
 		}
 
 	}
@@ -70,11 +67,6 @@ public class Asiento{
 		this.estadoAsiento = estadoAsiento;
 	}
 
-/*	public void setEstadoAsiento(Estado estadoAsiento, Usuario user) {
-		this.estadoAsiento = estadoAsiento;
-		this.usuarioBuscando = user;
-	}
-	*/
 	public String getCodigoDeAsiento() {
 		return codigoDeAsiento;
 	}

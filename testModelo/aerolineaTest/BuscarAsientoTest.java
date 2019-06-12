@@ -17,32 +17,32 @@ public class BuscarAsientoTest {
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
-		Asiento asiento5 = new Asiento(vuelo2, usuario, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
+		Asiento asiento5 = new Asiento(vuelo2, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento5);
-		Asiento asiento6 = new Asiento(vuelo2, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento6 = new Asiento(vuelo2, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo2.agregarAsiento(asiento6);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
 		Assert.assertEquals("No se encontraron asientos en vuelos a BUE", 2, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA").size());
+				lanchita.buscarAsientos("BUE","20110116" , "LA").size());
 	}
 	
 
@@ -57,32 +57,32 @@ public class BuscarAsientoTest {
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
-		Asiento asiento5 = new Asiento(vuelo2, usuario, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
+		Asiento asiento5 = new Asiento(vuelo2, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento5);
-		Asiento asiento6 = new Asiento(vuelo2, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento6 = new Asiento(vuelo2, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo2.agregarAsiento(asiento6);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
 		Assert.assertEquals("No se encontraron asientos en vuelos a BUE", 3, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA", null,0,0,true, null).size());
+				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, null).size());
 	}
 	
 
@@ -97,35 +97,45 @@ public class BuscarAsientoTest {
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
-		Asiento asiento3 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
-		Asiento asiento1 = new Asiento(vuelo1, usuario, Clase.PRIMERA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
-		Asiento asiento5 = new Asiento(vuelo2, usuario, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
+		Asiento asiento5 = new Asiento(vuelo2, Clase.EJECUTIVA, Ubicacion.CENTRO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento5);
-		Asiento asiento6 = new Asiento(vuelo2, usuario, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento6 = new Asiento(vuelo2, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo2.agregarAsiento(asiento6);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
+		//seteo precios de asientos:
+		asiento1.setPrecioFinal(usuario);
+		asiento2.setPrecioFinal(usuario);
+		asiento3.setPrecioFinal(usuario);
+		asiento4.setPrecioFinal(usuario);
+		asiento5.setPrecioFinal(usuario);
+		asiento6.setPrecioFinal(usuario);
+		asiento7.setPrecioFinal(usuario);
+		asiento8.setPrecioFinal(usuario);
+		asiento9.setPrecioFinal(usuario);
 		
 		AsientoBusquedaOrden ordenPrecio = AsientoBusquedaOrden.PRECIOD;
 		
 		Assert.assertEquals("No se encontraron el asiento1", asiento1, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenPrecio).get(0));
+				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenPrecio).get(0));
 	}
 	
 
@@ -140,17 +150,17 @@ public class BuscarAsientoTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento2);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
@@ -160,7 +170,7 @@ public class BuscarAsientoTest {
 		AsientoBusquedaOrden ordenTiempoVuelo = AsientoBusquedaOrden.TIEMPOVUELO;
 		
 		Assert.assertEquals("No se encontraron el vuelo1, el de menor duracion", vuelo1, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenTiempoVuelo).get(1).getVuelo());
+				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenTiempoVuelo).get(1).getVuelo());
 	}
 	
 
@@ -175,17 +185,17 @@ public class BuscarAsientoTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento2);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
@@ -194,7 +204,7 @@ public class BuscarAsientoTest {
 		Clase claseEjecutiva = Clase.EJECUTIVA;
 		Clase [] clasesAsientos = new Clase[] {claseEjecutiva};
 		Assert.assertEquals("No se encontro el asiento ejecutivo", 1, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
+				lanchita.buscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
 	}
 	
 
@@ -209,17 +219,17 @@ public class BuscarAsientoTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
 		//Asientos vuelo1
-		Asiento asiento2 = new Asiento(vuelo1, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento2);
 		//Asientos vuelo2
-		Asiento asiento4 = new Asiento(vuelo2, usuario, Clase.TURISTA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento4 = new Asiento(vuelo2, Clase.TURISTA, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo2.agregarAsiento(asiento4);
 		//Asientos vuelo3
-		Asiento asiento7 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento7);
-		Asiento asiento8 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento8);
-		Asiento asiento9 = new Asiento(vuelo3, usuario, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
 		lanchita.agregarVuelo(vuelo1);
@@ -228,7 +238,7 @@ public class BuscarAsientoTest {
 		Clase claseEjecutiva = Clase.EJECUTIVA;
 		Clase [] clasesAsientos = new Clase[] {claseEjecutiva};
 		Assert.assertEquals("Se encontro el asiento ejecutivo", 0, 
-				lanchita.BuscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
+				lanchita.buscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
 	}
 	
 }
