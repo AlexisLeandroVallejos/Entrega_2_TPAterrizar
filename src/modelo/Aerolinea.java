@@ -28,7 +28,7 @@ public class Aerolinea {
 	final static double impuesto = 0.15;
 	//recargo a usuarios no estandar:
 	final static double recargoAUsuarioNoEstandar = 20;
-	private ArrayList<Asiento> asientosSobreReservados = new ArrayList<Asiento>();
+	private ArrayList<ReservaDeAsiento> asientosSobreReservados = new ArrayList<ReservaDeAsiento>();
 	
 	AerolineaLanchita aerolinea;
 	Oceanic oceanic;
@@ -82,13 +82,13 @@ public class Aerolinea {
 	}
 	
 	public void transferenciaDeReserva(Asiento asientoExpirado) {
-		ArrayList<Asiento> siguienteReserva = new ArrayList<Asiento>();
-		siguienteReserva =  (ArrayList<Asiento>) asientosSobreReservados.stream()
-		.filter(asientoSobreReservado -> asientoSobreReservado.getCodigoDeAsiento().equals(asientoExpirado.getCodigoDeAsiento()))
+		ArrayList<ReservaDeAsiento> siguienteReserva = new ArrayList<ReservaDeAsiento>();
+		siguienteReserva =  (ArrayList<ReservaDeAsiento>) asientosSobreReservados.stream()
+		.filter(asientoSobreReservado -> asientoSobreReservado.getAsiento().getCodigoDeAsiento().equals(asientoExpirado.getCodigoDeAsiento()))
 		.collect(Collectors.toList());
 		if(siguienteReserva.size() == 1) {
 			asientoExpirado.setEstadoAsiento(Estado.DISPONIBLE);
-			reservar(siguienteReserva.get(0).getCodigoDeAsiento(), siguienteReserva.get(0).getUsuario().suscripto(), siguienteReserva.get(0).getUsuario());
+			reservar(siguienteReserva.get(0).getAsiento().getCodigoDeAsiento(), siguienteReserva.get(0).getUsuario().suscripto(), siguienteReserva.get(0).getUsuario());
 			asientosSobreReservados.remove(siguienteReserva.get(0));
 		}
 	}
@@ -242,10 +242,11 @@ public class Aerolinea {
 								.filter(vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
 								.collect(Collectors.toList());
 						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaReservado()){
-							sobreReservar(asientoAReservar.get(0)); //cambiar a un objeto sobreReserva
+							ReservaDeAsiento reserva = new ReservaDeAsiento(asientoAReservar.get(0), usuario);
+							sobreReservar(reserva); 
 						}
 						else if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaDisponible()) {
-							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO, usuario);
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -255,10 +256,11 @@ public class Aerolinea {
 								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
 								.collect(Collectors.toList());
 						if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaReservado()){
-							sobreReservar(asientoAReservar.get(0));
+							ReservaDeAsiento reserva = new ReservaDeAsiento(asientoAReservar.get(0), usuario);
+							sobreReservar(reserva);
 						}
 						else if(asientoAReservar.size() == 1 && asientoAReservar.get(0).getEstadoAsiento().estaDisponible()) {
-							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO, usuario);
+							asientoAReservar.get(0).setEstadoAsiento(Estado.RESERVADO);
 						}else {
 							throw new ExcepcionAsientoNoDisponible();
 						}
@@ -271,7 +273,7 @@ public class Aerolinea {
 		}
 	}
 //el asiento se agrega a la lista, dentro tiene la informacion del usuario que lo sobrereservo
-	private void sobreReservar(Asiento asiento) {
+	private void sobreReservar(ReservaDeAsiento asiento) {
 		asientosSobreReservados.add(asiento);
 	}
 
