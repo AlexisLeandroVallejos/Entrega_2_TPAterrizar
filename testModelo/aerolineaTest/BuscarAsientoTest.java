@@ -166,6 +166,12 @@ public class BuscarAsientoTest {
 		lanchita.agregarVuelo(vuelo1);
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
+		//Seteo precios de asientos:
+		asiento2.setPrecioFinal(usuario);
+		asiento4.setPrecioFinal(usuario);
+		asiento7.setPrecioFinal(usuario);
+		asiento8.setPrecioFinal(usuario);
+		asiento9.setPrecioFinal(usuario);
 		
 		AsientoBusquedaOrden ordenTiempoVuelo = AsientoBusquedaOrden.TIEMPOVUELO;
 		
