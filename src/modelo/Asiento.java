@@ -8,7 +8,7 @@ public class Asiento{
 	private final Ubicacion ubicacionAsiento;
 	private Estado estadoAsiento;
 	private String codigoDeAsiento;
-	private String precioFinal;
+	private double precioFinal;
 
 	public Asiento(Vuelo vuelo, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
 		this.vuelo = vuelo;
@@ -18,17 +18,17 @@ public class Asiento{
 		this.codigoDeAsiento = setCodigoDeAsiento();
 	}
 
-	public String getPrecioFinal() {
+	public double getPrecioFinal() {
 		return precioFinal;
 	}
 	
 	public void setPrecioFinal() {
-		this.precioFinal = Double.toString(precioTotalSinRecargo());
+		this.precioFinal = precioTotalSinRecargo();
 	}
 
 	public void setPrecioFinal(Usuario usuario) {
 		if (usuarioNoEstandarEstaBuscando(usuario)) {
-			this.precioFinal = Double.toString(precioTotalConRecargoAUsuarioNoEstandar());
+			this.precioFinal = precioTotalConRecargoAUsuarioNoEstandar();
 		} else {
 			setPrecioFinal();
 		}
@@ -47,12 +47,8 @@ public class Asiento{
 		return precioAsiento() * Aerolinea.impuesto;
 	}
 
-	public double recargoAUsuarioNoEstandar() {
-		return Aerolinea.recargoAUsuarioNoEstandar;
-	}
-
 	public double precioTotalConRecargoAUsuarioNoEstandar() {
-		return precioAsiento() + impuestoAlPrecioAsiento() + recargoAUsuarioNoEstandar();
+		return precioTotalSinRecargo() + Aerolinea.recargoAUsuarioNoEstandar;
 	}
 
 	public double precioTotalSinRecargo() {
@@ -85,33 +81,23 @@ public class Asiento{
 	}
 
 	public double precioClaseAsiento() {
-		if (claseAsiento.esTurista()) {
-			return Aerolinea.asientoTurista;
-		}
-		if (claseAsiento.esEjecutiva()) {
-			return Aerolinea.asientoEjecutivo;
-		} else {
-			return Aerolinea.asientoPrimeraClase;
-		}
+		return claseAsiento.getPrecio();
 	}
 
 	public double precioUbicacionAsiento() {
-		if (ubicacionAsiento.esVentana()) {
-			return Aerolinea.asientoVentana;
-		}
-		if (ubicacionAsiento.esCentro()) {
-			return Aerolinea.asientoCentro;
-		} else {
-			return Aerolinea.asientoPasillo;
-		}
+		return ubicacionAsiento.getPrecio();
 	}
 
-	public boolean esAsientoPrimeraClaseYPrecioFinalMenorA8000() {
-		return claseAsiento.esPrimeraClase() && Double.parseDouble(precioFinal) < 8000;
+	public boolean esAsientoPrimeraYPrecioFinalMenorA8000() {
+		return claseAsiento.getDescripcion() == "Primera" && precioFinal < 8000;
 	}
 
 	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000() {
-		return claseAsiento.esEjecutiva() && Double.parseDouble(precioFinal) < 4000;
+		return claseAsiento.getDescripcion() == "Ejecutivo" && precioFinal < 4000;
+	}
+	
+	public boolean esSuperOferta() {
+		return esAsientoPrimeraYPrecioFinalMenorA8000() || esAsientoEjecutivoYPrecioFinalMenorA4000();
 	}
 
 	public boolean esClaseAsiento(Clase[] clases) {
@@ -132,21 +118,14 @@ public class Asiento{
 		}
 		return esClase;
 	}
-
-	public boolean esSuperOferta() {
-		if (esAsientoPrimeraClaseYPrecioFinalMenorA8000() || esAsientoEjecutivoYPrecioFinalMenorA4000()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	
-	public Vuelo getVuelo()
-	{
+	public Vuelo getVuelo(){
 		return vuelo;
 	}
 	
+	public double duracionVuelo(){
+		return vuelo.getDuracionVuelo();
+	}
 
 	public double getPopularidadVuelo()
 	{
@@ -160,11 +139,5 @@ public class Asiento{
 		// definir sistema de vencimientos, devuelvo true para testing.
 		return false;
 	}
-	
-	public double duracionVuelo()
-	{
-		return vuelo.getDuracionVuelo();
-	}
-
 
 }

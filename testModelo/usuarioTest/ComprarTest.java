@@ -17,7 +17,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -35,7 +35,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -55,7 +55,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -76,7 +76,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -95,7 +95,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -113,7 +113,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -140,7 +140,7 @@ public class ComprarTest {
 		asiento1.setPrecioFinal(usuarioNoEstandar);
 		asiento3.setPrecioFinal(usuarioEstandar);
 		
-		Assert.assertEquals("No tiene el recargo", false ,asiento1.getPrecioFinal().equalsIgnoreCase(asiento3.getPrecioFinal()) );
+		Assert.assertEquals("No tiene el recargo", true, asiento1.getPrecioFinal() > asiento3.getPrecioFinal());
 	}
 	
 	@Test(expected=ExcepcionAsientoNoDisponible.class)
@@ -152,7 +152,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -174,7 +174,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -196,7 +196,7 @@ public class ComprarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);

@@ -16,7 +16,7 @@ public class ReservarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -35,7 +35,7 @@ public class ReservarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -55,7 +55,7 @@ public class ReservarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
@@ -75,7 +75,7 @@ public class ReservarTest {
 		//Asientos vuelo1
 		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
-		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVA, Ubicacion.PASILLO, Estado.RESERVADO);
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento2);
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);

@@ -4,11 +4,15 @@ public enum Ubicacion {
 	VENTANA, CENTRO, PASILLO;
 
 	private String descripcion;
+	private double precio;
 
 	static {
 		VENTANA.descripcion = "Ventana";
 		CENTRO.descripcion = "Centro";
 		PASILLO.descripcion = "Pasillo";
+		VENTANA.precio = Aerolinea.asientoVentana;
+		CENTRO.precio = Aerolinea.asientoCentro;
+		PASILLO.precio = Aerolinea.asientoPasillo;
 
 	}
 
@@ -16,15 +20,8 @@ public enum Ubicacion {
 		return descripcion;
 	}
 	
-	public boolean esVentana() {
-		return descripcion == "Ventana";
+	public double getPrecio() {
+		return precio;
 	}
-	
-	public boolean esCentro() {
-		return descripcion == "Centro";
-	}
-	
-	public boolean esPasillo() {
-		return descripcion == "Pasillo";
-	}
+
 }

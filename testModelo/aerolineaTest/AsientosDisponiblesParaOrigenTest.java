@@ -22,7 +22,7 @@ public class AsientosDisponiblesParaOrigenTest {
 		lanchita.setOceanic(oceanic);
 		//asientos:
 		AsientoDTO asiento1 = new AsientoDTO(codigoOrigenOceanic, 12, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		AsientoDTO asiento2 = new AsientoDTO("WAR66", 245, fechaSalida, "17:15", 500.51, Clase.EJECUTIVA, Ubicacion.CENTRO);
+		AsientoDTO asiento2 = new AsientoDTO("WAR66", 245, fechaSalida, "17:15", 500.51, Clase.EJECUTIVO, Ubicacion.CENTRO);
 		AsientoDTO asiento3 = new AsientoDTO(codigoOrigenOceanic, 22, "16/01/2015", "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
 		List<AsientoDTO> asientos = Arrays.asList(asiento1,asiento2,asiento3);
 		List<AsientoDTO> listaAsientosFiltrados = asientos.stream()

@@ -1,31 +1,26 @@
 package modelo;
 
 public enum Clase {
-	TURISTA, EJECUTIVA, PRIMERA;
+	TURISTA, EJECUTIVO, PRIMERA;
 
 	private String descripcion;
+	private double precio;
 
 	static {
 		TURISTA.descripcion = "Turista";
-		EJECUTIVA.descripcion = "Ejecutiva";
+		EJECUTIVO.descripcion = "Ejecutivo";
 		PRIMERA.descripcion = "Primera";
-
+		TURISTA.precio = Aerolinea.asientoTurista;
+		EJECUTIVO.precio = Aerolinea.asientoEjecutivo;
+		PRIMERA.precio = Aerolinea.asientoPrimera;
 	}
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 	
-	public boolean esTurista() {
-		return descripcion == "Turista";
+	public double getPrecio() {
+		return precio;
 	}
 	
-	public boolean esEjecutiva() {
-		return descripcion == "Ejecutiva";
-	}
-	
-	public boolean esPrimeraClase() {
-		return descripcion == "Primera";
-	}
-
 }

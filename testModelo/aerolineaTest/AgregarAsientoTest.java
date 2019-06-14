@@ -12,9 +12,9 @@ public class AgregarAsientoTest {
 		Vuelo vuelo = new Vuelo("EC0344", "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Asiento asiento1 = new Asiento(vuelo, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo.agregarAsiento(asiento1);
-		Asiento asiento3 = new Asiento(vuelo, Clase.EJECUTIVA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento3 = new Asiento(vuelo, Clase.EJECUTIVO, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo.agregarAsiento(asiento3);
-		Asiento asiento2 = new Asiento(vuelo, Clase.EJECUTIVA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		Asiento asiento2 = new Asiento(vuelo, Clase.EJECUTIVO, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo.agregarAsiento(asiento2);
 		//^este orden es intencional, sino no funciona.
 		Assert.assertEquals("El numero de asiento no cambio.", vuelo.cantidadDeAsientos(), 3);

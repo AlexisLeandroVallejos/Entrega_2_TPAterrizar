@@ -14,13 +14,13 @@ import excepciones.ExcepcionAsientoNoDisponible;
 public class Aerolinea {
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 	private ArrayList<Reserva> asientosSobreReservados = new ArrayList<Reserva>();
-	AerolineaLanchita aerolinea;
+	AerolineaLanchita aerolineaLanchita;
 	Oceanic oceanic;
 	
 	//claseAsiento
 	final static double asientoTurista = 250;
 	final static double asientoEjecutivo = 500;
-	final static double asientoPrimeraClase = 1000;
+	final static double asientoPrimera = 1000;
 	//ubicacionAsiento:
 	final static double asientoPasillo = 200;
 	final static double asientoCentro = 100;
@@ -66,8 +66,8 @@ public class Aerolinea {
 				  .map(vuelo -> ((mostrarReservados) ? vuelo.obtenerTodosLosAsientos() : vuelo.obtenerAsientosDisponibles()) )
 				  .filter(asiento -> asiento.size()>0)
 				  .flatMap(Collection::stream)
-				  .filter(asiento -> precioMin == 0 	|| Double.parseDouble(asiento.getPrecioFinal()) >= precioMin) //asiento.precioAsiento() no es el precioFinal!!!
-				  .filter(asiento -> precioMax == 0 	|| Double.parseDouble(asiento.getPrecioFinal()) <= precioMax) //asiento.precioAsiento() no es el precioFinal!!!
+				  .filter(asiento -> precioMin == 0 	|| asiento.getPrecioFinal() >= precioMin) //asiento.precioAsiento() no es el precioFinal!!!
+				  .filter(asiento -> precioMax == 0 	|| asiento.getPrecioFinal() <= precioMax) //asiento.precioAsiento() no es el precioFinal!!!
 				  .filter(asiento -> clase == null 		|| asiento.esClaseAsiento(clase) )
 				  .collect(Collectors.toList());
 		
