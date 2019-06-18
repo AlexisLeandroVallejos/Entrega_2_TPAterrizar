@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Usuario;
+
 import javax.swing.JLabel;
 import java.awt.Label;
 import java.awt.Font;
@@ -16,6 +19,8 @@ import java.awt.event.ActionEvent;
 public class AaterrizarPrincipal extends JFrame {
 
 	private JPanel contentPane;
+
+	private Usuario user;
 
 	/**
 	 * Launch the application.
@@ -55,6 +60,9 @@ public class AaterrizarPrincipal extends JFrame {
 		nombreUsuario.setBounds(55, 23, 137, 22);
 		contentPane.add(nombreUsuario);
 		
+		//usar nombre de Usuario
+		nombreUsuario.setText(user.getNombre());
+		
 		Label label = new Label("Que desea hacer?");
 		label.setFont(new Font("Dialog", Font.PLAIN, 14));
 		label.setBounds(23, 59, 164, 22);
@@ -78,5 +86,14 @@ public class AaterrizarPrincipal extends JFrame {
 		bBuscarAsientos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		bBuscarAsientos.setBounds(221, 87, 128, 23);
 		contentPane.add(bBuscarAsientos);
+	}
+	
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		this.user = user;
 	}
 }
