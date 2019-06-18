@@ -9,35 +9,31 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controller.AerolineaController;
+
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaVerReservas extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaVerReservas frame = new VentanaVerReservas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private AerolineaController controller;
+	private JFrame VentanaParent;
+	
 	/**
 	 * Create the frame.
 	 */
-	public VentanaVerReservas() {
+	public VentanaVerReservas(AerolineaController aero) {
+		this.controller = aero;
 		setTitle("Aterrizar.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -46,31 +42,51 @@ public class VentanaVerReservas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblReservasDe = new JLabel("Reservas de");
-		lblReservasDe.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblReservasDe.setBounds(10, 11, 83, 25);
-		contentPane.add(lblReservasDe);
+		JLabel lblNombre = new JLabel("");
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNombre.setBounds(91, 11, 100, 25);
+		contentPane.add(lblNombre);
 		
-		JLabel lvlNombre = new JLabel("");
-		lvlNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lvlNombre.setBounds(91, 11, 100, 25);
-		contentPane.add(lvlNombre);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		JLabel label = new JLabel("Compras de");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label.setBounds(10, 11, 83, 25);
+		contentPane.add(label);
+		/*table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 			},
 			new String[] {
 				"Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
 			}
-		));
+		));*/
+		
+		JButton button = new JButton("Cerrar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		button.setBounds(10, 227, 100, 23);
+		contentPane.add(button);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 414, 169);
+		contentPane.add(scrollPane);
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setModel(controller.getReservas());
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setBounds(10, 69, 414, 181);
-		contentPane.add(table);
 	}
 
+	public JFrame getVentanaParent() {
+		return VentanaParent;
+	}
+
+	public void setVentanaParent(JFrame ventanaParent) {
+		VentanaParent = ventanaParent;
+	}
 }

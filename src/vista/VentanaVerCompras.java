@@ -10,36 +10,28 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controller.AerolineaController;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
 
 public class VentanaVerCompras extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaVerCompras frame = new VentanaVerCompras();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private AerolineaController controller;
+	private JFrame VentanaParent;
+	
 	/**
 	 * Create the frame.
 	 */
-	public VentanaVerCompras() {
+	public VentanaVerCompras(AerolineaController aero) {
+		this.controller = aero;
 		setTitle("Aterrizar.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -57,21 +49,37 @@ public class VentanaVerCompras extends JFrame {
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label.setBounds(10, 11, 83, 25);
 		contentPane.add(label);
-		
-		table = new JTable();
-		table.setBorder(new LineBorder(new Color(0, 0, 0)));
-		table.setModel(new DefaultTableModel(
+		/*table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
 			},
 			new String[] {
 				"Salida", "Aerolinea", "Vuelo", "Asiento", "Precio"
 			}
-		));
+		));*/
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 47, 414, 170);
+		contentPane.add(scrollPane);
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setModel(controller.getCompras());
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
-		table.setBounds(10, 69, 414, 181);
-		contentPane.add(table);
+		
+		JButton bCerrar = new JButton("Cerrar");
+		bCerrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		bCerrar.setBounds(10, 227, 100, 23);
+		contentPane.add(bCerrar);
+	}
+
+	public JFrame getVentanaParent() {
+		return VentanaParent;
+	}
+
+	public void setVentanaParent(JFrame ventanaParent) {
+		VentanaParent = ventanaParent;
 	}
 }

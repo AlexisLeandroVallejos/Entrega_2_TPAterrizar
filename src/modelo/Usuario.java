@@ -19,6 +19,10 @@ public abstract class Usuario {
 		this.aerolinea = aerolinea;
 	}
 	
+	public String getApellido() {
+		return apellido;
+	}
+
 	private void setDni(int _dni) {
 		this.dni = _dni;
 	}

@@ -36,4 +36,9 @@ public class UsuarioEstandar extends Usuario {
 			throw ex;
 		}
 	}
+	
+	public String ToString()
+	{
+		return this.getNombre() + " " + this.getApellido();
+	}
 }

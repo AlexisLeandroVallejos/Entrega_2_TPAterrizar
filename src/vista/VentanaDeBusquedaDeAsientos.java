@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -14,6 +16,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import controller.AerolineaController;
+
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaDeBusquedaDeAsientos extends JFrame {
 
@@ -22,27 +31,14 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JTextField textFieldFecha;
 	private JTextField textFieldDestino;
 	private JTable tableAsientos;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaDeBusquedaDeAsientos frame = new VentanaDeBusquedaDeAsientos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private AerolineaController controller;
+	private JFrame VentanaParent;
 
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDeBusquedaDeAsientos() {
+	public VentanaDeBusquedaDeAsientos(AerolineaController aero) {
+		controller = aero;
 		setTitle("Aterrizar.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 499);
@@ -88,21 +84,16 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		contentPane.add(textFieldDestino);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//TO DO: Agregar buscar
+				TableModel tm = controller.buscar();
+				tableAsientos.setModel(tm);
+			}
+		});
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnBuscar.setBounds(10, 212, 89, 23);
 		contentPane.add(btnBuscar);
-		
-		tableAsientos = new JTable();
-		tableAsientos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Aerolinea", "Vuelo", "Asiento", "Ubicacion", "Precio"
-			}
-		));
-		tableAsientos.setBounds(10, 246, 414, 152);
-		contentPane.add(tableAsientos);
 		
 		JButton btnComprar = new JButton("Comprar");
 		btnComprar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -118,5 +109,30 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCerrar.setBounds(335, 420, 89, 23);
 		contentPane.add(btnCerrar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 246, 414, 153);
+		contentPane.add(scrollPane);
+		
+		tableAsientos = new JTable();
+		scrollPane.setViewportView(tableAsientos);
+		tableAsientos.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Aerolinea", "Vuelo", "Asiento", "Ubicacion", "Precio"
+			}
+		));
+		
+		tableAsientos.getSelectionModel().addListSelectionListener(new ListSelectionListener()
+		{
+			public void valueChanged(ListSelectionEvent event)
+			{
+				//TO DO: cambiar el elegido
+				controller.setVueloElegido();
+			}
+		}
+		);
 	}
 }

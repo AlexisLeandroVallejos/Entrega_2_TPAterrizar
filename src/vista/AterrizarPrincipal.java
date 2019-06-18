@@ -6,17 +6,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controller.AerolineaController;
+import modelo.Aerolinea;
+import modelo.Usuario;
+import modelo.UsuarioEstandar;
+
 import javax.swing.JLabel;
 import java.awt.Label;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 
 public class AterrizarPrincipal extends JFrame {
 
 	private JPanel contentPane;
-
+	private Label lblNombreUsuario;
+	private AerolineaController controller;
 	/**
 	 * Launch the application.
 	 */
@@ -37,6 +46,9 @@ public class AterrizarPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public AterrizarPrincipal() {
+		
+		controller = new AerolineaController();
+		
 		setTitle("Aterrizar.com");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 416, 178);
@@ -45,15 +57,12 @@ public class AterrizarPrincipal extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
 		Label Hola = new Label("Hola");
 		Hola.setFont(new Font("Arial", Font.PLAIN, 14));
-		Hola.setBounds(23, 23, 62, 22);
+		Hola.setBounds(23, 23, 42, 22);
 		contentPane.add(Hola);
 		
-		Label nombreUsuario = new Label("");
-		nombreUsuario.setFont(new Font("Dialog", Font.PLAIN, 14));
-		nombreUsuario.setBounds(55, 23, 137, 22);
-		contentPane.add(nombreUsuario);
 		
 		Label label = new Label("Que desea hacer?");
 		label.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -65,10 +74,32 @@ public class AterrizarPrincipal extends JFrame {
 		bReservas.setBounds(122, 87, 89, 23);
 		contentPane.add(bReservas);
 		
+		bReservas.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//mostrar Ventana reserva
+			}
+		});
+		
+		
 		JButton bCompras = new JButton("Compras");
 		bCompras.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		bCompras.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				//mostrar Venana compras
+				VentanaVerCompras ventanaCompras = new VentanaVerCompras(controller);
+				ventanaCompras.setVisible(true);
+				//obtengo el la ventana que llama a VerCompras
+				JFrame parentWindow = (JFrame)((JButton)arg0.getSource()).getParent().getParent();
+				ventanaCompras.setVentanaParent(parentWindow);
+				ventanaCompras.addWindowListener(new VentanaSeCierraListener()
+						{
+							@Override
+							public void windowClosed(WindowEvent e) {
+								//TO DO: Terminar la vuelta a la ventana Parent
+						}});
+				parentWindow.setVisible(false);
 			}
 		});
 		bCompras.setBounds(23, 87, 89, 23);
@@ -78,5 +109,28 @@ public class AterrizarPrincipal extends JFrame {
 		bBuscarAsientos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		bBuscarAsientos.setBounds(221, 87, 128, 23);
 		contentPane.add(bBuscarAsientos);
+		
+		lblNombreUsuario = new Label("XXXXXXXXXXX");
+		lblNombreUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNombreUsuario.setBounds(71, 23, 164, 22);
+		contentPane.add(lblNombreUsuario);
+		
+		
+		bBuscarAsientos.addActionListener(new ActionListener()
+			{@Override	
+				public void actionPerformed(ActionEvent e) {
+				//mostrar Ventana reserva
+			}}
+		);
+	}
+	
+
+	public UsuarioEstandar getUser() {
+		return controller.getUser();
+	}
+
+	public void setUser(UsuarioEstandar user) {
+		this.controller.setUser(user);
+		this.lblNombreUsuario.setText(controller.getUser().ToString());
 	}
 }
