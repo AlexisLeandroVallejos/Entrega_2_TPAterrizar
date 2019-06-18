@@ -1,6 +1,7 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Dialog.ModalExclusionType;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -77,6 +78,17 @@ public class AterrizarPrincipal extends JFrame {
 		bReservas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				VentanaVerReservas ventana = new VentanaVerReservas(controller);
+				ventana.setVisible(true);
+				getFrame().setVisible(false);
+				ventana.addWindowListener(new VentanaSeCierraListener()
+				{
+					@Override
+					public void windowClosed(WindowEvent e) {
+						//TO DO: Terminar la vuelta a la ventana Parent
+						getFrame().setVisible(true);
+					}
+				});
 				//mostrar Ventana reserva
 			}
 		});
@@ -91,15 +103,15 @@ public class AterrizarPrincipal extends JFrame {
 				VentanaVerCompras ventanaCompras = new VentanaVerCompras(controller);
 				ventanaCompras.setVisible(true);
 				//obtengo el la ventana que llama a VerCompras
-				JFrame parentWindow = (JFrame)((JButton)arg0.getSource()).getParent().getParent();
-				ventanaCompras.setVentanaParent(parentWindow);
 				ventanaCompras.addWindowListener(new VentanaSeCierraListener()
 						{
 							@Override
 							public void windowClosed(WindowEvent e) {
 								//TO DO: Terminar la vuelta a la ventana Parent
-						}});
-				parentWindow.setVisible(false);
+								getFrame().setVisible(true);
+							}
+						});
+				getFrame().setVisible(false);
 			}
 		});
 		bCompras.setBounds(23, 87, 89, 23);
@@ -117,10 +129,21 @@ public class AterrizarPrincipal extends JFrame {
 		
 		
 		bBuscarAsientos.addActionListener(new ActionListener()
-			{@Override	
+			{	
 				public void actionPerformed(ActionEvent e) {
-				//mostrar Ventana reserva
-			}}
+					VentanaDeBusquedaDeAsientos ventana = new VentanaDeBusquedaDeAsientos(controller);
+					ventana.setVisible(true);
+					getFrame().setVisible(false);
+					ventana.addWindowListener(new VentanaSeCierraListener()
+					{
+						@Override
+						public void windowClosed(WindowEvent e) {
+							//TO DO: Terminar la vuelta a la ventana Parent
+							getFrame().setVisible(true);
+						}
+					});
+				}
+			}
 		);
 	}
 	
@@ -129,6 +152,10 @@ public class AterrizarPrincipal extends JFrame {
 		return controller.getUser();
 	}
 
+	public JFrame getFrame()
+	{
+		return this;
+	}
 	public void setUser(UsuarioEstandar user) {
 		this.controller.setUser(user);
 		this.lblNombreUsuario.setText(controller.getUser().ToString());

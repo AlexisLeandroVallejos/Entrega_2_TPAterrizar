@@ -11,6 +11,8 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Dialog.ModalExclusionType;
+import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -38,9 +40,9 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaDeBusquedaDeAsientos(AerolineaController aero) {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		controller = aero;
 		setTitle("Aterrizar.com");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -96,6 +98,13 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		contentPane.add(btnBuscar);
 		
 		JButton btnComprar = new JButton("Comprar");
+		btnComprar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaDeAviso aviso = new VentanaDeAviso();
+				aviso.setModalityType(ModalityType.DOCUMENT_MODAL);
+				aviso.setVisible(true);
+			}
+		});
 		btnComprar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnComprar.setBounds(10, 420, 89, 23);
 		contentPane.add(btnComprar);
@@ -106,6 +115,11 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		contentPane.add(btnReservar);
 		
 		JButton btnCerrar = new JButton("Cerrar");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCerrar.setBounds(335, 420, 89, 23);
 		contentPane.add(btnCerrar);

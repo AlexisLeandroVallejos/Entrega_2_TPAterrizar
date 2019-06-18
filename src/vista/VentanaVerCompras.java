@@ -19,21 +19,22 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaVerCompras extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private AerolineaController controller;
-	private JFrame VentanaParent;
 	
 	/**
 	 * Create the frame.
 	 */
 	public VentanaVerCompras(AerolineaController aero) {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.controller = aero;
 		setTitle("Aterrizar.com");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,16 +71,14 @@ public class VentanaVerCompras extends JFrame {
 		table.setCellSelectionEnabled(true);
 		
 		JButton bCerrar = new JButton("Cerrar");
+		bCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		bCerrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		bCerrar.setBounds(10, 227, 100, 23);
 		contentPane.add(bCerrar);
 	}
 
-	public JFrame getVentanaParent() {
-		return VentanaParent;
-	}
-
-	public void setVentanaParent(JFrame ventanaParent) {
-		VentanaParent = ventanaParent;
-	}
 }

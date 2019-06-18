@@ -35,7 +35,7 @@ public class VentanaVerReservas extends JFrame {
 	public VentanaVerReservas(AerolineaController aero) {
 		this.controller = aero;
 		setTitle("Aterrizar.com");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,7 +63,7 @@ public class VentanaVerReservas extends JFrame {
 		JButton button = new JButton("Cerrar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
