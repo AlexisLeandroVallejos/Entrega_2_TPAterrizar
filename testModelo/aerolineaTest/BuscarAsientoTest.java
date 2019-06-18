@@ -176,7 +176,7 @@ public class BuscarAsientoTest {
 		AsientoBusquedaOrden ordenTiempoVuelo = AsientoBusquedaOrden.TIEMPOVUELO;
 		
 		Assert.assertEquals("No se encontraron el vuelo1, el de menor duracion", vuelo1, 
-				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenTiempoVuelo).get(1).getVuelo());
+				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenTiempoVuelo).get(0).getVuelo());
 	}
 	
 
