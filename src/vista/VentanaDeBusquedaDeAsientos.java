@@ -1,7 +1,5 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,9 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -28,13 +24,16 @@ import java.awt.event.ActionEvent;
 
 public class VentanaDeBusquedaDeAsientos extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2991103238308943665L;
 	private JPanel contentPane;
 	private JTextField textFieldOrigen;
 	private JTextField textFieldFecha;
 	private JTextField textFieldDestino;
 	private JTable tableAsientos;
 	private AerolineaController controller;
-	private JFrame VentanaParent;
 
 	/**
 	 * Create the frame.

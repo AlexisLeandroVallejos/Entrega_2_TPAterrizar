@@ -1,20 +1,12 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import controller.AerolineaController;
-
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -24,6 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class VentanaVerCompras extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6217215503784595974L;
 	private JPanel contentPane;
 	private JTable table;
 	private AerolineaController controller;

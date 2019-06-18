@@ -1,29 +1,23 @@
 package vista;
-
-import java.awt.BorderLayout;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import controller.AerolineaController;
-import modelo.Aerolinea;
-import modelo.Usuario;
 import modelo.UsuarioEstandar;
-
-import javax.swing.JLabel;
 import java.awt.Label;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.awt.event.ActionEvent;
 
 public class AterrizarPrincipal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7797745868537851156L;
 	private JPanel contentPane;
 	private Label lblNombreUsuario;
 	private AerolineaController controller;

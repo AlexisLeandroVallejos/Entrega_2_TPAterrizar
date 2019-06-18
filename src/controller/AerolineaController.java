@@ -12,7 +12,7 @@ public class AerolineaController {
 	
 	private UsuarioEstandar user = new UsuarioEstandar("Tomas", "Perez", 2345677, new Aerolinea());
 	
-	public void AerolineaController()
+	public AerolineaController()
 	{
 		aero = new Aerolinea();
 	}

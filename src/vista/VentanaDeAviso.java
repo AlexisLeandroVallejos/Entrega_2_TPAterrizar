@@ -1,9 +1,5 @@
 package vista;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -16,6 +12,10 @@ import java.awt.event.ActionEvent;
 
 public class VentanaDeAviso extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6228803363342277564L;
 	private JPanel contentPane;
 
 	/**
