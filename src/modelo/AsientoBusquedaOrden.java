@@ -27,19 +27,19 @@ public enum AsientoBusquedaOrden {
 		switch(descripcion)
 		{
 			case "Precio Asc":
-				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
+				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
 				  .collect(Collectors.toList());
 				break;
 			case "Precio Desc":
-				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal).reversed())
+				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal).reversed())
 				  .collect(Collectors.toList());
 				break;
 			case "Tiempo Vuelo":
-				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::duracionVuelo))
+				listaAOrdenar  = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::duracionVuelo))
 				  .collect(Collectors.toList());
 				break;
 			case "Popularidad":
-				listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPopularidadVuelo))
+				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPopularidadVuelo))
 				  .collect(Collectors.toList());
 				break;
 		}
