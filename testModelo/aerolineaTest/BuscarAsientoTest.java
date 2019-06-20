@@ -2,6 +2,7 @@ package aerolineaTest;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import modelo.*;
 
@@ -11,7 +12,9 @@ public class BuscarAsientoTest {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
+		Oceanic oceanic = Mockito.mock(Oceanic.class);
 		Aerolinea lanchita = new Aerolinea();
+		lanchita.setOceanic(oceanic);
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");

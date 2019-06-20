@@ -88,7 +88,10 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TO DO: Agregar buscar
-				TableModel tm = controller.buscar();
+				String origen = textFieldOrigen.getText();
+				String destino = textFieldDestino.getText();
+				String fecha = textFieldFecha.getText();
+				TableModel tm = controller.buscar(origen, destino, fecha);
 				tableAsientos.setModel(tm);
 			}
 		});

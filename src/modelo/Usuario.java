@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class Usuario {
 	private String nombre;
@@ -11,6 +12,10 @@ public abstract class Usuario {
 	protected double dineroTotalGastado;
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
+	protected List<Asiento> compras = new ArrayList<Asiento>();
+
+
+	protected List<Asiento> reservas = new ArrayList<Asiento>();
 	
 	public Usuario(String nombre, String apellido, int dni, Aerolinea aerolinea) {
 		this.setNombre(nombre);
@@ -49,7 +54,9 @@ public abstract class Usuario {
 	
 	public void comprar(String CodAsiento){
 		try{
-			aerolinea.comprar(CodAsiento);
+			Asiento asientoComprado = aerolinea.comprar(CodAsiento);
+			this.compras.add(asientoComprado);
+			
 		}
 		catch (Exception ex){
 			throw ex;
@@ -68,4 +75,11 @@ public abstract class Usuario {
 		return nombre;
 	}
 
+	public List<Asiento> getCompras() {
+		return compras;
+	}
+
+	public List<Asiento> getReservas() {
+		return reservas;
+	}
 }

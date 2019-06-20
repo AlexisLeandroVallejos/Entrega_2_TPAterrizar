@@ -1,11 +1,11 @@
 package modelo;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Asiento{
 	private final Vuelo vuelo;
 	private final Clase claseAsiento;
-	private final Ubicacion ubicacionAsiento;
+	protected final Ubicacion ubicacionAsiento;
 	private Estado estadoAsiento;
 	private String codigoDeAsiento;
 	private double precioFinal;
@@ -102,7 +102,7 @@ public class Asiento{
 
 	public boolean esClaseAsiento(Clase[] clases) {
 		boolean esClase = false;
-		ArrayList<Clase> listaArray = new ArrayList<Clase>();
+		//ArrayList<Clase> listaArray = new ArrayList<Clase>();
 		//listaArray.addAll(clases);
 		if(clases != null) {
 			//arreglar condicion de corte en FOR cambiar a Lista
@@ -133,6 +133,28 @@ public class Asiento{
 		return 0;
 	}
 	
+	public String getAerolinea()
+	{
+		return "Lanchita";
+	}
+	
+	//Devuelve los datos formateados para la grilla.
+	public HashMap<String,String> getDatosParaLista()
+	{
+		HashMap<String, String> datos = new HashMap<String, String>();
+		//("Salida"); 
+		datos.put("Salida",this.getVuelo().getFechaSalida() + " " + this.getVuelo().getHoraSalida());
+		//("Aerolinea");
+		datos.put("Aerolinea",this.getAerolinea());
+		//("Vuelo");
+		datos.put("Vuelo",this.vuelo.getCodDeVuelo());
+		//("Asiento");
+		datos.put("Asiento",this.getCodigoDeAsiento().split("-")[1]);
+		//("Precio");
+		datos.put("Precio",Double.toString(this.getPrecioFinal() ));
+		datos.put( "Ubicacion", this.ubicacionAsiento.getDescripcion());
+		return datos;
+	}
 
 	public boolean vencioReserva()
 	{

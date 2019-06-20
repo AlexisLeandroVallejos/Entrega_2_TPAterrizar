@@ -11,7 +11,8 @@ public class UsuarioNoEstandar extends Usuario {
 	//modificar el comprar para ponerle recargo
 	public void comprar(String CodAsiento){
 		try{
-			aerolinea.comprar(CodAsiento, suscripto());
+			Asiento asientoComprado =  aerolinea.comprar(CodAsiento, suscripto());
+			super.compras.add(asientoComprado);
 		}
 		catch (Exception ex){
 			throw ex;
@@ -20,7 +21,8 @@ public class UsuarioNoEstandar extends Usuario {
 
 	public void reservar(String CodAsiento) {
 		try{
-			aerolinea.reservar(CodAsiento, suscripto(), this);
+			Asiento asientoReservado = aerolinea.reservar(CodAsiento, suscripto(), this);
+			super.reservas.add(asientoReservado);
 		}
 		catch (Exception ex){
 			throw ex;

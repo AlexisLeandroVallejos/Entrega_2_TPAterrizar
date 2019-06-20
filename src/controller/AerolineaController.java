@@ -1,10 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import modelo.Aerolinea;
+import modelo.Asiento;
 import modelo.UsuarioEstandar;
+import viewmodel.ComprasViewTableModel;
 
 public class AerolineaController {
 
@@ -34,59 +38,24 @@ public class AerolineaController {
 
 
 	public TableModel getCompras() {
-		DefaultTableModel tm = new DefaultTableModel();
-		//conseguir lista
-		this.getListas();
-		//traigo las compras
+		List<Asiento> compras = user.getCompras();
+		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
 		
-		tm = this.getColumnasListas();
-		
-		tm.addRow(new Object[] {"1","2","3","4","5"});
-		tm.addRow(new Object[] {"2","2","3","4","5"});
-		tm.addRow(new Object[] {"3","2","3","4","5"});
-		
-		// TODO Auto-generated method stub
 		return (TableModel)tm;
 	}
 
 	public TableModel getReservas() {
-		DefaultTableModel tm = new DefaultTableModel();
-		//traigo la lista.
-		this.getListas();
-		//obtengo las reservas
-		tm = this.getColumnasListas();
+		List<Asiento> compras = user.getReservas();
+		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
 		
-		tm.addRow(new Object[] {"1","2","3","4","5"});
-		tm.addRow(new Object[] {"2","2","3","4","5"});
-		tm.addRow(new Object[] {"3","2","3","4","5"});
-		
-		// TODO Auto-generated method stub
 		return (TableModel)tm;
 	}
-
-	public void getListas()
-	{
-		
-	}
-
-	
-
-	private DefaultTableModel getColumnasListas() {
-
-		DefaultTableModel tm = new DefaultTableModel();
-		tm.addColumn("Salida"); 
-		tm.addColumn("Aerolinea");
-		tm.addColumn("Vuelo");
-		tm.addColumn("Asiento");
-		tm.addColumn("Precio");
-		return tm;
-	}
-
 	
 
 	public TableModel buscar() {
 
 		DefaultTableModel tm = new DefaultTableModel();
+		
 		tm.addColumn("Aerolinea");
 		tm.addColumn("Vuelo");
 		tm.addColumn("Asiento");
@@ -101,5 +70,21 @@ public class AerolineaController {
 	public void setVueloElegido() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public TableModel buscar(String origen, String destino, String fecha) {
+		DefaultTableModel tm = new DefaultTableModel();
+		
+		tm.addColumn("Aerolinea");
+		tm.addColumn("Vuelo");
+		tm.addColumn("Asiento");
+		tm.addColumn("Precio");
+		tm.addColumn("Ubicacion"); 
+		tm.addColumn("Clase");
+		
+		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
+		
+		return tm;
 	}
 }

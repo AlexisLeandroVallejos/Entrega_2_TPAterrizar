@@ -50,7 +50,10 @@ public class Aerolinea {
 
 	public List<Asiento> buscarAsientos
 		(String origen,String fecha, String destino) {
-		return buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
+		List<Asiento> asientos = buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
+		List<AsientoDTO> asientosOceanic = asientosDisponiblesParaOrigenYDestino(origen, fecha, destino);
+		asientos.addAll(asientosOceanic);
+		return asientos;
 	}
 
 	public List<Asiento> buscarAsientos
@@ -171,11 +174,11 @@ public class Aerolinea {
 		this.vuelos = vuelos;
 	}
 
-	public void comprar(String codigoAsiento) {
-		this.comprar(codigoAsiento, false);
+	public Asiento comprar(String codigoAsiento) {
+		return this.comprar(codigoAsiento, false);
 	}
 	
-	public void comprar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario)
+	public Asiento comprar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario)
 	{
 		try {
 			String codigoVuelo = codigoAsiento.split("-")[0];
@@ -213,6 +216,7 @@ public class Aerolinea {
 					}
 				}
 			}
+			return asientoAComprar.get(0);
 		}
 		catch(Exception ex){
 			throw ex;
@@ -220,8 +224,8 @@ public class Aerolinea {
 	}
 	
 	
-	public void comprar(String codigoAsiento, boolean aceptaOfertas) {
-		this.comprar(codigoAsiento, aceptaOfertas, null);
+	public Asiento comprar(String codigoAsiento, boolean aceptaOfertas) {
+		return this.comprar(codigoAsiento, aceptaOfertas, null);
 	}
 
 	public void agregarVuelo(Vuelo vuelo) {
@@ -230,7 +234,7 @@ public class Aerolinea {
 	
 	//reservar tiene que tener el asiento directamente, mejorar codigo
 
-	public void reservar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario) { 
+	public Asiento reservar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario) { 
 		try {
 			String codigoVuelo = codigoAsiento.split("-")[0];
 			ArrayList<Asiento> asientoAReservar = null;
@@ -266,6 +270,7 @@ public class Aerolinea {
 					}
 				}
 			}
+			return asientoAReservar.get(0);
 		}
 		catch(Exception ex){
 			throw ex;
