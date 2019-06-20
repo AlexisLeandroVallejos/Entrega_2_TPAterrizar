@@ -5,8 +5,14 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.mockito.Mockito;
+
 import modelo.Aerolinea;
 import modelo.Asiento;
+import modelo.AsientoDTO;
+import modelo.Clase;
+import modelo.Oceanic;
+import modelo.Ubicacion;
 import modelo.UsuarioEstandar;
 import viewmodel.ComprasViewTableModel;
 
@@ -39,14 +45,38 @@ public class AerolineaController {
 
 	public TableModel getCompras() {
 		List<Asiento> compras = user.getCompras();
+		
+
+		//agrego asiento a mano para TEST
+		Integer numeroDeAsiento = 12;
+		String fechaSalida = "09/05/2010";
+		String codigoVuelo = "LAR";
+		//asientos:
+		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		
+		compras.add(asiento1);
+		
+		
 		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
 		
 		return (TableModel)tm;
 	}
 
 	public TableModel getReservas() {
-		List<Asiento> compras = user.getReservas();
-		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
+		
+		
+		List<Asiento> reservas = user.getReservas();
+		
+		//agrego asiento a mano para TEST
+		Integer numeroDeAsiento = 12;
+		String fechaSalida = "09/05/2010";
+		String codigoVuelo = "LAR";
+		//asientos:
+		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		
+		reservas.add(asiento1);
+		
+		ComprasViewTableModel tm = new ComprasViewTableModel(reservas);
 		
 		return (TableModel)tm;
 	}
