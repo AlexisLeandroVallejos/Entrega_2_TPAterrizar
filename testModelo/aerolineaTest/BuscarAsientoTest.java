@@ -125,15 +125,15 @@ public class BuscarAsientoTest {
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
 		//seteo precios de asientos:
-		asiento1.setPrecioFinal(usuario);
-		asiento2.setPrecioFinal(usuario);
-		asiento3.setPrecioFinal(usuario);
-		asiento4.setPrecioFinal(usuario);
-		asiento5.setPrecioFinal(usuario);
-		asiento6.setPrecioFinal(usuario);
-		asiento7.setPrecioFinal(usuario);
-		asiento8.setPrecioFinal(usuario);
-		asiento9.setPrecioFinal(usuario);
+		asiento1.setPrecio(usuario);
+		asiento2.setPrecio(usuario);
+		asiento3.setPrecio(usuario);
+		asiento4.setPrecio(usuario);
+		asiento5.setPrecio(usuario);
+		asiento6.setPrecio(usuario);
+		asiento7.setPrecio(usuario);
+		asiento8.setPrecio(usuario);
+		asiento9.setPrecio(usuario);
 		
 		AsientoBusquedaOrden ordenPrecio = AsientoBusquedaOrden.PRECIOD;
 		
@@ -170,11 +170,11 @@ public class BuscarAsientoTest {
 		lanchita.agregarVuelo(vuelo2);
 		lanchita.agregarVuelo(vuelo3);
 		//Seteo precios de asientos:
-		asiento2.setPrecioFinal(usuario);
-		asiento4.setPrecioFinal(usuario);
-		asiento7.setPrecioFinal(usuario);
-		asiento8.setPrecioFinal(usuario);
-		asiento9.setPrecioFinal(usuario);
+		asiento2.setPrecio(usuario);
+		asiento4.setPrecio(usuario);
+		asiento7.setPrecio(usuario);
+		asiento8.setPrecio(usuario);
+		asiento9.setPrecio(usuario);
 		
 		AsientoBusquedaOrden ordenTiempoVuelo = AsientoBusquedaOrden.TIEMPOVUELO;
 		

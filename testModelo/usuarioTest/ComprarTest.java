@@ -137,10 +137,10 @@ public class ComprarTest {
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		//seteo precios:
-		asiento1.setPrecioFinal(usuarioNoEstandar);
-		asiento3.setPrecioFinal(usuarioEstandar);
+		asiento1.setPrecio(usuarioNoEstandar);
+		asiento3.setPrecio(usuarioEstandar);
 		
-		Assert.assertEquals("No tiene el recargo", true, asiento1.getPrecioFinal() > asiento3.getPrecioFinal());
+		Assert.assertEquals("No tiene el recargo", true, asiento1.getPrecio() > asiento3.getPrecio());
 	}
 	
 	@Test(expected=ExcepcionAsientoNoDisponible.class)
@@ -157,9 +157,9 @@ public class ComprarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Seteo precios de asientos:
-		asiento1.setPrecioFinal(usuario);
-		asiento2.setPrecioFinal(usuario);
-		asiento3.setPrecioFinal(usuario);
+		asiento1.setPrecio(usuario);
+		asiento2.setPrecio(usuario);
+		asiento3.setPrecio(usuario);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		usuario.comprar("EC0344-1");
@@ -179,9 +179,9 @@ public class ComprarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//seteo precio de asientos:
-		asiento1.setPrecioFinal(usuario);
-		asiento2.setPrecioFinal(usuario);
-		asiento3.setPrecioFinal(usuario);
+		asiento1.setPrecio(usuario);
+		asiento2.setPrecio(usuario);
+		asiento3.setPrecio(usuario);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		usuario.comprar("EC0344-1");

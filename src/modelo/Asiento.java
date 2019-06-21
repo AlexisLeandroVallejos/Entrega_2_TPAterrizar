@@ -3,12 +3,14 @@ package modelo;
 import java.util.HashMap;
 
 public class Asiento{
-	private final Vuelo vuelo;
-	private final Clase claseAsiento;
-	protected final Ubicacion ubicacionAsiento;
-	private Estado estadoAsiento;
-	private String codigoDeAsiento;
-	private double precioFinal;
+	
+	protected static Vuelo vuelo;
+	protected static Clase claseAsiento;
+	protected static Ubicacion ubicacionAsiento;
+	protected static Estado estadoAsiento;
+
+	protected String codigoDeAsiento;
+	protected double precio;
 
 	public Asiento(Vuelo vuelo, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
 		this.vuelo = vuelo;
@@ -18,19 +20,19 @@ public class Asiento{
 		this.codigoDeAsiento = setCodigoDeAsiento();
 	}
 
-	public double getPrecioFinal() {
-		return precioFinal;
+	public double getPrecio() {
+		return precio;
 	}
 	
-	public void setPrecioFinal() {
-		this.precioFinal = precioTotalSinRecargo();
+	public void setPrecio() {
+		this.precio = precioTotalSinRecargo();
 	}
 
-	public void setPrecioFinal(Usuario usuario) {
+	public void setPrecio(Usuario usuario) {
 		if (usuarioNoEstandarEstaBuscando(usuario)) {
-			this.precioFinal = precioTotalConRecargoAUsuarioNoEstandar();
+			this.precio = precioTotalConRecargoAUsuarioNoEstandar();
 		} else {
-			setPrecioFinal();
+			setPrecio();
 		}
 
 	}
@@ -62,22 +64,25 @@ public class Asiento{
 	public void setEstadoAsiento(Estado estadoAsiento) {
 		this.estadoAsiento = estadoAsiento;
 	}
+	
+	public String getCodigoDeVuelo() {
+		return vuelo.getCodDeVuelo();
+	}
 
 	public String getCodigoDeAsiento() {
 		return codigoDeAsiento;
 	}
 
 	public String setCodigoDeAsiento() {
-		return vuelo.getCodDeVuelo() + "-" + sumadorDeAsientos();
+		return vuelo.getCodDeVuelo() + "-" + getNumeroDeAsiento();
 	}
 
 	public boolean esCodigoDeVuelo(String codDeVuelo) {
 		return codigoDeAsiento.contains(codDeVuelo);
 	}
 
-	public String sumadorDeAsientos() {
-		int sumador = vuelo.cantidadDeAsientos() + 1;
-		return Integer.toString(sumador);
+	public Integer getNumeroDeAsiento() {
+		return vuelo.cantidadDeAsientos() + 1;
 	}
 
 	public double precioClaseAsiento() {
@@ -89,11 +94,11 @@ public class Asiento{
 	}
 
 	public boolean esAsientoPrimeraYPrecioFinalMenorA8000() {
-		return claseAsiento.getDescripcion() == "Primera" && precioFinal < 8000;
+		return claseAsiento.getDescripcion() == "Primera" && precio < 8000;
 	}
 
 	public boolean esAsientoEjecutivoYPrecioFinalMenorA4000() {
-		return claseAsiento.getDescripcion() == "Ejecutivo" && precioFinal < 4000;
+		return claseAsiento.getDescripcion() == "Ejecutivo" && precio < 4000;
 	}
 	
 	public boolean esSuperOferta() {
@@ -143,16 +148,16 @@ public class Asiento{
 	{
 		HashMap<String, String> datos = new HashMap<String, String>();
 		//("Salida"); 
-		datos.put("Salida",this.getVuelo().getFechaSalida() + " " + this.getVuelo().getHoraSalida());
+		datos.put("Salida", this.getVuelo().getFechaSalida() + " " + this.getVuelo().getHoraSalida());
 		//("Aerolinea");
-		datos.put("Aerolinea",this.getAerolinea());
+		datos.put("Aerolinea", this.getAerolinea());
 		//("Vuelo");
-		datos.put("Vuelo",this.vuelo.getCodDeVuelo());
+		datos.put("Vuelo", this.getCodigoDeVuelo());
 		//("Asiento");
-		datos.put("Asiento",this.getCodigoDeAsiento().split("-")[1]);
+		datos.put("Asiento", this.getNumeroDeAsiento().toString());
 		//("Precio");
-		datos.put("Precio",Double.toString(this.getPrecioFinal() ));
-		datos.put( "Ubicacion", this.ubicacionAsiento.getDescripcion());
+		datos.put("Precio", Double.toString(this.getPrecio()));
+		datos.put("Ubicacion", this.ubicacionAsiento.getDescripcion());
 		return datos;
 	}
 
@@ -161,5 +166,6 @@ public class Asiento{
 		// definir sistema de vencimientos, devuelvo true para testing.
 		return false;
 	}
+	
 
 }

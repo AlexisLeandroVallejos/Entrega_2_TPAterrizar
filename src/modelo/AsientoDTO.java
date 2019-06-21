@@ -1,62 +1,43 @@
 package modelo;
 
 import java.util.HashMap;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-public class AsientoDTO extends Asiento {
-
-	private String codigoDeVuelo;
-	private Integer numeroDeAsiento;
-	private String fechaDeSalida; // dd/MM/yyyy
-	private String horaDeSalida; // HH:mm
-	private double precio;
-	private Clase claseAsiento;
-	//private Ubicacion ubicacionAsiento;
-	private boolean reservado = false;
-	private boolean comprado = false;
-
+public class AsientoDTO extends Asiento{
+	//AsientoDTO son asientos de Oceanic.
 	
+	private DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/uuuu"); // dd/MM/AAAA
+	private DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm"); // hh:mm
+	private LocalDate fechaDeSalida;
+	private LocalTime horaDeSalida;
+	private Integer numeroDeAsiento;
+	
+	public AsientoDTO(Asiento asiento) {
+		super(vuelo, claseAsiento, ubicacionAsiento, estadoAsiento);
+	}
+
 	public AsientoDTO(String codigoDeVuelo, Integer numeroDeAsiento, String fechaDeSalida, 
 			String horaDeSalida, double precio, Clase claseAsiento, Ubicacion ubicacionAsiento) {
-		super(new Vuelo(codigoDeVuelo,"","",fechaDeSalida,"", horaDeSalida,""),
-				claseAsiento,ubicacionAsiento,Estado.DISPONIBLE);
-		this.codigoDeVuelo = codigoDeVuelo;
+		super(new Vuelo(codigoDeVuelo,"","",fechaDeSalida,"", horaDeSalida,""), claseAsiento, ubicacionAsiento, estadoAsiento);
 		this.numeroDeAsiento = numeroDeAsiento;
-		this.fechaDeSalida = fechaDeSalida;
-		this.horaDeSalida = horaDeSalida;
-		this.precio = precio;
-		this.claseAsiento = claseAsiento;
+		this.codigoDeAsiento = setCodigoDeAsiento();
+		this.fechaDeSalida = LocalDate.parse(fechaDeSalida, formatoFecha);
+		this.horaDeSalida = LocalTime.parse(horaDeSalida, formatoHora);
 	}
-
-	public String getCodigoDeVuelo() {
-		return codigoDeVuelo;
+	
+	public Integer getNumeroDeAsiento() {
+		return numeroDeAsiento;
 	}
+	
 
-	public void setCodigoDeVuelo(String codigoDeVuelo) {
-		this.codigoDeVuelo = codigoDeVuelo;
-	}
-
-	public String getFechaDeSalida() {
+	public LocalDate getFechaDeSalida() {
 		return fechaDeSalida;
 	}
 
-	public void setFechaDeSalida(String fechaDeSalida) {
+	public void setFechaDeSalida(LocalDate fechaDeSalida) {
 		this.fechaDeSalida = fechaDeSalida;
-	}
-
-	public boolean isReservado() {
-		return reservado;
-	}
-
-	public void setReservado(boolean reservado) {
-		this.reservado = reservado;
-	}
-
-	public boolean isComprado() {
-		return comprado;
-	}
-
-	public void setComprado(boolean comprado) {
-		this.comprado = comprado;
 	}
 
 	public boolean esClaseAsiento(Clase[] clases) {
@@ -86,13 +67,13 @@ public class AsientoDTO extends Asiento {
 		//("Aerolinea");
 		datos.put("Aerolinea",this.getAerolinea());
 		//("Vuelo");
-		datos.put("Vuelo",this.codigoDeVuelo);
+		datos.put("Vuelo",this.getCodigoDeVuelo());
 		//("Asiento");
-		datos.put("Asiento",Integer.toString(this.numeroDeAsiento));
+		datos.put("Asiento",this.getNumeroDeAsiento().toString());
 		//("Precio");
-		datos.put( "Precio", Double.toString(this.precio ));
-		datos.put( "Ubicacion", this.ubicacionAsiento.getDescripcion());
+		datos.put("Precio", Double.toString(this.precio));
+		datos.put("Ubicacion", this.ubicacionAsiento.getDescripcion());
 		return datos;
 	}
-
+	
 }

@@ -1,9 +1,7 @@
 package aerolineaTest;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -13,77 +11,59 @@ import modelo.*;
 public class AsientosDisponiblesParaOrigenYDestinoTest {
 	
 	@Test
-	public void asientosDisponiblesParaOrigenYDestino_SeObtienenAsientosQueCumplanOrigenYFechaSalida() {
+	public void asientosDisponiblesParaOrigenYDestino_SeObtienenAsientosQueCumplanOrigenFechaSalidaYDestino() {
 		//inicio:
-		String codigoOrigenOceanic = "RAR23";
-		String fechaSalida = "12/04/2017";
-		String codigoDestinoOceanic = "LAL01";
-		Aerolinea lanchita = new Aerolinea();
+		String codigoOrigenOceanic1 = "LA"; //esto debe cambiar a SLA; vuelo1
+		String codigoDestinoOceanic1 = "NR"; //esto debe cambiar a NR_; vuelo1
+					
+		String fechaSalida1 = "12/04/2017";
+				
+		Aerolinea aerolinea = new Aerolinea();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		lanchita.setOceanic(oceanic);
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoOrigenOceanic, 12, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		AsientoDTO asiento2 = new AsientoDTO("WAR66", 245, fechaSalida, "17:15", 500.51, Clase.EJECUTIVO, Ubicacion.CENTRO);
-		AsientoDTO asiento3 = new AsientoDTO(codigoOrigenOceanic, 22, "16/01/2015", "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
-		List<AsientoDTO> asientos = Arrays.asList(asiento1,asiento2,asiento3);
-		List<AsientoDTO> listaAsientosFiltrados = asientos.stream()
-				.filter(asiento -> asiento.getCodigoDeVuelo() == codigoOrigenOceanic && asiento.getFechaDeSalida() == fechaSalida)
-				.collect(Collectors.toList());
+		aerolinea.setOceanic(oceanic);
+		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20");
+		OceanicCriterioDeBusqueda criterioBusqueda = new OceanicCriterioDeBusqueda(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1);
+						
+		AsientoDTO asiento1 = new AsientoDTO("ECO23", 12, fechaSalida1, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		vuelo1.agregarAsiento(asiento1);
+		AsientoDTO asiento3 = new AsientoDTO("ECO23", 22, fechaSalida1, "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);	
+		vuelo1.agregarAsiento(asiento3);
+						
+		aerolinea.agregarVuelo(vuelo1);
+						
+		List<AsientoDTO> listaAsientosDisponibles = OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigenYDestino(criterioBusqueda);
 		//prueba:
-		Mockito.when(oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic))
-			.thenReturn(listaAsientosFiltrados);
-		Assert.assertEquals(listaAsientosFiltrados, 
-				lanchita.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic));
-		Mockito.verify(oceanic).asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
+		Mockito.when(oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1)).thenReturn(listaAsientosDisponibles);
+		Assert.assertEquals(aerolinea.getOceanic().asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1).size(), listaAsientosDisponibles.size());
+		Mockito.verify(oceanic).asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1);
 	}
 	
 	@Test
-	public void asientosDisponiblesParaOrigenYDestino_CodigoOrigenLADeUnAsientoDevuelveSLA() {
+	public void asientosDisponiblesParaOrigenYDestino_CodigoOrigenLADevuelveSLAYCodigoDestinoNRDevuelveNR_() {
 		//inicio:
-		String codigoOrigenOceanic = "LA";
-		String fechaSalida = "12/04/2017";
-		String codigoDestinoOceanic = "LAL01";
-		Aerolinea lanchita = new Aerolinea();
+		String codigoOrigenOceanic1 = "LA"; //esto debe cambiar a SLA; vuelo1
+		String codigoDestinoOceanic1 = "NR"; //esto debe cambiar a NR_; vuelo1
+				
+		String fechaSalida1 = "12/04/2017";
+			
+		Aerolinea aerolinea = new Aerolinea();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		lanchita.setOceanic(oceanic);
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoOrigenOceanic, 12, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		AsientoDTO asiento3 = new AsientoDTO(codigoOrigenOceanic, 22, "16/01/2015", "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
-		List<AsientoDTO> asientos = Arrays.asList(asiento1,asiento3);
-		List<AsientoDTO> listaAsientosFiltrados = asientos.stream()
-				.filter(asiento -> asiento.getCodigoDeVuelo() == codigoOrigenOceanic && asiento.getFechaDeSalida() == fechaSalida)
-				.collect(Collectors.toList());
-		listaAsientosFiltrados.forEach(asiento -> asiento.setCodigoDeVuelo("S"+codigoOrigenOceanic));
+		aerolinea.setOceanic(oceanic);
+		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20");
+		OceanicCriterioDeBusqueda criterioBusqueda = new OceanicCriterioDeBusqueda(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1);
+				
+		AsientoDTO asiento1 = new AsientoDTO("ECO23", 12, fechaSalida1, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		vuelo1.agregarAsiento(asiento1);
+		AsientoDTO asiento3 = new AsientoDTO("ECO23", 22, fechaSalida1, "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);	
+		vuelo1.agregarAsiento(asiento3);
+				
+		aerolinea.agregarVuelo(vuelo1);
+				
+		List<AsientoDTO> listaAsientosDisponibles = OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigenYDestino(criterioBusqueda);
 		//prueba:
-		Mockito.when(oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic))
-			.thenReturn(listaAsientosFiltrados);
-		Assert.assertEquals(listaAsientosFiltrados, 
-				lanchita.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic));
-		Mockito.verify(oceanic).asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
+		Mockito.when(oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1)).thenReturn(listaAsientosDisponibles);
+		Assert.assertEquals(aerolinea.getOceanic().asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1), listaAsientosDisponibles);
+		Mockito.verify(oceanic).asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic1, fechaSalida1, codigoDestinoOceanic1);
 	}
 	
-	@Test
-	public void asientosDisponiblesParaOrigenYDestino_CodigoOrigenNoEsLAYAgregaUnGuionBajoAlFinal() {
-		//inicio:
-		String codigoOrigenOceanic = "LS";
-		String fechaSalida = "12/04/2017";
-		String codigoDestinoOceanic = "LAL01";
-		Aerolinea lanchita = new Aerolinea();
-		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		lanchita.setOceanic(oceanic);
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoOrigenOceanic, 12, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		AsientoDTO asiento3 = new AsientoDTO(codigoOrigenOceanic, 22, "16/01/2015", "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
-		List<AsientoDTO> asientos = Arrays.asList(asiento1,asiento3);
-		List<AsientoDTO> listaAsientosFiltrados = asientos.stream()
-				.filter(asiento -> asiento.getCodigoDeVuelo() == codigoOrigenOceanic && asiento.getFechaDeSalida() == fechaSalida)
-				.collect(Collectors.toList());
-		listaAsientosFiltrados.forEach(asiento -> asiento.setCodigoDeVuelo(codigoOrigenOceanic+"_"));
-		//prueba:
-		Mockito.when(oceanic.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic))
-			.thenReturn(listaAsientosFiltrados);
-		Assert.assertEquals(listaAsientosFiltrados, 
-				lanchita.asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic));
-		Mockito.verify(oceanic).asientosDisponiblesParaOrigenYDestino(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
-	}
 }

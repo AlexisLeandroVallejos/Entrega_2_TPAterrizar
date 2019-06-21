@@ -27,11 +27,11 @@ public enum AsientoBusquedaOrden {
 		switch(descripcion)
 		{
 			case "Precio Asc":
-				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal))
+				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecio))
 				  .collect(Collectors.toList());
 				break;
 			case "Precio Desc":
-				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecioFinal).reversed())
+				listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPrecio).reversed())
 				  .collect(Collectors.toList());
 				break;
 			case "Tiempo Vuelo":

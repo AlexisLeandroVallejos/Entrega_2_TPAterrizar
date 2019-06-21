@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vuelo {
-	//private final Aerolinea aerolinea;
-	private final String codDeVuelo;
-	private final String origen;
-	private final String destino;
+	
+	private final String codigoDeVuelo;
 	private final String fechaSalida;
 	private final String fechaLlegada;
 	private final String horaSalida;
 	private final String horaLlegada;
 	private ArrayList<String> caracteristicasVuelo;
 	private ArrayList<Asiento> asientos = new ArrayList<Asiento>();
+	private String origen;
+	private String destino;
 
-	public Vuelo(String codDeVuelo, String origen, String destino, String fechaSalida, String fechaLlegada,
+	public Vuelo(String codigoDeVuelo, String origen, String destino, String fechaSalida, String fechaLlegada,
 			String horaSalida, String horaLlegada) {
-		//this.aerolinea = aerolinea;
-		this.codDeVuelo = codDeVuelo;
+		this.codigoDeVuelo = codigoDeVuelo;
 		this.origen = origen;
 		this.destino = destino;
 		this.fechaSalida = fechaSalida;
@@ -30,6 +30,18 @@ public class Vuelo {
 		this.horaLlegada = horaLlegada;
 		this.caracteristicasVuelo = setCriterios();
 		
+	}
+
+	public String getCodigoDeVuelo() {
+		return codigoDeVuelo;
+	}
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
+	}
+
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
 
 
@@ -61,7 +73,7 @@ public class Vuelo {
 	}
 
 	public String getCodDeVuelo() {
-		return codDeVuelo;
+		return codigoDeVuelo;
 	}
 
 	public void agregarAsiento(Asiento asiento) {
@@ -69,7 +81,7 @@ public class Vuelo {
 	}
 
 	public boolean esCodDeVuelo(Asiento asiento) {
-		return asiento.esCodigoDeVuelo(codDeVuelo);
+		return asiento.esCodigoDeVuelo(codigoDeVuelo);
 	}
 
 	public boolean estaDisponible(Asiento asiento) {
@@ -144,6 +156,63 @@ public class Vuelo {
 			
 		}
 		return 0;
+	}
+	
+	public boolean ciudadDeDosDeExtension(String ciudad) {
+		return ciudad.length() == 2;
+	}
+	
+	public boolean esOrigen(String ciudad) {
+		return ciudad.contains(origen);
+	}
+	
+	public boolean esDestino(String ciudad) {
+		return ciudad.contains(destino);
+	}
+	
+	public boolean esSLA(String ciudad) {
+		return ciudad.equalsIgnoreCase("SLA");
+	}
+	
+	public List<String> getCiudades() {
+		List<String> ciudades = Arrays.asList(origen, destino);
+		return ciudades;
+	}
+	
+	public String setCiudadSegunCriterio(String ciudad) {
+		if(ciudad.equalsIgnoreCase("LA")) {
+			return "SLA";
+		}
+		else if(ciudad.equalsIgnoreCase(origen)) {
+			return origen + "_";
+		}
+		else{
+			return destino + "_";
+		}
+	}
+	
+	public List<String> modificarCiudad() {
+		return this.getCiudades().stream()
+			.filter(ciudad -> this.ciudadDeDosDeExtension(ciudad))
+			.map(ciudad -> this.setCiudadSegunCriterio(ciudad))
+			.collect(Collectors.toList());
+		
+	}
+	
+	public Vuelo setCiudades(List<String> ciudades) {
+		for (String ciudad : ciudades) {
+			if((this.esSLA(ciudad) && origen.contains("LA")) || this.esOrigen(ciudad)) {
+				this.setOrigen(ciudad);
+			}
+			else if ((this.esSLA(ciudad) && destino.contains("LA")) || this.esDestino(ciudad)) {
+				this.setDestino(ciudad);
+			}
+		}
+		return this;
+	}
+
+	public ArrayList<Asiento> getAsientos() {
+		return asientos;
 	}
 
 }
