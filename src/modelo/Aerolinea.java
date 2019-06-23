@@ -34,12 +34,12 @@ public class Aerolinea {
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Busquedas en Oceanic:
-	public List<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
+	public List<Asiento> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
 		OceanicCriterioDeBusqueda criterio = new OceanicCriterioDeBusqueda(codigoOrigenOceanic, fechaSalida);
 		return OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigen(criterio);
 	}
 
-	public List<AsientoDTO> asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic) {
+	public List<Asiento> asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic) {
 		OceanicCriterioDeBusqueda criterio = new OceanicCriterioDeBusqueda(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
 		return OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigenYDestino(criterio);
 	}
@@ -50,7 +50,7 @@ public class Aerolinea {
 	}
 
 //Compra en Oceanic
-	public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, Integer numeroDeAsiento) {
+	public boolean comprarSiHayDisponibilidad(int dni, String codigoVuelo, Integer numeroDeAsiento) {
 		OceanicCriterioDeCompra criterio = new OceanicCriterioDeCompra(dni, codigoVuelo, numeroDeAsiento);
 		return OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterio);
 	}
@@ -72,7 +72,7 @@ public class Aerolinea {
 
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino) {
 		List<Asiento> asientos = buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
-		List<AsientoDTO> asientosOceanic = asientosDisponiblesParaOrigenYDestino(origen, fecha, destino);
+		List<Asiento> asientosOceanic = asientosDisponiblesParaOrigenYDestino(origen, fecha, destino);
 		asientos.addAll(asientosOceanic);
 		return asientos;
 	}

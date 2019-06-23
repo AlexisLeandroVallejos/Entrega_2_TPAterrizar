@@ -12,15 +12,13 @@ public abstract class Usuario {
 	protected double dineroTotalGastado;
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
-	protected List<Asiento> compras = new ArrayList<Asiento>();
-
-
-	protected List<Asiento> reservas = new ArrayList<Asiento>();
+	protected static List<Asiento> compras = new ArrayList<Asiento>();
+	protected static List<Asiento> reservas = new ArrayList<Asiento>();
 	
 	public Usuario(String nombre, String apellido, int dni, Aerolinea aerolinea) {
-		this.setNombre(nombre);
+		this.nombre = nombre;
 		this.apellido = apellido;
-		this.setDni(dni);
+		this.dni = dni;
 		this.aerolinea = aerolinea;
 	}
 	
@@ -28,15 +26,20 @@ public abstract class Usuario {
 		return apellido;
 	}
 
-	private void setDni(int _dni) {
-		this.dni = _dni;
-	}
-	
-	private int getDni(){
+	public int getDni() {
 		return dni;
 	}
 
-	private void setNombre(String _nombre) {
+	public void setDni(int dni) {
+		this.dni = dni;
+	}
+	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String _nombre) {
 		this.nombre = _nombre;
 	}
 
@@ -55,7 +58,7 @@ public abstract class Usuario {
 	public void comprar(String CodAsiento){
 		try{
 			Asiento asientoComprado = aerolinea.comprar(CodAsiento);
-			this.compras.add(asientoComprado);
+			Usuario.compras.add(asientoComprado);
 			
 		}
 		catch (Exception ex){
@@ -71,15 +74,11 @@ public abstract class Usuario {
 		return historicoBusquedas;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
-
-	public List<Asiento> getCompras() {
+	public static List<Asiento> getCompras() {
 		return compras;
 	}
 
-	public List<Asiento> getReservas() {
+	public static List<Asiento> getReservas() {
 		return reservas;
 	}
 }

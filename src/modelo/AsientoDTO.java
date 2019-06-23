@@ -20,7 +20,7 @@ public class AsientoDTO extends Asiento{
 
 	public AsientoDTO(String codigoDeVuelo, Integer numeroDeAsiento, String fechaDeSalida, 
 			String horaDeSalida, double precio, Clase claseAsiento, Ubicacion ubicacionAsiento) {
-		super(new Vuelo(codigoDeVuelo,"","",fechaDeSalida,"", horaDeSalida,""), claseAsiento, ubicacionAsiento, estadoAsiento);
+		super(new Vuelo(codigoDeVuelo,"","",fechaDeSalida,"", horaDeSalida,""), claseAsiento, ubicacionAsiento, Estado.DISPONIBLE);
 		this.numeroDeAsiento = numeroDeAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
 		this.fechaDeSalida = LocalDate.parse(fechaDeSalida, formatoFecha);

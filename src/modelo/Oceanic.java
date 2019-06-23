@@ -5,9 +5,9 @@ import java.util.List;
 public interface Oceanic {
 	
 	//busquedas:
-	public List<AsientoDTO> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida);
+	public List<Asiento> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida);
 	
-	public List<AsientoDTO> asientosDisponiblesParaOrigenYDestino
+	public List<Asiento> asientosDisponiblesParaOrigenYDestino
 		(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic);
 	
 	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento);
