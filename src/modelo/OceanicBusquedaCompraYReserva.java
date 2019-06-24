@@ -21,20 +21,19 @@ public class OceanicBusquedaCompraYReserva{
 	}
 
 	public static boolean estaReservado(OceanicCriterioDeReserva criterioReserva) {
-		return Aerolinea.getAsientosSobreReservados().stream()
-				.filter(reserva -> reserva.getAsiento().getCodigoDeVuelo() == criterioReserva.getCodigoDeVuelo())
-				.filter(reserva -> reserva.getAsiento().getNumeroDeAsiento() == criterioReserva.getNumeroDeAsiento())
-				.count() > 0; //no se si esto es correcto, necesito reservas y no puedo mandar usuario.
+		return asientoEvaluado(criterioReserva).getEstadoAsiento() == Estado.RESERVADO;
 	}
 	
 	//Compra en oceanic
 	public static boolean comprarSiHayDisponibilidad(OceanicCriterioDeCompra criterioCompra) {
-		return false; //falta llenar esto.
+		//asientoEvaluado(criterioCompra).setEstadoAsiento(Estado.COMPRADO);  esto setearia el asiento disponible en comprado, pero deberia ir despues del test?
+		return !estaComprado(criterioCompra);
 	}
 	
 	//Reserva en oceanic
 	public static boolean reservar(OceanicCriterioDeReserva criterioReserva) {
-		return false; //falta llenar esto.
+		//asientoEvaluado(criterioReserva).setEstadoAsiento(Estado.RESERVADO); esto setearia el asiento disponible en reservado, pero deberia ir despues del test?
+		return !estaReservado(criterioReserva);
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -56,7 +55,23 @@ public class OceanicBusquedaCompraYReserva{
 		return vuelosModificados.stream()
 				.map(vuelo -> vuelo.getAsientos())
 				.flatMap(asiento -> asiento.stream()) //los asientos van a estar en listas separadas, esto los pone en una sola.
-				.filter(asiento -> asiento.getAerolinea() == "Oceanic") //si su estado es null, son asientosDTO.
+				.filter(asiento -> asiento.getAerolinea() == "Oceanic") //solo asientos dto.
+				.filter(asiento -> asiento.getEstadoAsiento() == Estado.DISPONIBLE) //disponibles.
 				.collect(Collectors.toList());
 	}	
+	
+	public static Asiento asientoEvaluado(OceanicCriterioCompraOReserva criterio) {
+		return Aerolinea.getVuelos().stream()
+					.filter(vuelo -> vuelo.getCodigoDeVuelo() == criterio.getCodigoDeVuelo())
+					.map(vuelo -> vuelo.getAsientos())
+					.flatMap(asiento -> asiento.stream())
+					.filter(asiento -> asiento.getNumeroDeAsiento() == criterio.getNumeroDeAsiento())
+					.collect(Collectors.toList())
+					.get(0);
+	}
+	
+	public static boolean estaComprado(OceanicCriterioDeCompra criterioCompra) {
+		return asientoEvaluado(criterioCompra).getEstadoAsiento() == Estado.COMPRADO;
+	}
+	
 }

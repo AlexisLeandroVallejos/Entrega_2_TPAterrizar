@@ -13,10 +13,6 @@ public class AsientoDTO extends Asiento{
 	private LocalDate fechaDeSalida;
 	private LocalTime horaDeSalida;
 	private Integer numeroDeAsiento;
-	
-	public AsientoDTO(Asiento asiento) {
-		super(vuelo, claseAsiento, ubicacionAsiento, estadoAsiento);
-	}
 
 	public AsientoDTO(String codigoDeVuelo, Integer numeroDeAsiento, String fechaDeSalida, 
 			String horaDeSalida, double precio, Clase claseAsiento, Ubicacion ubicacionAsiento) {

@@ -7,43 +7,67 @@ import org.mockito.Mockito;
 import modelo.*;
 
 public class ComprarSiHayDisponibilidadTest {
-	
+
 	@Test
 	public void comprarSiHayDisponibilidad_PudoComprar() {
-		//inicio:
-		String dni = "29999123";
-		String codigoVuelo = "LAR";
-		Integer numeroDeAsiento = 12;
-		String fechaSalida = "09/05/2010";
-		Aerolinea lanchita = new Aerolinea();
+		// inicio:
+		String dni = "28977321";
+		String codigoDeVuelo = "ECO23";
+		Integer numeroDeAsiento = 35;
+
+		String codigoOrigenOceanic1 = "ZX"; // esto debe cambiar a SLA; vuelo1
+		String codigoDestinoOceanic1 = "RX";
+
+		String fechaSalida1 = "12/04/2017";
+
+		Aerolinea aerolinea = new Aerolinea();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		lanchita.setOceanic(oceanic);
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		boolean noEstabaComprado = asiento1.isComprado() == false;
-		//prueba:
-		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento)).thenReturn(noEstabaComprado);
-		Assert.assertEquals(noEstabaComprado, lanchita.comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento));
-		Mockito.verify(oceanic).comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento);
+		aerolinea.setOceanic(oceanic);
+		OceanicCriterioDeCompra criterioCompra = new OceanicCriterioDeCompra(dni, codigoDeVuelo, numeroDeAsiento);
+		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20"); // cumplen
+
+		AsientoDTO asiento1 = new AsientoDTO("ECO23", 12, fechaSalida1, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		vuelo1.agregarAsiento(asiento1);
+		AsientoDTO asiento3 = new AsientoDTO("ECO23", numeroDeAsiento, fechaSalida1, "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
+		vuelo1.agregarAsiento(asiento3);
+
+		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
+
+		boolean puedeComprar = OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterioCompra);
+		// prueba:
+		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeComprar);
+		Assert.assertEquals(aerolinea.getOceanic().comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento), puedeComprar);
+		Mockito.verify(oceanic).comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento);
 	}
-	
+
 	@Test
 	public void comprarSiHayDisponibilidad_NoPudoComprar() {
-		//inicio:
-		String dni = "29999123";
-		String codigoVuelo = "LAR";
-		Integer numeroDeAsiento = 12;
-		String fechaSalida = "09/05/2010";
-		Aerolinea lanchita = new Aerolinea();
+		String dni = "28977321";
+		String codigoDeVuelo = "ECO23";
+		Integer numeroDeAsiento = 35;
+
+		String codigoOrigenOceanic1 = "ZX"; // esto debe cambiar a SLA; vuelo1
+		String codigoDestinoOceanic1 = "RX";
+
+		String fechaSalida1 = "12/04/2017";
+
+		Aerolinea aerolinea = new Aerolinea();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		lanchita.setOceanic(oceanic);
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		asiento1.setComprado(true);
-		boolean noEstabaComprado = asiento1.isComprado() == false;
-		//prueba:
-		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento)).thenReturn(noEstabaComprado);
-		Assert.assertEquals(noEstabaComprado, lanchita.comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento));
-		Mockito.verify(oceanic).comprarSiHayDisponibilidad(dni, codigoVuelo, numeroDeAsiento);
+		aerolinea.setOceanic(oceanic);
+		OceanicCriterioDeCompra criterioCompra = new OceanicCriterioDeCompra(dni, codigoDeVuelo, numeroDeAsiento);
+		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20"); // cumplen
+
+		AsientoDTO asiento1 = new AsientoDTO("ECO23", 12, fechaSalida1, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
+		vuelo1.agregarAsiento(asiento1);
+		AsientoDTO asiento3 = new AsientoDTO("ECO23", numeroDeAsiento, fechaSalida1, "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);
+		vuelo1.agregarAsiento(asiento3);
+		asiento3.setEstadoAsiento(Estado.COMPRADO);
+		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
+
+		boolean puedeComprar = OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterioCompra);
+		// prueba:
+		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeComprar);
+		Assert.assertEquals(aerolinea.getOceanic().comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento), puedeComprar);
+		Mockito.verify(oceanic).comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento);
 	}
 }

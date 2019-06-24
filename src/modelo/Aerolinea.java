@@ -50,7 +50,7 @@ public class Aerolinea {
 	}
 
 //Compra en Oceanic
-	public boolean comprarSiHayDisponibilidad(int dni, String codigoVuelo, Integer numeroDeAsiento) {
+	public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, Integer numeroDeAsiento) {
 		OceanicCriterioDeCompra criterio = new OceanicCriterioDeCompra(dni, codigoVuelo, numeroDeAsiento);
 		return OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterio);
 	}
