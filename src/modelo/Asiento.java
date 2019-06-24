@@ -107,18 +107,11 @@ public class Asiento{
 
 	public boolean esClaseAsiento(Clase[] clases) {
 		boolean esClase = false;
-		//ArrayList<Clase> listaArray = new ArrayList<Clase>();
-		//listaArray.addAll(clases);
-		if(clases != null) {
-			//arreglar condicion de corte en FOR cambiar a Lista
-			
-			for(int index = 0; index < clases.length; index++)
+		for(Clase clase : clases)
+		{
+			if(clase.equals(this.claseAsiento))
 			{
-				if(clases[index].equals(this.claseAsiento))
-				{
-					esClase = true;
-					return esClase;
-				}
+				esClase = true;
 			}
 		}
 		return esClase;
