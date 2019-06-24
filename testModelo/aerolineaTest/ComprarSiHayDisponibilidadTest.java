@@ -33,7 +33,7 @@ public class ComprarSiHayDisponibilidadTest {
 
 		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
 
-		boolean puedeComprar = OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterioCompra);
+		boolean puedeComprar = aerolinea.getOceanicBusquedaCompraYReserva().comprarSiHayDisponibilidad(criterioCompra);
 		// prueba:
 		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeComprar);
 		Assert.assertEquals(aerolinea.getOceanic().comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento), puedeComprar);
@@ -64,7 +64,7 @@ public class ComprarSiHayDisponibilidadTest {
 		asiento3.setEstadoAsiento(Estado.COMPRADO);
 		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
 
-		boolean puedeComprar = OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterioCompra);
+		boolean puedeComprar = aerolinea.getOceanicBusquedaCompraYReserva().comprarSiHayDisponibilidad(criterioCompra);
 		// prueba:
 		Mockito.when(oceanic.comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeComprar);
 		Assert.assertEquals(aerolinea.getOceanic().comprarSiHayDisponibilidad(dni, codigoDeVuelo, numeroDeAsiento), puedeComprar);

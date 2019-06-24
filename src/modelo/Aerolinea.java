@@ -13,11 +13,13 @@ import excepciones.ExcepcionAsientoNoDisponible;
 
 public class Aerolinea {
 	
-	private static ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
-	private static ArrayList<Reserva> asientosSobreReservados = new ArrayList<Reserva>();
+	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
+	private ArrayList<Reserva> asientosSobreReservados = new ArrayList<Reserva>();
+	
 	
 	AerolineaLanchita aerolineaLanchita;
 	Oceanic oceanic;
+	private OceanicBusquedaCompraYReserva oceanicBusquedaCompraYReserva = new OceanicBusquedaCompraYReserva(this);
 
 	// claseAsiento
 	final static double asientoTurista = 250;
@@ -32,36 +34,44 @@ public class Aerolinea {
 	// recargo a usuarios no estandar:
 	final static double recargoAUsuarioNoEstandar = 20;
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Busquedas en Oceanic:
 	public List<Asiento> asientosDisponiblesParaOrigen(String codigoOrigenOceanic, String fechaSalida) {
 		OceanicCriterioDeBusqueda criterio = new OceanicCriterioDeBusqueda(codigoOrigenOceanic, fechaSalida);
-		return OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigen(criterio);
+		return oceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigen(criterio);
 	}
 
 	public List<Asiento> asientosDisponiblesParaOrigenYDestino(String codigoOrigenOceanic, String fechaSalida, String codigoDestinoOceanic) {
 		OceanicCriterioDeBusqueda criterio = new OceanicCriterioDeBusqueda(codigoOrigenOceanic, fechaSalida, codigoDestinoOceanic);
-		return OceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigenYDestino(criterio);
+		return oceanicBusquedaCompraYReserva.asientosDisponiblesParaOrigenYDestino(criterio);
 	}
 
 	public boolean estaReservado(String codigoDeVuelo, Integer numeroDeAsiento) {
 		OceanicCriterioDeReserva criterio = new OceanicCriterioDeReserva(codigoDeVuelo, numeroDeAsiento);
-		return OceanicBusquedaCompraYReserva.estaReservado(criterio);
+		return oceanicBusquedaCompraYReserva.estaReservado(criterio);
 	}
 
 //Compra en Oceanic
 	public boolean comprarSiHayDisponibilidad(String dni, String codigoVuelo, Integer numeroDeAsiento) {
 		OceanicCriterioDeCompra criterio = new OceanicCriterioDeCompra(dni, codigoVuelo, numeroDeAsiento);
-		return OceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterio);
+		return oceanicBusquedaCompraYReserva.comprarSiHayDisponibilidad(criterio);
 	}
 
 //Reserva en Oceanic
 	public boolean reservar(String dni, String codigoVuelo, Integer numeroDeAsiento) {
 		OceanicCriterioDeReserva criterio = new OceanicCriterioDeReserva(dni, codigoVuelo, numeroDeAsiento);
-		return OceanicBusquedaCompraYReserva.reservar(criterio);
+		return oceanicBusquedaCompraYReserva.reservar(criterio);
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	public OceanicBusquedaCompraYReserva getOceanicBusquedaCompraYReserva() {
+		return oceanicBusquedaCompraYReserva;
+	}
+
+	public void setOceanicBusquedaCompraYReserva(OceanicBusquedaCompraYReserva oceanicBusquedaCompraYReserva) {
+		this.oceanicBusquedaCompraYReserva = oceanicBusquedaCompraYReserva;
+	}
+	
 	public Oceanic getOceanic() {
 		return oceanic;
 	}
@@ -167,7 +177,7 @@ public class Aerolinea {
 		return null;
 	}
 
-	public static ArrayList<Vuelo> getVuelos() {
+	public ArrayList<Vuelo> getVuelos() {
 		return vuelos;
 	}
 
@@ -280,7 +290,7 @@ public class Aerolinea {
 		asientosSobreReservados.add(reserva);
 	}
 
-	public static ArrayList<Reserva> getAsientosSobreReservados() {
+	public ArrayList<Reserva> getAsientosSobreReservados() {
 		return asientosSobreReservados;
 	}
 }

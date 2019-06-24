@@ -33,7 +33,7 @@ public class ReservarTest {
 
 		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
 
-		boolean puedeReservar = OceanicBusquedaCompraYReserva.reservar(criterioReserva);
+		boolean puedeReservar = aerolinea.getOceanicBusquedaCompraYReserva().reservar(criterioReserva);
 		// prueba:
 		Mockito.when(oceanic.reservar(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeReservar);
 		Assert.assertEquals(aerolinea.getOceanic().reservar(dni, codigoDeVuelo, numeroDeAsiento), puedeReservar);
@@ -66,7 +66,7 @@ public class ReservarTest {
 
 		aerolinea.agregarVuelo(vuelo1); // los asientos guardados cumplen por el vuelo.
 
-		boolean puedeReservar = OceanicBusquedaCompraYReserva.reservar(criterioReserva);
+		boolean puedeReservar = aerolinea.getOceanicBusquedaCompraYReserva().reservar(criterioReserva);
 		// prueba:
 		Mockito.when(oceanic.reservar(dni, codigoDeVuelo, numeroDeAsiento)).thenReturn(puedeReservar);
 		Assert.assertEquals(aerolinea.getOceanic().reservar(dni, codigoDeVuelo, numeroDeAsiento), puedeReservar);

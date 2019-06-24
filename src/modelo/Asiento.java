@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 public class Asiento{
 	
-	protected static Vuelo vuelo;
-	protected static Clase claseAsiento;
-	protected static Ubicacion ubicacionAsiento;
-	protected static Estado estadoAsiento;
+	protected Vuelo vuelo;
+	protected Clase claseAsiento;
+	protected Ubicacion ubicacionAsiento;
+	protected Estado estadoAsiento;
 
 	protected String codigoDeAsiento;
 	protected double precio;
