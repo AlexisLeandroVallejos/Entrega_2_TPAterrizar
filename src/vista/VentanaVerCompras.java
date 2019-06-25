@@ -28,9 +28,8 @@ public class VentanaVerCompras extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaVerCompras(AerolineaController aero) {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.controller = aero;
-		setTitle("Aterrizar.com");
+		setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -22,7 +22,6 @@ public class VentanaDeAviso extends JDialog {
 	 * Create the frame.
 	 */
 	public VentanaDeAviso() {
-		setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		setTitle("Aterrizar.com");
 		setBounds(100, 100, 456, 169);
 		contentPane = new JPanel();

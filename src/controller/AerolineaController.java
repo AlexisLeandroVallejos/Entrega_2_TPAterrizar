@@ -20,11 +20,14 @@ public class AerolineaController {
 
 	private Aerolinea aero;
 	
+	private String nombreAplicacion;
+	
 	private UsuarioEstandar user = new UsuarioEstandar("Tomas", "Perez", 2345677, new Aerolinea());
 	
 	public AerolineaController()
 	{
 		aero = new Aerolinea();
+		this.nombreAplicacion = "Aterrizar.com";
 	}
 
 	
@@ -82,21 +85,6 @@ public class AerolineaController {
 	}
 	
 
-	public TableModel buscar() {
-
-		DefaultTableModel tm = new DefaultTableModel();
-		
-		tm.addColumn("Aerolinea");
-		tm.addColumn("Vuelo");
-		tm.addColumn("Asiento");
-		tm.addColumn("Precio");
-		tm.addColumn("Ubicacion"); 
-		tm.addColumn("Clase");
-		return tm;
-		// TODO Auto-generated method stub
-	}
-
-
 	public void setVueloElegido() {
 		// TODO Auto-generated method stub
 		
@@ -104,17 +92,16 @@ public class AerolineaController {
 
 
 	public TableModel buscar(String origen, String destino, String fecha) {
-		DefaultTableModel tm = new DefaultTableModel();
-		
-		tm.addColumn("Aerolinea");
-		tm.addColumn("Vuelo");
-		tm.addColumn("Asiento");
-		tm.addColumn("Precio");
-		tm.addColumn("Ubicacion"); 
-		tm.addColumn("Clase");
 		
 		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
-		
+
+		ComprasViewTableModel tm = new ComprasViewTableModel(listaBusqueda);
 		return tm;
 	}
+
+
+	public String getNombreAplicacion() {
+		return nombreAplicacion;
+	}
+
 }

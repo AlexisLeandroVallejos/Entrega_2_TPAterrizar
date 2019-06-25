@@ -44,7 +44,7 @@ public class AterrizarPrincipal extends JFrame {
 		
 		controller = new AerolineaController();
 		
-		setTitle("Aterrizar.com");
+		setTitle(controller.getNombreAplicacion());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 416, 178);
 		contentPane = new JPanel();
@@ -53,7 +53,7 @@ public class AterrizarPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		Label Hola = new Label("Hola");
+		Label Hola = new Label("Hola" );
 		Hola.setFont(new Font("Arial", Font.PLAIN, 14));
 		Hola.setBounds(23, 23, 42, 22);
 		contentPane.add(Hola);
@@ -116,7 +116,7 @@ public class AterrizarPrincipal extends JFrame {
 		bBuscarAsientos.setBounds(221, 87, 128, 23);
 		contentPane.add(bBuscarAsientos);
 		
-		lblNombreUsuario = new Label("XXXXXXXXXXX");
+		lblNombreUsuario = new Label("" + controller.getUser().ToString());
 		lblNombreUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNombreUsuario.setBounds(71, 23, 164, 22);
 		contentPane.add(lblNombreUsuario);

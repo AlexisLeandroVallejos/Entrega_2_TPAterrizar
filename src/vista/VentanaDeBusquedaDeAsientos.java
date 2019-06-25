@@ -32,6 +32,9 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JTextField textFieldOrigen;
 	private JTextField textFieldFecha;
 	private JTextField textFieldDestino;
+	private JLabel lblError1;
+	private JLabel lblError2;
+	private JLabel lblError3;
 	private JTable tableAsientos;
 	private AerolineaController controller;
 
@@ -39,20 +42,31 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaDeBusquedaDeAsientos(AerolineaController aero) {
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		controller = aero;
-		setTitle("Aterrizar.com");
+		setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 449, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblError = new JLabel("Error");
-		lblError.setForeground(Color.RED);
-		lblError.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblError.setBounds(10, 11, 414, 80);
-		contentPane.add(lblError);
+		lblError1 = new JLabel("");
+		lblError1.setForeground(Color.RED);
+		lblError1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblError1.setBounds(10, 11, 402, 22);
+		contentPane.add(lblError1);
+
+		lblError2 = new JLabel("");
+		lblError2.setForeground(Color.RED);
+		lblError2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblError2.setBounds(10, 43, 402, 22);
+		contentPane.add(lblError2);
+		
+		lblError3 = new JLabel("");
+		lblError3.setForeground(Color.RED);
+		lblError3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblError3.setBounds(10, 69, 402, 22);
+		contentPane.add(lblError3);
 		
 		JLabel lblNewLabel = new JLabel("Origen");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -91,8 +105,11 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				String origen = textFieldOrigen.getText();
 				String destino = textFieldDestino.getText();
 				String fecha = textFieldFecha.getText();
-				TableModel tm = controller.buscar(origen, destino, fecha);
-				tableAsientos.setModel(tm);
+				if(validarBusqueda(origen, destino, fecha))
+				{
+					TableModel tm = controller.buscar(origen, destino, fecha);
+					tableAsientos.setModel(tm);
+				}
 			}
 		});
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -141,6 +158,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 			}
 		));
 		
+		
 		tableAsientos.getSelectionModel().addListSelectionListener(new ListSelectionListener()
 		{
 			public void valueChanged(ListSelectionEvent event)
@@ -150,5 +168,28 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 			}
 		}
 		);
+	}
+
+	private boolean validarBusqueda(String origen, String destino, String fecha)
+	{
+		lblError1.setText("");
+		lblError2.setText("");
+		lblError3.setText("");
+		if(origen.isEmpty())
+		{
+			lblError1.setText("Por favor complete el Origen" + "\n");
+		}
+		if(destino.isEmpty())
+		{
+
+			lblError2.setText(lblError2.getText() + "Por favor complete el Destino" + "\n");
+		}
+		if(fecha.isEmpty())
+		{
+
+			lblError3.setText(lblError3.getText() + "Por favor complete la Fecha" + "\n");
+		}
+		
+		return lblError1.getText().isEmpty() && lblError2.getText().isEmpty() && lblError3.getText().isEmpty();
 	}
 }
