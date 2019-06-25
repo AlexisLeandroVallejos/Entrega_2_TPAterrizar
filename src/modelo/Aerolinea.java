@@ -65,6 +65,22 @@ public class Aerolinea {
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	public ArrayList<CombinacionAsientoUsuario> getAsientosReservados() {
+		return asientosReservados;
+	}
+
+	public void setAsientosReservados(ArrayList<CombinacionAsientoUsuario> asientosReservados) {
+		this.asientosReservados = asientosReservados;
+	}
+
+	public ArrayList<CombinacionAsientoUsuario> getAsientosComprados() {
+		return asientosComprados;
+	}
+
+	public void setAsientosComprados(ArrayList<CombinacionAsientoUsuario> asientosComprados) {
+		this.asientosComprados = asientosComprados;
+	}
+
 	public OceanicBusquedaCompraYReserva getOceanicBusquedaCompraYReserva() {
 		return oceanicBusquedaCompraYReserva;
 	}
