@@ -1,10 +1,10 @@
 package modelo;
 
-public class Reserva {
+public class CombinacionAsientoUsuario {
 	private Asiento asiento;
 	private Usuario usuario;
 
-	public Reserva(Asiento asiento, Usuario usuario) {
+	public CombinacionAsientoUsuario(Asiento asiento, Usuario usuario) {
 		this.asiento = asiento;
 		this.usuario = usuario;
 	}
@@ -24,5 +24,6 @@ public class Reserva {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 
 }

@@ -13,8 +13,7 @@ public class UsuarioEstandar extends Usuario {
 	@Override
 	public void comprar(String CodAsiento){
 		try{
-			Asiento asientoComprado = aerolinea.comprar(CodAsiento, esUsuarioVIP(), this);
-			super.compras.add(asientoComprado);
+			aerolinea.comprar(CodAsiento, esUsuarioVIP(), this);
 		}
 		catch (Exception ex){
 			throw ex;
@@ -31,8 +30,7 @@ public class UsuarioEstandar extends Usuario {
 
 	public void reservar(String CodAsiento) {
 		try{
-			Asiento asientoReservado = aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
-			super.reservas.add(asientoReservado);
+			aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
 		}
 		catch (Exception ex){
 			throw ex;

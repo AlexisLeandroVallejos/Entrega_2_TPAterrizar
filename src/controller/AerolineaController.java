@@ -44,7 +44,7 @@ public class AerolineaController {
 
 
 	public TableModel getCompras() {
-		List<Asiento> compras = user.getCompras();
+		List<Asiento> compras = aero.getCompras(user);
 		
 
 		//agrego asiento a mano para TEST
@@ -65,7 +65,7 @@ public class AerolineaController {
 	public TableModel getReservas() {
 		
 		
-		List<Asiento> reservas = user.getReservas();
+		List<Asiento> reservas = aero.getReservas(user);
 		
 		//agrego asiento a mano para TEST
 		Integer numeroDeAsiento = 12;

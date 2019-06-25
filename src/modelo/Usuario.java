@@ -12,8 +12,6 @@ public abstract class Usuario {
 	protected double dineroTotalGastado;
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
-	protected List<Asiento> compras = new ArrayList<Asiento>();
-	protected List<Asiento> reservas = new ArrayList<Asiento>();
 	
 	public Usuario(String nombre, String apellido, int dni, Aerolinea aerolinea) {
 		this.nombre = nombre;
@@ -57,9 +55,7 @@ public abstract class Usuario {
 	
 	public void comprar(String CodAsiento){
 		try{
-			Asiento asientoComprado = aerolinea.comprar(CodAsiento);
-			compras.add(asientoComprado);
-			
+			aerolinea.comprar(CodAsiento);
 		}
 		catch (Exception ex){
 			throw ex;
@@ -72,13 +68,5 @@ public abstract class Usuario {
 
 	public ArrayList<ArrayList<String>> getHistoricoBusquedas() {
 		return historicoBusquedas;
-	}
-
-	public List<Asiento> getCompras() {
-		return compras;
-	}
-
-	public List<Asiento> getReservas() {
-		return reservas;
 	}
 }
