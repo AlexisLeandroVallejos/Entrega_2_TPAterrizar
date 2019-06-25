@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.table.TableModel;
-
 public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private int dni;
 	protected Aerolinea aerolinea;
 	protected double dineroTotalGastado;
+	
+	private ArrayList<Asiento> asientosReservados = new ArrayList<Asiento>();
+	private ArrayList<Asiento> asientosComprados = new ArrayList<Asiento>();
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
 	
@@ -20,6 +21,22 @@ public abstract class Usuario {
 		this.apellido = apellido;
 		this.dni = dni;
 		this.aerolinea = aerolinea;
+	}
+	
+	public ArrayList<Asiento> getAsientosReservados() {
+		return asientosReservados;
+	}
+
+	public void setAsientosReservados(ArrayList<Asiento> asientosReservados) {
+		this.asientosReservados = asientosReservados;
+	}
+
+	public ArrayList<Asiento> getAsientosComprados() {
+		return asientosComprados;
+	}
+
+	public void setAsientosComprados(ArrayList<Asiento> asientosComprados) {
+		this.asientosComprados = asientosComprados;
 	}
 	
 	public String getApellido() {
@@ -57,7 +74,7 @@ public abstract class Usuario {
 	
 	public void comprar(String CodAsiento){
 		try{
-			aerolinea.comprar(CodAsiento);
+			asientosComprados.add(aerolinea.comprar(CodAsiento));
 		}
 		catch (Exception ex){
 			throw ex;
