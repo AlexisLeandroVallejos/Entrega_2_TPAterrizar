@@ -3,7 +3,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bd.UsuarioDataDummy;
 import controller.AerolineaController;
+import modelo.Aerolinea;
+import modelo.Usuario;
 import modelo.UsuarioEstandar;
 import java.awt.Label;
 import java.awt.Font;
@@ -20,7 +24,7 @@ public class AterrizarPrincipal extends JFrame {
 	private static final long serialVersionUID = -7797745868537851156L;
 	private JPanel contentPane;
 	private Label lblNombreUsuario;
-	private AerolineaController controller;
+	private Usuario model;
 	/**
 	 * Launch the application.
 	 */
@@ -41,11 +45,9 @@ public class AterrizarPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public AterrizarPrincipal() {
-		
-		controller = new AerolineaController();
-		
-		setTitle(controller.getNombreAplicacion());
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		UsuarioDataDummy usuarioDummy = new UsuarioDataDummy();
+		this.setUser(usuarioDummy.getUsuarioTest());
+		setTitle("Aterrizar.com");
 		setBounds(100, 100, 416, 178);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,7 +74,7 @@ public class AterrizarPrincipal extends JFrame {
 		bReservas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaVerReservas ventana = new VentanaVerReservas(controller);
+				VentanaVerReservas ventana = new VentanaVerReservas(model);
 				ventana.setVisible(true);
 				getFrame().setVisible(false);
 				ventana.addWindowListener(new VentanaSeCierraListener()
@@ -94,7 +96,7 @@ public class AterrizarPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//mostrar Venana compras
-				VentanaVerCompras ventanaCompras = new VentanaVerCompras(controller);
+				VentanaVerCompras ventanaCompras = new VentanaVerCompras(model);
 				ventanaCompras.setVisible(true);
 				//obtengo el la ventana que llama a VerCompras
 				ventanaCompras.addWindowListener(new VentanaSeCierraListener()
@@ -116,7 +118,7 @@ public class AterrizarPrincipal extends JFrame {
 		bBuscarAsientos.setBounds(221, 87, 128, 23);
 		contentPane.add(bBuscarAsientos);
 		
-		lblNombreUsuario = new Label("" + controller.getUser().ToString());
+		lblNombreUsuario = new Label( "Nombre Usuario");
 		lblNombreUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblNombreUsuario.setBounds(71, 23, 164, 22);
 		contentPane.add(lblNombreUsuario);
@@ -125,7 +127,7 @@ public class AterrizarPrincipal extends JFrame {
 		bBuscarAsientos.addActionListener(new ActionListener()
 			{	
 				public void actionPerformed(ActionEvent e) {
-					VentanaDeBusquedaDeAsientos ventana = new VentanaDeBusquedaDeAsientos(controller);
+					VentanaDeBusquedaDeAsientos ventana = new VentanaDeBusquedaDeAsientos(model);
 					ventana.setVisible(true);
 					getFrame().setVisible(false);
 					ventana.addWindowListener(new VentanaSeCierraListener()
@@ -142,16 +144,12 @@ public class AterrizarPrincipal extends JFrame {
 	}
 	
 
-	public UsuarioEstandar getUser() {
-		return controller.getUser();
-	}
-
 	public JFrame getFrame()
 	{
 		return this;
 	}
 	public void setUser(UsuarioEstandar user) {
-		this.controller.setUser(user);
-		this.lblNombreUsuario.setText(controller.getUser().ToString());
+		model = user;
+		this.lblNombreUsuario.setText(model.getNombre());
 	}
 }

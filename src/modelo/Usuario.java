@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.table.TableModel;
+
 public abstract class Usuario {
 	private String nombre;
 	private String apellido;

@@ -9,28 +9,38 @@ import modelo.Ubicacion;
 import modelo.Usuario;
 import modelo.Vuelo;
 
-public class AerolineaData {
+public class AerolineaDataDummy {
 	
 	public void llenarListaDeReservas(Aerolinea aerolinea, Usuario usuario){
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
+
+		aerolinea.agregarVuelo(vuelo1);
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.TURISTA, Ubicacion.CENTRO, Estado.RESERVADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.VENTANA, Estado.RESERVADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
+		String codDeVuelo2 = "LAN370";
+		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "LA", "URU", "20110126", "20110127", "22:10", "08:20");
+		aerolinea.agregarVuelo(vuelo2);
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.TURISTA, Ubicacion.PASILLO, Estado.RESERVADO),usuario));
+		
 	}
 	
 	public void llenarListaDeCompras(Aerolinea aerolinea, Usuario usuario){
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
-		
+		aerolinea.agregarVuelo(vuelo1);
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.CENTRO, Estado.COMPRADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.CENTRO, Estado.COMPRADO),usuario));
+		String codDeVuelo2 = "LAN370";
+		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "LA", "URU", "20110126", "20110127", "22:10", "08:20");
+		aerolinea.agregarVuelo(vuelo2);
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.TURISTA, Ubicacion.CENTRO, Estado.COMPRADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
+		aerolinea.getAsientosReservados().add(new CombinacionAsientoUsuario(new Asiento(vuelo2, Clase.TURISTA, Ubicacion.PASILLO, Estado.COMPRADO),usuario));
+	
 	}
 	
 	public void crearVuelos(){

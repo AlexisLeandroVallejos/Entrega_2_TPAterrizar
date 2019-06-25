@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
 import controller.AerolineaController;
+import modelo.Usuario;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JScrollPane;
@@ -28,8 +30,8 @@ public class VentanaVerReservas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaVerReservas(AerolineaController aero) {
-		this.controller = aero;
+	public VentanaVerReservas(Usuario model) {
+		this.controller = model;
 		setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

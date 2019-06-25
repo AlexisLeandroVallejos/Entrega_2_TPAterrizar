@@ -18,16 +18,20 @@ import viewmodel.ComprasViewTableModel;
 
 public class AerolineaController {
 
+	//SEPARAR LOS METODOS DE LAS VISTAS
 	private Aerolinea aero;
+	
+	private Asiento asientoElegido = null;
 	
 	private String nombreAplicacion;
 	
-	private UsuarioEstandar user = new UsuarioEstandar("Tomas", "Perez", 2345677, new Aerolinea());
+	private UsuarioEstandar user;
 	
 	public AerolineaController()
 	{
 		aero = new Aerolinea();
 		this.nombreAplicacion = "Aterrizar.com";
+		user = new UsuarioEstandar("Tomas", "Perez", 2345677, new Aerolinea());
 	}
 
 	
@@ -48,20 +52,7 @@ public class AerolineaController {
 
 	public TableModel getCompras() {
 		List<Asiento> compras = aero.getCompras(user);
-		
-
-		//agrego asiento a mano para TEST
-		Integer numeroDeAsiento = 12;
-		String fechaSalida = "09/05/2010";
-		String codigoVuelo = "LAR";
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		
-		compras.add(asiento1);
-		
-		
 		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
-		
 		return (TableModel)tm;
 	}
 
@@ -69,26 +60,11 @@ public class AerolineaController {
 		
 		
 		List<Asiento> reservas = aero.getReservas(user);
-		
-		//agrego asiento a mano para TEST
-		Integer numeroDeAsiento = 12;
-		String fechaSalida = "09/05/2010";
-		String codigoVuelo = "LAR";
-		//asientos:
-		AsientoDTO asiento1 = new AsientoDTO(codigoVuelo, numeroDeAsiento, fechaSalida, "15:15", 245.45, Clase.TURISTA, Ubicacion.VENTANA);
-		
-		reservas.add(asiento1);
-		
 		ComprasViewTableModel tm = new ComprasViewTableModel(reservas);
 		
 		return (TableModel)tm;
 	}
 	
-
-	public void setVueloElegido() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	public TableModel buscar(String origen, String destino, String fecha) {
@@ -102,6 +78,18 @@ public class AerolineaController {
 
 	public String getNombreAplicacion() {
 		return nombreAplicacion;
+	}
+
+
+	public void setAsientoElegido(Asiento asientoElegido) {
+		// TODO Auto-generated method stub
+		this.asientoElegido = asientoElegido;
+	}
+
+
+	public Asiento getAsientoElegido() {
+		// TODO Auto-generated method stub
+		return asientoElegido;
 	}
 
 }

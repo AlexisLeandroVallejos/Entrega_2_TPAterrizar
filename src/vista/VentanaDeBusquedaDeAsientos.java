@@ -11,12 +11,15 @@ import java.awt.Font;
 import java.awt.Dialog.ModalityType;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import controller.AerolineaController;
+import modelo.Usuario;
+import viewmodel.BusquedaViewTableModel;
 
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
@@ -36,14 +39,15 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JLabel lblError2;
 	private JLabel lblError3;
 	private JTable tableAsientos;
-	private AerolineaController controller;
+	private Usuario controller;
+	private controllerAerolinea controllerAero;
 
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDeBusquedaDeAsientos(AerolineaController aero) {
-		controller = aero;
-		setTitle(controller.getNombreAplicacion());
+	public VentanaDeBusquedaDeAsientos(Usuario model) {
+		controller = model;
+		//setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 449, 499);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -107,7 +111,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				String fecha = textFieldFecha.getText();
 				if(validarBusqueda(origen, destino, fecha))
 				{
-					TableModel tm = controller.buscar(origen, destino, fecha);
+					TableModel tm = controllerAero.buscar(origen, destino, fecha);
 					tableAsientos.setModel(tm);
 				}
 			}
@@ -119,9 +123,9 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		JButton btnComprar = new JButton("Comprar");
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				VentanaDeAviso aviso = new VentanaDeAviso();
-				aviso.setModalityType(ModalityType.DOCUMENT_MODAL);
-				aviso.setVisible(true);
+				if(controller.getAsientoElegido() == null) {
+					model.getUser().comprar(controller.getAsientoElegido().getCodigoDeAsiento());
+				}
 			}
 		});
 		btnComprar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -129,6 +133,14 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		contentPane.add(btnComprar);
 		
 		JButton btnReservar = new JButton("Reservar");
+		btnReservar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(controller.getAsientoElegido() == null) {
+					//eliminar el codigo de asiento y pasarle directamente el asiento eleigo a reservar
+					model.getUser().reservar(controller.getAsientoElegido().getCodigoDeAsiento());
+				}
+			}
+		});
 		btnReservar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnReservar.setBounds(109, 422, 89, 23);
 		contentPane.add(btnReservar);
@@ -149,27 +161,23 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		
 		tableAsientos = new JTable();
 		scrollPane.setViewportView(tableAsientos);
-		tableAsientos.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"Aerolinea", "Vuelo", "Asiento", "Ubicacion", "Precio"
-			}
-		));
 		
 		
+		//corregir comprando con el ejemplo de codigo de tefi
+		tableAsientos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableAsientos.getSelectionModel().addListSelectionListener(new ListSelectionListener()
 		{
 			public void valueChanged(ListSelectionEvent event)
 			{
-				//TO DO: cambiar el elegido
-				controller.setVueloElegido();
+				
+					BusquedaViewTableModel tablem = (BusquedaViewTableModel)tableAsientos.getModel();
+					//Se setea el asiento elegido en model
+					controller.setAsientoElegido(tablem.getAsientoEnFila(event.getFirstIndex()));
 			}
 		}
 		);
 	}
-
+	//meterlo en el modelo
 	private boolean validarBusqueda(String origen, String destino, String fecha)
 	{
 		lblError1.setText("");

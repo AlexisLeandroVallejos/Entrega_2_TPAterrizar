@@ -39,6 +39,7 @@ public class ComprasViewTableModel extends AbstractTableModel {
     }
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+    	//Agregar el formato de fecha
         Asiento asi = asientos.get(rowIndex);
         HashMap<String, String> datos =  asi.getDatosParaLista();
         return datos.get(this.getColumnName(columnIndex));
