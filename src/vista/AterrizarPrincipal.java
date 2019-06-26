@@ -46,7 +46,6 @@ public class AterrizarPrincipal extends JFrame {
 	 */
 	public AterrizarPrincipal() {
 		UsuarioDataDummy usuarioDummy = new UsuarioDataDummy();
-		this.setUser(usuarioDummy.getUsuarioTest());
 		setTitle("Aterrizar.com");
 		setBounds(100, 100, 416, 178);
 		contentPane = new JPanel();
@@ -123,6 +122,8 @@ public class AterrizarPrincipal extends JFrame {
 		lblNombreUsuario.setBounds(71, 23, 164, 22);
 		contentPane.add(lblNombreUsuario);
 		
+
+		this.setUser(usuarioDummy.getUsuarioTest());
 		
 		bBuscarAsientos.addActionListener(new ActionListener()
 			{	

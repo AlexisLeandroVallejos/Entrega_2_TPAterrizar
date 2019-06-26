@@ -1,7 +1,11 @@
 package viewmodel;
 
+import java.util.List;
+
 import javax.swing.table.TableModel;
 
+import bd.AerolineaDataDummy;
+import modelo.Aerolinea;
 import modelo.Asiento;
 
 public class BuscarViewModel {
@@ -18,31 +22,50 @@ public class BuscarViewModel {
 		this.asientoElegido = asientoElegido;
 	}
 	
-	public boolean validarBusqueda(String origen, String destino, String fecha)
+	public String validarBusqueda(String origen, String destino, String fecha)
 	{
-		lblError1.setText("");
-		lblError2.setText("");
-		lblError3.setText("");
+		String error = "";
 		if(origen.isEmpty())
 		{
-			lblError1.setText("Por favor complete el Origen" + "\n");
+			error = "Por favor complete el Origen" + "\n";
 		}
 		if(destino.isEmpty())
 		{
 
-			lblError2.setText(lblError2.getText() + "Por favor complete el Destino" + "\n");
+			error += "Por favor complete el Destino" + "\n";
 		}
 		if(fecha.isEmpty())
 		{
 
-			lblError3.setText(lblError3.getText() + "Por favor complete la Fecha" + "\n");
+			error += "Por favor complete la Fecha" + "\n";
 		}
-		
-		return lblError1.getText().isEmpty() && lblError2.getText().isEmpty() && lblError3.getText().isEmpty();
+		error = BuscarViewModel.convertToMultiline(error);
+		return error;
 	}
 
-	public TableModel buscar(String origen, String destino, String fecha) {
+	public BusquedaViewTableModel buscar(String origen, String destino, String fecha) {
+
+		Aerolinea aero = new Aerolinea();
+		AerolineaDataDummy aeroDD = new AerolineaDataDummy();
+		aero = aeroDD.obtenerAerolineaTest();
+		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
+
+		BusquedaViewTableModel tm = new BusquedaViewTableModel(listaBusqueda);
+		return tm;
+	}
+	
+	public static String convertToMultiline(String orig)
+	{
+	    return "<html>" + orig.replaceAll("\n", "<br>");
+	}
+
+	public void Comprar(String codigoDeAsiento) {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	public void Reservar(String codigoDeAsiento) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -3,11 +3,12 @@ package usuarioTest;
 import org.junit.Assert;
 import org.junit.Test;
 
+import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
 import modelo.*;
 
 public class ReservarTest {
 	
-	@Test
+	@Test(expected=ExcepcionUsuarioNoStandarNoPuedeReservar.class)
 	public void reservar_unUsuarioNoEstandarReservaUnAsiento(){
 		Aerolinea aero = new Aerolinea();
 		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aero);

@@ -1,5 +1,7 @@
 package modelo;
 
+import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+
 public class UsuarioNoEstandar extends Usuario {
 
 	final double recargoAUsuarioNoEstandar = 20; //Esto no se si va, ya esta en asiento...
@@ -21,7 +23,7 @@ public class UsuarioNoEstandar extends Usuario {
 	@Override
 	public void reservar(String CodAsiento) {
 		try {
-			throw new Exception("Usuario no puede reservar al no estar registrado");
+			throw new ExcepcionUsuarioNoStandarNoPuedeReservar();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

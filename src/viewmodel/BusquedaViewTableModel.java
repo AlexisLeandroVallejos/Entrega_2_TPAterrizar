@@ -24,6 +24,10 @@ public class BusquedaViewTableModel extends AbstractTableModel {
 		asientos = compras;
 	}
 
+	public BusquedaViewTableModel() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
     public String getColumnName(int columnIndex){
          return headerColumnas[columnIndex];

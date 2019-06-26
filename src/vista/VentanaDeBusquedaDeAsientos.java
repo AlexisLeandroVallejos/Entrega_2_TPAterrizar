@@ -37,8 +37,6 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JTextField textFieldFecha;
 	private JTextField textFieldDestino;
 	private JLabel lblError1;
-	private JLabel lblError2;
-	private JLabel lblError3;
 	private JTable tableAsientos;
 	private Usuario user;
 	private AerolineaController controllerAero;
@@ -48,7 +46,8 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaDeBusquedaDeAsientos(Usuario user) {
-		user = user;
+		this.user = user;
+		vmodel = new BuscarViewModel();
 		//setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 449, 499);
 		contentPane = new JPanel();
@@ -59,20 +58,8 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		lblError1 = new JLabel("");
 		lblError1.setForeground(Color.RED);
 		lblError1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblError1.setBounds(10, 11, 402, 22);
+		lblError1.setBounds(10, 11, 402, 80);
 		contentPane.add(lblError1);
-
-		lblError2 = new JLabel("");
-		lblError2.setForeground(Color.RED);
-		lblError2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblError2.setBounds(10, 43, 402, 22);
-		contentPane.add(lblError2);
-		
-		lblError3 = new JLabel("");
-		lblError3.setForeground(Color.RED);
-		lblError3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblError3.setBounds(10, 69, 402, 22);
-		contentPane.add(lblError3);
 		
 		JLabel lblNewLabel = new JLabel("Origen");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -111,10 +98,14 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				String origen = textFieldOrigen.getText();
 				String destino = textFieldDestino.getText();
 				String fecha = textFieldFecha.getText();
-				if(vmodel.validarBusqueda(origen, destino, fecha))
+				String error = vmodel.validarBusqueda(origen, destino, fecha);
+				if(error.length() == 0)
 				{
 					TableModel tm = vmodel.buscar(origen, destino, fecha);
 					tableAsientos.setModel(tm);
+				}else
+				{
+					lblError1.setText(error);
 				}
 			}
 		});
@@ -125,7 +116,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		JButton btnComprar = new JButton("Comprar");
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(vmodel.getAsientoElegido() == null) {
+				if(vmodel.getAsientoElegido() != null) {
 					vmodel.Comprar(vmodel.getAsientoElegido().getCodigoDeAsiento());
 				}
 			}
@@ -137,7 +128,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		JButton btnReservar = new JButton("Reservar");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(vmodel.getAsientoElegido() == null) {
+				if(vmodel.getAsientoElegido() != null) {
 					//eliminar el codigo de asiento y pasarle directamente el asiento eleigo a reservar
 					vmodel.Reservar(vmodel.getAsientoElegido().getCodigoDeAsiento());
 				}

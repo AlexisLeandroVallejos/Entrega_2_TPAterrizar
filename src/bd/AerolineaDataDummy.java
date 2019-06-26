@@ -11,15 +11,17 @@ import modelo.Vuelo;
 
 public class AerolineaDataDummy {
 	
-
 	
-	public void crearVuelos(){
+	
+	public Aerolinea crearVuelos(){
+		Aerolinea aero = new Aerolinea();
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
+		
 		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.PASILLO, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento1);
 		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
@@ -40,11 +42,17 @@ public class AerolineaDataDummy {
 		vuelo3.agregarAsiento(asiento8);
 		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
+		
+		aero.agregarVuelo(vuelo1);
+		aero.agregarVuelo(vuelo2);
+		aero.agregarVuelo(vuelo3);
+		
+		return aero;
 	}
 
 	public Aerolinea obtenerAerolineaTest() {
-		// TODO Auto-generated method stub
-		return null;
+		Aerolinea aero = this.crearVuelos();
+		return aero;
 	}
 
 }
