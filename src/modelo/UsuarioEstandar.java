@@ -10,33 +10,10 @@ public class UsuarioEstandar extends Usuario {
 		return true;
 	}
 	
-	@Override
-	public void comprar(String CodAsiento){
-		try{
-			aerolinea.comprar(CodAsiento, esUsuarioVIP(), this);
-		}
-		catch (Exception ex){
-			throw ex;
-		}
-	}
-	
 	public void sumarADineroTotalGastado(double dinero){
 		dineroTotalGastado += dinero;
 	}
-	
-	public boolean esUsuarioVIP(){
-		return dineroTotalGastado >= 100000.0;
-	}
 
-	public void reservar(String CodAsiento) {
-		try{
-			aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
-		}
-		catch (Exception ex){
-			throw ex;
-		}
-	}
-	
 	public String ToString()
 	{
 		return this.getNombre() + " " + this.getApellido();

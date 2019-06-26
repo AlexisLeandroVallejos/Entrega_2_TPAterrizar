@@ -81,6 +81,19 @@ public abstract class Usuario {
 		}
 	}
 	
+	public boolean esUsuarioVIP(){
+		return dineroTotalGastado >= 100000.0;
+	}
+
+	public void reservar(String CodAsiento) {
+		try{
+			aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
+		}
+		catch (Exception ex){
+			throw ex;
+		}
+	}
+	
 	public boolean suscripto() {
 		return false;
 	}

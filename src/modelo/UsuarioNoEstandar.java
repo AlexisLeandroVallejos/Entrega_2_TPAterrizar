@@ -17,13 +17,14 @@ public class UsuarioNoEstandar extends Usuario {
 			throw ex;
 		}
 	}
-
+	
+	@Override
 	public void reservar(String CodAsiento) {
-		try{
-			aerolinea.reservar(CodAsiento, suscripto(), this);
-		}
-		catch (Exception ex){
-			throw ex;
+		try {
+			throw new Exception("Usuario no puede reservar al no estar registrado");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
