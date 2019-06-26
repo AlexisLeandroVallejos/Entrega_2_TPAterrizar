@@ -19,6 +19,7 @@ import javax.swing.table.TableModel;
 
 import controller.AerolineaController;
 import modelo.Usuario;
+import viewmodel.BuscarViewModel;
 import viewmodel.BusquedaViewTableModel;
 
 import javax.swing.JScrollPane;
@@ -39,14 +40,15 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JLabel lblError2;
 	private JLabel lblError3;
 	private JTable tableAsientos;
-	private Usuario controller;
-	private controllerAerolinea controllerAero;
+	private Usuario user;
+	private AerolineaController controllerAero;
+	private BuscarViewModel vmodel;
 
 	/**
 	 * Create the frame.
 	 */
-	public VentanaDeBusquedaDeAsientos(Usuario model) {
-		controller = model;
+	public VentanaDeBusquedaDeAsientos(Usuario user) {
+		user = user;
 		//setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 449, 499);
 		contentPane = new JPanel();
@@ -109,9 +111,9 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				String origen = textFieldOrigen.getText();
 				String destino = textFieldDestino.getText();
 				String fecha = textFieldFecha.getText();
-				if(validarBusqueda(origen, destino, fecha))
+				if(vmodel.validarBusqueda(origen, destino, fecha))
 				{
-					TableModel tm = controllerAero.buscar(origen, destino, fecha);
+					TableModel tm = vmodel.buscar(origen, destino, fecha);
 					tableAsientos.setModel(tm);
 				}
 			}
@@ -123,8 +125,8 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		JButton btnComprar = new JButton("Comprar");
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(controller.getAsientoElegido() == null) {
-					model.getUser().comprar(controller.getAsientoElegido().getCodigoDeAsiento());
+				if(vmodel.getAsientoElegido() == null) {
+					vmodel.Comprar(vmodel.getAsientoElegido().getCodigoDeAsiento());
 				}
 			}
 		});
@@ -135,9 +137,9 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		JButton btnReservar = new JButton("Reservar");
 		btnReservar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(controller.getAsientoElegido() == null) {
+				if(vmodel.getAsientoElegido() == null) {
 					//eliminar el codigo de asiento y pasarle directamente el asiento eleigo a reservar
-					model.getUser().reservar(controller.getAsientoElegido().getCodigoDeAsiento());
+					vmodel.Reservar(vmodel.getAsientoElegido().getCodigoDeAsiento());
 				}
 			}
 		});
@@ -172,32 +174,16 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				
 					BusquedaViewTableModel tablem = (BusquedaViewTableModel)tableAsientos.getModel();
 					//Se setea el asiento elegido en model
-					controller.setAsientoElegido(tablem.getAsientoEnFila(event.getFirstIndex()));
+					vmodel.setAsientoElegido(tablem.getAsientoEnFila(event.getFirstIndex()));
 			}
 		}
 		);
 	}
-	//meterlo en el modelo
-	private boolean validarBusqueda(String origen, String destino, String fecha)
+	
+
+
+	public JFrame getFrame()
 	{
-		lblError1.setText("");
-		lblError2.setText("");
-		lblError3.setText("");
-		if(origen.isEmpty())
-		{
-			lblError1.setText("Por favor complete el Origen" + "\n");
-		}
-		if(destino.isEmpty())
-		{
-
-			lblError2.setText(lblError2.getText() + "Por favor complete el Destino" + "\n");
-		}
-		if(fecha.isEmpty())
-		{
-
-			lblError3.setText(lblError3.getText() + "Por favor complete la Fecha" + "\n");
-		}
-		
-		return lblError1.getText().isEmpty() && lblError2.getText().isEmpty() && lblError3.getText().isEmpty();
+		return this;
 	}
 }

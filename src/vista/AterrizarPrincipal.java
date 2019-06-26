@@ -148,7 +148,7 @@ public class AterrizarPrincipal extends JFrame {
 	{
 		return this;
 	}
-	public void setUser(UsuarioEstandar user) {
+	public void setUser(Usuario user) {
 		model = user;
 		this.lblNombreUsuario.setText(model.getNombre());
 	}

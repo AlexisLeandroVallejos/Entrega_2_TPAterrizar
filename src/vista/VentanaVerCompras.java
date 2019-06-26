@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import controller.AerolineaController;
 import modelo.Usuario;
 import modelo.UsuarioEstandar;
+import viewmodel.UsuarioViewModel;
 
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -25,13 +26,15 @@ public class VentanaVerCompras extends JFrame {
 	private static final long serialVersionUID = 6217215503784595974L;
 	private JPanel contentPane;
 	private JTable table;
-	private Usuario controller;
+	private Usuario user;
+	private UsuarioViewModel model;
 	
 	/**
 	 * Create the frame.
 	 */
-	public VentanaVerCompras(Usuario model) {
-		this.controller = model;
+	public VentanaVerCompras(Usuario user) {
+		this.user = user;
+		model = new UsuarioViewModel();
 		//setTitle(controller.getNombreAplicacion());
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -65,7 +68,7 @@ public class VentanaVerCompras extends JFrame {
 		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
 		//agregar un controller para obtener las compras de los modelos.
-		table.setModel(controller.getCompras());
+		table.setModel(model.getCompras(user));
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
