@@ -9,16 +9,14 @@ import modelo.Usuario;
 
 public class UsuarioViewModel {
 
-	public TableModel getReservas(Usuario user) {
-		List<Asiento> reservas = user.getAsientosReservados();
-		ComprasViewTableModel tm = new ComprasViewTableModel(reservas);
+	public TableModel getReservaOCompra(Usuario user, Consulta consulta) {
+		List<Asiento> listaDeCompraOReserva;
+		if(consulta.getDescripcion() == "Compras"){
+			listaDeCompraOReserva = user.getAsientosComprados();
+		}else{
+			listaDeCompraOReserva = user.getAsientosReservados();
+		}
+		ComprasViewTableModel tm = new ComprasViewTableModel(listaDeCompraOReserva);
 		return (TableModel)tm;
 	}
-
-	public TableModel getCompras(Usuario user) {
-		List<Asiento> compras = user.getAsientosComprados();
-		ComprasViewTableModel tm = new ComprasViewTableModel(compras);
-		return (TableModel)tm;
-	}
-
 }

@@ -73,7 +73,7 @@ public class AterrizarPrincipal extends JFrame {
 		bReservas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaVerReservas ventana = new VentanaVerReservas(model);
+				VentanaVerLista ventana = new VentanaVerLista(model);
 				ventana.setVisible(true);
 				getFrame().setVisible(false);
 				ventana.addWindowListener(new VentanaSeCierraListener()
@@ -95,7 +95,7 @@ public class AterrizarPrincipal extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//mostrar Venana compras
-				VentanaVerCompras ventanaCompras = new VentanaVerCompras(model);
+				VentanaVerLista ventanaCompras = new VentanaVerLista(model);
 				ventanaCompras.setVisible(true);
 				//obtengo el la ventana que llama a VerCompras
 				ventanaCompras.addWindowListener(new VentanaSeCierraListener()
