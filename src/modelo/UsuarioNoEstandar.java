@@ -10,18 +10,19 @@ public class UsuarioNoEstandar extends Usuario {
 		super(nombre, apellido, dni, aerolinea);
 	}
 
+	@Override
 	//modificar el comprar para ponerle recargo
-	public void comprar(String CodAsiento){
+	public void comprar(Asiento asiento){
 		try{
-			aerolinea.comprar(CodAsiento, suscripto());
+			aerolinea.comprar(asiento, suscripto(), this);
 		}
 		catch (Exception ex){
 			throw ex;
 		}
 	}
-	
+
 	@Override
-	public void reservar(String CodAsiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
+	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
 			
 		throw new ExcepcionUsuarioNoStandarNoPuedeReservar();
 	

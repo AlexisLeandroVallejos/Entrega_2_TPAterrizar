@@ -23,7 +23,7 @@ public class TransferenciaDeReservaTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 		aero.transferenciaDeReserva(asiento1);
 		Assert.assertEquals("Los usuarios no son iguales", true, /*asiento1.getUsuario() == usuario &&*/ asiento1.getEstadoAsiento().estaReservado());
 	}

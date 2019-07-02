@@ -74,22 +74,24 @@ public abstract class Usuario {
 		
 	}
 	
-	public void comprar(String CodAsiento){
+	public void comprar(Asiento asiento){
 		try{
-			asientosComprados.add(aerolinea.comprar(CodAsiento));
+			asientosComprados.add(aerolinea.comprar(asiento, esUsuarioVIP(),this));
 		}
 		catch (Exception ex){
 			throw ex;
 		}
 	}
 	
+	
 	public boolean esUsuarioVIP(){
 		return dineroTotalGastado >= 100000.0;
 	}
 
-	public void reservar(String CodAsiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
+
+	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		try{
-			aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
+			asientosReservados.add(aerolinea.reservar(asiento, esUsuarioVIP(), this));
 		}
 		catch (Exception ex){
 			throw ex;

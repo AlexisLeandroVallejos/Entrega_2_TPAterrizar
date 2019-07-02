@@ -23,7 +23,7 @@ public class ReservarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class ReservarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
@@ -61,7 +61,7 @@ public class ReservarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
@@ -81,7 +81,7 @@ public class ReservarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
@@ -100,7 +100,7 @@ public class ReservarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
+		usuario.reservar(asiento1);
 		Assert.assertTrue(aero.getAsientosSobreReservados().size() == 1);
 	}
 }

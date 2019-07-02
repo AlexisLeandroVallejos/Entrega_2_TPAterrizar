@@ -87,24 +87,11 @@ public class Aerolinea {
 		return asientos;
 	}
 
-	@SuppressWarnings("unused")
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
 			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
 		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
 
 
-		List<Vuelo> listaV = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
-				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
-				.collect(Collectors.toList());
-				// nuevos filtros;
-		
-		List<Asiento> lista1 = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
-				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
-				.map(vuelo -> ((mostrarReservados) ? vuelo.obtenerTodosLosAsientos()
-						: vuelo.obtenerAsientosDisponibles()))
-				.filter(asiento -> asiento.size() > 0).flatMap(Collection::stream)
-				.collect(Collectors.toList());
-		
 		
 		List<Asiento> lista = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
 				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
@@ -200,55 +187,77 @@ public class Aerolinea {
 	public void setVuelos(ArrayList<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
-
-	public Asiento comprar(String codigoAsiento) {
-		return this.comprar(codigoAsiento, false);
-	}
-
-	public Asiento comprar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario) {
-		try {
-			String codigoVuelo = codigoAsiento.split("-")[0];
-			ArrayList<Asiento> asientoAComprar = null;
-			for (Vuelo v : vuelos) {
-				if (v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)) {
-					if (aceptaOfertas) {
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream().filter(
-								vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
-								.collect(Collectors.toList());
-						if (asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaDisponible()) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO);
-						} else if (asientoAComprar.size() == 1
-								&& asientoAComprar.get(0).getEstadoAsiento().estaReservado()
-						/* && asientoAComprar.get(0).getUsuario().equals(usuario) */) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO);
-						} else {
-							throw new ExcepcionAsientoNoDisponible();
-						}
-					} else {
-						asientoAComprar = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream().filter(
-								vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
-								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
-								.collect(Collectors.toList());
-						if (asientoAComprar.size() == 1 && asientoAComprar.get(0).getEstadoAsiento().estaDisponible()) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO);
-						} else if (asientoAComprar.size() == 1
-								&& asientoAComprar.get(0).getEstadoAsiento().estaReservado()
-						/* && asientoAComprar.get(0).getUsuario().equals(usuario) */ ) {
-							asientoAComprar.get(0).setEstadoAsiento(Estado.COMPRADO);
-						} else {
-							throw new ExcepcionAsientoNoDisponible();
-						}
-					}
-				}
-			}
-			return asientoAComprar.get(0);
-		} catch (Exception ex) {
-			throw ex;
+	
+	public Asiento comprar(Asiento asiento) {
+		if(asiento.estadoAsiento.estaDisponible())
+		{
+			asiento.setEstadoAsiento(Estado.COMPRADO );
+			return asiento;
 		}
+		else
+		{
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		//return this.comprar(asiento.codigoDeAsiento, false);
 	}
 
-	public Asiento comprar(String codigoAsiento, boolean aceptaOfertas) {
-		return this.comprar(codigoAsiento, aceptaOfertas, null);
+	public Asiento comprar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
+		if(asiento.estadoAsiento.estaDisponible() || 
+				(asiento.estadoAsiento.estaReservado()  && usuario.getAsientosReservados().contains(asiento)))
+		{
+			if(!asiento.esSuperOferta() || aceptaOfertas) 
+			{
+				asiento.setEstadoAsiento(Estado.COMPRADO );
+				return asiento;
+			}
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		else
+		{
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		//return this.comprar(asiento.codigoDeAsiento, false);
+	}
+	
+	public Asiento reservar(Asiento asiento) {
+		asiento.setEstadoAsiento(Estado.RESERVADO );
+		return asiento;
+		//return this.comprar(asiento.codigoDeAsiento, false);
+	}
+
+	public Asiento reservar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
+		try {
+			if(asiento.estadoAsiento.estaDisponible())
+			{
+				asiento.setEstadoAsiento(Estado.RESERVADO );
+			}else if(asiento.estadoAsiento.estaReservado()) {
+				CombinacionAsientoUsuario reserva = new CombinacionAsientoUsuario(asiento, usuario);
+				sobreReservar(reserva);
+			}
+			else
+			{
+				throw new ExcepcionAsientoNoDisponible();
+			}
+			return asiento;
+		} catch (ExcepcionAsientoNoDisponible ex) {
+			throw ex;
+		} catch (Exception ex) {
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
+	}
+
+	public Asiento comprar(Asiento asiento, boolean aceptaOfertas) {
+		if(asiento.estadoAsiento.estaDisponible() )
+		{
+			asiento.setEstadoAsiento(Estado.COMPRADO );
+			return asiento;
+		}
+		else
+		{
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
 	}
 
 	public void agregarVuelo(Vuelo vuelo) {

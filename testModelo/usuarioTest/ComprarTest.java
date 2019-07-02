@@ -24,7 +24,7 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
 	@Test
@@ -42,7 +42,7 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 		Assert.assertEquals("El asiento no esta reservado", asiento1.getEstadoAsiento(), Estado.COMPRADO);
 	}
 	
@@ -62,8 +62,8 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
-		otroUsuario.comprar("EC0344-3");	
+		usuario.comprar(asiento1);
+		otroUsuario.comprar(asiento3);	
 		//agregar assert de estado de asiento
 	}	
 	
@@ -83,8 +83,8 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
-		otroUsuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
+		otroUsuario.comprar(asiento1);
 	}
 	
 	@Test
@@ -102,7 +102,7 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
 	@Test
@@ -120,7 +120,7 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
 	@Test
@@ -163,7 +163,7 @@ public class ComprarTest {
 		asiento3.setPrecio(usuario);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
 	@Test(expected=ExcepcionAsientoNoDisponible.class)
@@ -185,7 +185,7 @@ public class ComprarTest {
 		asiento3.setPrecio(usuario);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
 	@Test
@@ -203,10 +203,10 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(asiento1);
 	}
 	
-	@Test(expected=ExcepcionAsientoNoDisponible.class)
+	@Test(expected=NullPointerException.class)
 	public void comprar_unUsuarioIntentaComprarUnAsientoInexistente(){
 		Aerolinea aero = new Aerolinea();
 		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aero);
@@ -214,7 +214,7 @@ public class ComprarTest {
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.comprar("EC0344-1");
+		usuario.comprar(null);
 	}
 	
 	@Test
@@ -232,7 +232,7 @@ public class ComprarTest {
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
-		usuario.reservar("EC0344-1");
-		usuario.comprar("EC0344-1");
+		usuario.reservar(asiento3);
+		usuario.comprar(asiento3);
 	}
 }
