@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import excepciones.ExcepcionAsientoNoDisponible;
+import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
 import modelo.*;
 
 public class ComprarTest {
@@ -217,7 +218,7 @@ public class ComprarTest {
 	}
 	
 	@Test
-	public void comprar_unUsuarioEstandarCompraSuReserva(){
+	public void comprar_unUsuarioEstandarCompraSuReserva() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";

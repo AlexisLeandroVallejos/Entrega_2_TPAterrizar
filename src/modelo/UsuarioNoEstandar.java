@@ -21,13 +21,10 @@ public class UsuarioNoEstandar extends Usuario {
 	}
 	
 	@Override
-	public void reservar(String CodAsiento) {
-		try {
-			throw new ExcepcionUsuarioNoStandarNoPuedeReservar();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void reservar(String CodAsiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
+			
+		throw new ExcepcionUsuarioNoStandarNoPuedeReservar();
+	
 	}
 	
 }

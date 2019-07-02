@@ -135,7 +135,7 @@ public class BuscarAsientoTest {
 		asiento8.setPrecio(usuario);
 		asiento9.setPrecio(usuario);
 		
-		AsientoBusquedaOrden ordenPrecio = AsientoBusquedaOrden.PRECIOD;
+		AsientoBusquedaOrden ordenPrecio = new modelo.AsientoBusquedadOrdenPrecio();
 		
 		Assert.assertEquals("No se encontraron el asiento1", asiento1, 
 				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenPrecio).get(0));
@@ -176,7 +176,7 @@ public class BuscarAsientoTest {
 		asiento8.setPrecio(usuario);
 		asiento9.setPrecio(usuario);
 		
-		AsientoBusquedaOrden ordenTiempoVuelo = AsientoBusquedaOrden.TIEMPOVUELO;
+		AsientoBusquedaOrden ordenTiempoVuelo = new AsientoBusquedaOrdenDuracion();
 		
 		Assert.assertEquals("No se encontraron el vuelo1, el de menor duracion", vuelo1, 
 				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenTiempoVuelo).get(0).getVuelo());

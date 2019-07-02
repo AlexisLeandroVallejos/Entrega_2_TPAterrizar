@@ -57,6 +57,5 @@ public class BusquedaViewTableModel extends AbstractTableModel {
     public Asiento getAsientoEnFila(int fila)
     {
     	return this.asientos.get(fila);
-    	
     }
 }

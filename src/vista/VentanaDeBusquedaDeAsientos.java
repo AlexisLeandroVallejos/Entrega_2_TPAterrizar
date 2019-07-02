@@ -99,9 +99,10 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				String destino = textFieldDestino.getText();
 				String fecha = textFieldFecha.getText();
 				String error = vmodel.validarBusqueda(origen, destino, fecha);
-				if(error.length() == 0)
+				if(error.isEmpty())
 				{
 					TableModel tm = vmodel.buscar(origen, destino, fecha);
+					
 					tableAsientos.setModel(tm);
 				}else
 				{

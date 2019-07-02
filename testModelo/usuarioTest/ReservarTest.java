@@ -9,7 +9,7 @@ import modelo.*;
 public class ReservarTest {
 	
 	@Test(expected=ExcepcionUsuarioNoStandarNoPuedeReservar.class)
-	public void reservar_unUsuarioNoEstandarReservaUnAsiento(){
+	public void reservar_unUsuarioNoEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";
@@ -24,11 +24,10 @@ public class ReservarTest {
 		//Agregar vuelos a aerolinea:
 		aero.agregarVuelo(vuelo1);
 		usuario.reservar("EC0344-1");
-		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
 	@Test
-	public void reservar_unUsuarioEstandarReservaUnAsiento(){
+	public void reservar_unUsuarioEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";
@@ -47,7 +46,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioVIPReservaUnAsiento(){
+	public void reservar_unUsuarioVIPReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		usuario.sumarADineroTotalGastado(100000);
@@ -67,7 +66,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioVIPReservaUnAsientoConsideradoSuperOferta(){
+	public void reservar_unUsuarioVIPReservaUnAsientoConsideradoSuperOferta() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		usuario.sumarADineroTotalGastado(100000);
@@ -87,7 +86,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioEstandarSobreReservaUnAsientoYaReservado(){
+	public void reservar_unUsuarioEstandarSobreReservaUnAsientoYaReservado() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		Aerolinea aero = new Aerolinea();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
 		String codDeVuelo1 = "EC0344";

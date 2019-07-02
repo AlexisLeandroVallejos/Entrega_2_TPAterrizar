@@ -87,10 +87,25 @@ public class Aerolinea {
 		return asientos;
 	}
 
+	@SuppressWarnings("unused")
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
 			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
 		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
 
+
+		List<Vuelo> listaV = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
+				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
+				.collect(Collectors.toList());
+				// nuevos filtros;
+		
+		List<Asiento> lista1 = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
+				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
+				.map(vuelo -> ((mostrarReservados) ? vuelo.obtenerTodosLosAsientos()
+						: vuelo.obtenerAsientosDisponibles()))
+				.filter(asiento -> asiento.size() > 0).flatMap(Collection::stream)
+				.collect(Collectors.toList());
+		
+		
 		List<Asiento> lista = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
 				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
 				// nuevos filtros
@@ -101,7 +116,8 @@ public class Aerolinea {
 																							// no es el precioFinal!!!
 				.filter(asiento -> precioMax == 0 || asiento.getPrecio() <= precioMax) // asiento.precioAsiento()
 																							// no es el precioFinal!!!
-				.filter(asiento -> clase == null || asiento.esClaseAsiento(clase)).collect(Collectors.toList());
+				.filter(asiento -> clase == null || asiento.esClaseAsiento(clase))
+				.collect(Collectors.toList());
 
 		if (orden != null) {
 			lista = orden.ordenarListaSegunCriterio(lista);

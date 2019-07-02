@@ -39,7 +39,10 @@ public class BuscarViewModel {
 
 			error += "Por favor complete la Fecha" + "\n";
 		}
-		error = BuscarViewModel.convertToMultiline(error);
+		if(!error.isEmpty())
+		{
+			error = BuscarViewModel.convertToMultiline(error);
+		}
 		return error;
 	}
 
@@ -49,7 +52,6 @@ public class BuscarViewModel {
 		AerolineaDataDummy aeroDD = new AerolineaDataDummy();
 		aero = aeroDD.obtenerAerolineaTest();
 		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
-
 		BusquedaViewTableModel tm = new BusquedaViewTableModel(listaBusqueda);
 		return tm;
 	}

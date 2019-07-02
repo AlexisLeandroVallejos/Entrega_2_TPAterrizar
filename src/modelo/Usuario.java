@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+
 public abstract class Usuario {
 	private String nombre;
 	private String apellido;
@@ -85,7 +87,7 @@ public abstract class Usuario {
 		return dineroTotalGastado >= 100000.0;
 	}
 
-	public void reservar(String CodAsiento) {
+	public void reservar(String CodAsiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
 		try{
 			aerolinea.reservar(CodAsiento, esUsuarioVIP(), this);
 		}

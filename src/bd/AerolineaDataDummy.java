@@ -11,8 +11,6 @@ import modelo.Vuelo;
 
 public class AerolineaDataDummy {
 	
-	
-	
 	public Aerolinea crearVuelos(){
 		Aerolinea aero = new Aerolinea();
 		String codDeVuelo1 = "EC0344";

@@ -48,8 +48,10 @@ public class Vuelo {
 
 	public boolean cumpleAlgunCriterio(ArrayList<String> criteriosBusqueda) {
 		//Cambiar busqueda para que sea mas especificamente por criterio
-		return caracteristicasVuelo.stream().anyMatch(
-				caracteristica -> criteriosBusqueda.stream().anyMatch(palabraCriterio -> palabraCriterio == caracteristica));
+		boolean b = caracteristicasVuelo.stream().anyMatch(
+				caracteristica -> criteriosBusqueda.stream().filter(criterios -> criterios != null)
+					.anyMatch(palabraCriterio -> palabraCriterio.toUpperCase().equalsIgnoreCase(caracteristica.toUpperCase())));;
+		return b;
 	}
 
 
