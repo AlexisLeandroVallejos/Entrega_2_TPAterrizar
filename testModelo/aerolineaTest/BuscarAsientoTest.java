@@ -90,6 +90,58 @@ public class BuscarAsientoTest {
 	
 
 	@Test
+	public void buscarAsiento_TraeAsientosOrdenadosPorPrecioAscendente() {
+		String codDeVuelo1 = "EC0344";
+		String codDeVuelo2 = "TGX2";
+		String codDeVuelo3 = "JAH18";
+		Aerolinea lanchita = new Aerolinea();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, lanchita);
+		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
+		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
+		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
+		//Asientos vuelo1
+		Asiento asiento2 = new Asiento(vuelo1, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
+		vuelo1.agregarAsiento(asiento2);
+		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		vuelo1.agregarAsiento(asiento3);
+		Asiento asiento1 = new Asiento(vuelo1, Clase.PRIMERA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		vuelo1.agregarAsiento(asiento1);
+		//Asientos vuelo2
+		Asiento asiento4 = new Asiento(vuelo2, Clase.PRIMERA, Ubicacion.PASILLO, Estado.RESERVADO);
+		vuelo2.agregarAsiento(asiento4);
+		Asiento asiento5 = new Asiento(vuelo2, Clase.EJECUTIVO, Ubicacion.CENTRO, Estado.RESERVADO);
+		vuelo2.agregarAsiento(asiento5);
+		Asiento asiento6 = new Asiento(vuelo2, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
+		vuelo2.agregarAsiento(asiento6);
+		//Asientos vuelo3
+		Asiento asiento7 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento7);
+		Asiento asiento8 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento8);
+		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
+		vuelo3.agregarAsiento(asiento9);
+		//Agregar vuelos a aerolinea:
+		lanchita.agregarVuelo(vuelo1);
+		lanchita.agregarVuelo(vuelo2);
+		lanchita.agregarVuelo(vuelo3);
+		//seteo precios de asientos:
+		asiento1.setPrecio(usuario);
+		asiento2.setPrecio(usuario);
+		asiento3.setPrecio(usuario);
+		asiento4.setPrecio(usuario);
+		asiento5.setPrecio(usuario);
+		asiento6.setPrecio(usuario);
+		asiento7.setPrecio(usuario);
+		asiento8.setPrecio(usuario);
+		asiento9.setPrecio(usuario);
+		
+		AsientoBusquedaOrden ordenPrecio = new AsientoBusquedaOrdenPrecioAscendente();
+		
+		Assert.assertEquals("No se encontraron el asiento1", asiento1, 
+				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenPrecio).get(0));
+	}
+	
+	@Test
 	public void buscarAsiento_TraeAsientosOrdenadosPorPrecioDescendente() {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
@@ -135,9 +187,9 @@ public class BuscarAsientoTest {
 		asiento8.setPrecio(usuario);
 		asiento9.setPrecio(usuario);
 		
-		AsientoBusquedaOrden ordenPrecio = new modelo.AsientoBusquedadOrdenPrecio();
+		AsientoBusquedaOrden ordenPrecio = new AsientoBusquedaOrdenPrecioDescendente();
 		
-		Assert.assertEquals("No se encontraron el asiento1", asiento1, 
+		Assert.assertEquals("No se encontraron el asiento1", asiento3, 
 				lanchita.buscarAsientos("BUE","20110116" , "LA", null,0,0,true, ordenPrecio).get(0));
 	}
 	

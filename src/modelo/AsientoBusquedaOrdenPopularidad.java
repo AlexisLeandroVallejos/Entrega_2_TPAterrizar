@@ -12,7 +12,6 @@ public class AsientoBusquedaOrdenPopularidad {
 	
 	public  List<Asiento> ordenarListaSegunCriterio(List<Asiento> listaAOrdenar)
 	{
-		//convertir Enum a Clase
 		listaAOrdenar = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::getPopularidadVuelo))
 				  .collect(Collectors.toList());
 		return listaAOrdenar;

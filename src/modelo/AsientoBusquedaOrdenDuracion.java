@@ -13,7 +13,6 @@ public class AsientoBusquedaOrdenDuracion extends AsientoBusquedaOrden {
 	
 	public  List<Asiento> ordenarListaSegunCriterio(List<Asiento> listaAOrdenar)
 	{
-		//convertir Enum a Clase
 		listaAOrdenar  = listaAOrdenar.stream().sorted(Comparator.comparing(Asiento::duracionVuelo))
 				  .collect(Collectors.toList());
 		return listaAOrdenar;
