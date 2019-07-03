@@ -14,8 +14,4 @@ public class UsuarioEstandar extends Usuario {
 		dineroTotalGastado += dinero;
 	}
 
-	public String ToString()
-	{
-		return this.getNombre() + " " + this.getApellido();
-	}
 }

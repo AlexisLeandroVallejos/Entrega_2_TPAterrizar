@@ -105,4 +105,10 @@ public abstract class Usuario {
 	public ArrayList<ArrayList<String>> getHistoricoBusquedas() {
 		return historicoBusquedas;
 	}
+	
+	public String nombreCompleto()
+	{
+		return this.getNombre() + " " + this.getApellido();
+	}
+	
 }
