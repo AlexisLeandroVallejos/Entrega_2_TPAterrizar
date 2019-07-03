@@ -19,9 +19,9 @@ public class EstaReservadoTest {
 									
 		String fechaSalida1 = "12/04/2017";
 										
-		Aerolinea aerolinea = new Aerolinea();
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		aerolinea.setOceanic(oceanic);
+		aterrizarTramitesDeAsientos.setOceanic(oceanic);
 		OceanicCriterioDeReserva criterioReserva = new OceanicCriterioDeReserva(codigoDeVuelo, numeroDeAsiento);
 		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20"); //cumplen
 						
@@ -31,12 +31,12 @@ public class EstaReservadoTest {
 		asiento3.setEstadoAsiento(Estado.RESERVADO);
 		vuelo1.agregarAsiento(asiento3);
 							
-		aerolinea.agregarVuelo(vuelo1); //los asientos guardados cumplen por el vuelo.
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1); //los asientos guardados cumplen por el vuelo.
 									
-		boolean asientoEstaReservado = aerolinea.getOceanicBusquedaCompraYReserva().estaReservado(criterioReserva);
+		boolean asientoEstaReservado = aterrizarTramitesDeAsientos.getOceanicBusquedaCompraYReserva().estaReservado(criterioReserva);
 		//prueba:
 		Mockito.when(oceanic.estaReservado(codigoDeVuelo, numeroDeAsiento)).thenReturn(asientoEstaReservado);
-		Assert.assertEquals(aerolinea.getOceanic().estaReservado(codigoDeVuelo, numeroDeAsiento), asientoEstaReservado);
+		Assert.assertEquals(aterrizarTramitesDeAsientos.getOceanic().estaReservado(codigoDeVuelo, numeroDeAsiento), asientoEstaReservado);
 		Mockito.verify(oceanic).estaReservado(codigoDeVuelo, numeroDeAsiento);
 	}
 	
@@ -51,9 +51,9 @@ public class EstaReservadoTest {
 								
 		String fechaSalida1 = "12/04/2017";
 								
-		Aerolinea aerolinea = new Aerolinea();
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		Oceanic oceanic = Mockito.mock(Oceanic.class);
-		aerolinea.setOceanic(oceanic);
+		aterrizarTramitesDeAsientos.setOceanic(oceanic);
 		OceanicCriterioDeReserva criterioReserva = new OceanicCriterioDeReserva(codigoDeVuelo, numeroDeAsiento);
 		Vuelo vuelo1 = new Vuelo("ECO23", codigoOrigenOceanic1, codigoDestinoOceanic1, fechaSalida1, "2010117", "20:10", "14:20"); //cumplen
 				
@@ -62,12 +62,12 @@ public class EstaReservadoTest {
 		AsientoDTO asiento3 = new AsientoDTO("ECO23", numeroDeAsiento, fechaSalida1, "20:15", 650.5, Clase.PRIMERA, Ubicacion.PASILLO);	
 		vuelo1.agregarAsiento(asiento3);
 					
-		aerolinea.agregarVuelo(vuelo1); //los asientos guardados cumplen por el vuelo.
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1); //los asientos guardados cumplen por el vuelo.
 							
-		boolean asientoEstaReservado = aerolinea.getOceanicBusquedaCompraYReserva().estaReservado(criterioReserva);
+		boolean asientoEstaReservado = aterrizarTramitesDeAsientos.getOceanicBusquedaCompraYReserva().estaReservado(criterioReserva);
 		//prueba:
 		Mockito.when(oceanic.estaReservado(codigoDeVuelo, numeroDeAsiento)).thenReturn(asientoEstaReservado);
-		Assert.assertEquals(aerolinea.getOceanic().estaReservado(codigoDeVuelo, numeroDeAsiento), asientoEstaReservado);
+		Assert.assertEquals(aterrizarTramitesDeAsientos.getOceanic().estaReservado(codigoDeVuelo, numeroDeAsiento), asientoEstaReservado);
 		Mockito.verify(oceanic).estaReservado(codigoDeVuelo, numeroDeAsiento);
 	}
 }

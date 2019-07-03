@@ -1,6 +1,6 @@
 package bd;
 
-import modelo.Aerolinea;
+import modelo.AterrizarTramitesDeAsientos;
 import modelo.Asiento;
 import modelo.Clase;
 import modelo.CombinacionAsientoUsuario;
@@ -9,10 +9,10 @@ import modelo.Ubicacion;
 import modelo.Usuario;
 import modelo.Vuelo;
 
-public class AerolineaDataDummy {
+public class AterrizarTramitesDeAsientosDataDummy {
 	
-	public Aerolinea crearVuelos(){
-		Aerolinea aero = new Aerolinea();
+	public AterrizarTramitesDeAsientos crearVuelos(){
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
@@ -41,16 +41,16 @@ public class AerolineaDataDummy {
 		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		
-		aero.agregarVuelo(vuelo1);
-		aero.agregarVuelo(vuelo2);
-		aero.agregarVuelo(vuelo3);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo2);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo3);
 		
-		return aero;
+		return aterrizarTramitesDeAsientos;
 	}
 
-	public Aerolinea obtenerAerolineaTest() {
-		Aerolinea aero = this.crearVuelos();
-		return aero;
+	public AterrizarTramitesDeAsientos obtenerAterrizarTramitesDeAsientosTest() {
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = this.crearVuelos();
+		return aterrizarTramitesDeAsientos;
 	}
 
 }

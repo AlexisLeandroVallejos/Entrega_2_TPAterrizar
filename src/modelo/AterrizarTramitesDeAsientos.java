@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import excepciones.ExcepcionAsientoNoDisponible;
 
-public class Aerolinea {
+public class AterrizarTramitesDeAsientos {
 	
 	private ArrayList<Vuelo> vuelos = new ArrayList<Vuelo>();
 	private ArrayList<CombinacionAsientoUsuario> asientosSobreReservados = new ArrayList<CombinacionAsientoUsuario>();

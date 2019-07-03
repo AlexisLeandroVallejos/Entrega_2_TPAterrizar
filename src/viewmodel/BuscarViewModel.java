@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.swing.table.TableModel;
 
-import bd.AerolineaDataDummy;
-import modelo.Aerolinea;
+import bd.AterrizarTramitesDeAsientosDataDummy;
+import modelo.AterrizarTramitesDeAsientos;
 import modelo.Asiento;
 
 public class BuscarViewModel {
@@ -48,10 +48,10 @@ public class BuscarViewModel {
 
 	public BusquedaViewTableModel buscar(String origen, String destino, String fecha) {
 
-		Aerolinea aero = new Aerolinea();
-		AerolineaDataDummy aeroDD = new AerolineaDataDummy();
-		aero = aeroDD.obtenerAerolineaTest();
-		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		AterrizarTramitesDeAsientosDataDummy aterrizarTramitesDeAsientosDD = new AterrizarTramitesDeAsientosDataDummy();
+		aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientosDD.obtenerAterrizarTramitesDeAsientosTest();
+		List<Asiento> listaBusqueda = aterrizarTramitesDeAsientos.buscarAsientos(origen, fecha, destino);
 		BusquedaViewTableModel tm = new BusquedaViewTableModel(listaBusqueda);
 		return tm;
 	}

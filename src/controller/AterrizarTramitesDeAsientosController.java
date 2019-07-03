@@ -7,7 +7,7 @@ import javax.swing.table.TableModel;
 
 import org.mockito.Mockito;
 
-import modelo.Aerolinea;
+import modelo.AterrizarTramitesDeAsientos;
 import modelo.Asiento;
 import modelo.AsientoDTO;
 import modelo.Clase;
@@ -16,21 +16,21 @@ import modelo.Ubicacion;
 import modelo.UsuarioEstandar;
 import viewmodel.ComprasViewTableModel;
 
-public class AerolineaController {
+public class AterrizarTramitesDeAsientosController {
 
 	//SEPARAR LOS METODOS DE LAS VISTAS
-	private Aerolinea aero;
+	private AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos;
 	
 	
 	private String nombreAplicacion;
 	
 	private UsuarioEstandar user;
 	
-	public AerolineaController()
+	public AterrizarTramitesDeAsientosController()
 	{
-		aero = new Aerolinea();
+		aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		this.nombreAplicacion = "Aterrizar.com";
-		user = new UsuarioEstandar("Tomas", "Perez", 2345677, new Aerolinea());
+		user = new UsuarioEstandar("Tomas", "Perez", 2345677, new AterrizarTramitesDeAsientos());
 	}
 
 	
@@ -44,14 +44,14 @@ public class AerolineaController {
 	}
 
 
-	public Aerolinea getAero() {
-		return aero;
+	public AterrizarTramitesDeAsientos getAterrizarTramitesDeAsientos() {
+		return aterrizarTramitesDeAsientos;
 	}
 
 
 	public TableModel buscar(String origen, String destino, String fecha) {
 		
-		List<Asiento> listaBusqueda = aero.buscarAsientos(origen, fecha, destino);
+		List<Asiento> listaBusqueda = aterrizarTramitesDeAsientos.buscarAsientos(origen, fecha, destino);
 
 		ComprasViewTableModel tm = new ComprasViewTableModel(listaBusqueda);
 		return tm;

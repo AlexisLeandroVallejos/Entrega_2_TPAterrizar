@@ -10,8 +10,8 @@ public class ReservarTest {
 	
 	@Test(expected=ExcepcionUsuarioNoStandarNoPuedeReservar.class)
 	public void reservar_unUsuarioNoEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
-		Aerolinea aero = new Aerolinea();
-		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -22,14 +22,14 @@ public class ReservarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		aero.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
 		usuario.reservar(asiento1);
 	}
 	
 	@Test
 	public void reservar_unUsuarioEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
-		Aerolinea aero = new Aerolinea();
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -40,15 +40,15 @@ public class ReservarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		aero.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
 		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
 	@Test
 	public void reservar_unUsuarioVIPReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
-		Aerolinea aero = new Aerolinea();
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		usuario.sumarADineroTotalGastado(100000);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
@@ -60,15 +60,15 @@ public class ReservarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		aero.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
 		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
 	@Test
 	public void reservar_unUsuarioVIPReservaUnAsientoConsideradoSuperOferta() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
-		Aerolinea aero = new Aerolinea();
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		usuario.sumarADineroTotalGastado(100000);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
@@ -80,15 +80,15 @@ public class ReservarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		aero.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
 		usuario.reservar(asiento1);
 		Assert.assertTrue(asiento1.getEstadoAsiento().estaReservado());
 	}
 	
 	@Test
 	public void reservar_unUsuarioEstandarSobreReservaUnAsientoYaReservado() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
-		Aerolinea aero = new Aerolinea();
-		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		//Asientos vuelo1
@@ -99,8 +99,8 @@ public class ReservarTest {
 		Asiento asiento3 = new Asiento(vuelo1, Clase.TURISTA, Ubicacion.VENTANA, Estado.DISPONIBLE);
 		vuelo1.agregarAsiento(asiento3);
 		//Agregar vuelos a aerolinea:
-		aero.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
 		usuario.reservar(asiento1);
-		Assert.assertTrue(aero.getAsientosSobreReservados().size() == 1);
+		Assert.assertTrue(aterrizarTramitesDeAsientos.getAsientosSobreReservados().size() == 1);
 	}
 }

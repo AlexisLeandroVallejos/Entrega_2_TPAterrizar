@@ -10,9 +10,9 @@ public enum Clase {
 		TURISTA.descripcion = "Turista";
 		EJECUTIVO.descripcion = "Ejecutivo";
 		PRIMERA.descripcion = "Primera";
-		TURISTA.precio = Aerolinea.asientoTurista;
-		EJECUTIVO.precio = Aerolinea.asientoEjecutivo;
-		PRIMERA.precio = Aerolinea.asientoPrimera;
+		TURISTA.precio = AterrizarTramitesDeAsientos.asientoTurista;
+		EJECUTIVO.precio = AterrizarTramitesDeAsientos.asientoEjecutivo;
+		PRIMERA.precio = AterrizarTramitesDeAsientos.asientoPrimera;
 	}
 
 	public String getDescripcion() {

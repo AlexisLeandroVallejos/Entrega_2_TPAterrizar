@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class OceanicBusquedaCompraYReserva{
-	private Aerolinea aerolinea;
+	private AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos;
 	
-	public OceanicBusquedaCompraYReserva (Aerolinea aerolinea){
-		this.aerolinea = aerolinea;
+	public OceanicBusquedaCompraYReserva (AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos){
+		this.aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientos;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,11 +42,11 @@ public class OceanicBusquedaCompraYReserva{
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	public Aerolinea getAerolinea() {
-		return aerolinea;
+	public AterrizarTramitesDeAsientos getAterrizarTramitesDeAsientos() {
+		return aterrizarTramitesDeAsientos;
 	}
-	public void setAerolinea(Aerolinea aerolinea) {
-		this.aerolinea = aerolinea;
+	public void setAterrizarTramitesDeAsientos(AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos) {
+		this.aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientos;
 	}
 	public List<Vuelo> modificarCiudades(List<Vuelo> listaDeVuelos) {
 		for(Vuelo vuelo : listaDeVuelos) {
@@ -57,7 +57,7 @@ public class OceanicBusquedaCompraYReserva{
 	}
 	
 	public Stream<Vuelo> vuelosParaOrigen(OceanicCriterioDeBusqueda criterioBusqueda) {
-		return aerolinea.getVuelos().stream()
+		return aterrizarTramitesDeAsientos.getVuelos().stream()
 				.filter(vuelo -> vuelo.getOrigen().equalsIgnoreCase(criterioBusqueda.getCodigoOrigenOceanic()) 
 						      && vuelo.getFechaSalida().equalsIgnoreCase(criterioBusqueda.getFechaSalida()));
 	}
@@ -72,7 +72,7 @@ public class OceanicBusquedaCompraYReserva{
 	}	
 	
 	public Asiento asientoEvaluado(OceanicCriterioCompraOReserva criterio) {
-		return aerolinea.getVuelos().stream()
+		return aterrizarTramitesDeAsientos.getVuelos().stream()
 					.filter(vuelo -> vuelo.getCodigoDeVuelo() == criterio.getCodigoDeVuelo())
 					.map(vuelo -> vuelo.getAsientos())
 					.flatMap(asiento -> asiento.stream())

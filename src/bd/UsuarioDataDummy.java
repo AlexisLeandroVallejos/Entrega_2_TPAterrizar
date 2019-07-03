@@ -1,6 +1,6 @@
 package bd;
 
-import modelo.Aerolinea;
+import modelo.AterrizarTramitesDeAsientos;
 import modelo.Asiento;
 import modelo.Clase;
 import modelo.CombinacionAsientoUsuario;
@@ -14,8 +14,8 @@ public class UsuarioDataDummy {
 
 	public Usuario getUsuarioTest() {
 		// TODO Auto-generated method stub
-		Aerolinea aero = new Aerolinea();
-		Usuario user = new UsuarioEstandar("Tomas", "Perez", 2345677, aero);
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		Usuario user = new UsuarioEstandar("Tomas", "Perez", 2345677, aterrizarTramitesDeAsientos);
 		user = llenarListaDeReservas(user);
 		user = llenarListaDeCompras(user);
 		return user;

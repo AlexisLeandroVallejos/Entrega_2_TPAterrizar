@@ -12,7 +12,7 @@ public class AsientosDisponiblesTest {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
-		Aerolinea lanchita = new Aerolinea();
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -38,10 +38,10 @@ public class AsientosDisponiblesTest {
 		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
-		lanchita.agregarVuelo(vuelo1);
-		lanchita.agregarVuelo(vuelo2);
-		lanchita.agregarVuelo(vuelo3);
-		lanchita.asientosDisponibles(null, null, null, "BUE", null, null); //el destino es "BUE"
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo2);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo3);
+		aterrizarTramitesDeAsientos.asientosDisponibles(null, null, null, "BUE", null, null); //el destino es "BUE"
 	}
 	//Agregar test para buscar vuelos: Destino, fecha, clase de asiento, ubicacion
 	@Test
@@ -50,7 +50,7 @@ public class AsientosDisponiblesTest {
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
 		String codDeVuelo4 = "MIN12";
-		Aerolinea lanchita = new Aerolinea();
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "20110216", "20110216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -84,11 +84,11 @@ public class AsientosDisponiblesTest {
 		Asiento asiento12 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo4.agregarAsiento(asiento12);
 		//Agregar vuelos a aerolinea:
-		lanchita.agregarVuelo(vuelo1);
-		lanchita.agregarVuelo(vuelo2);
-		lanchita.agregarVuelo(vuelo3);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo2);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo3);
 		Assert.assertEquals("No se encontro un Vuelo a BUE", 3, 
-				lanchita.asientosDisponibles("BUE", null, null, null, null, null).size());
+				aterrizarTramitesDeAsientos.asientosDisponibles("BUE", null, null, null, null, null).size());
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class AsientosDisponiblesTest {
 		String codDeVuelo1 = "EC0344";
 		String codDeVuelo2 = "TGX2";
 		String codDeVuelo3 = "JAH18";
-		Aerolinea lanchita = new Aerolinea();
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		Vuelo vuelo1 = new Vuelo(codDeVuelo1, "BUE", "LA", "2010116", "2010117", "20:10", "14:20");
 		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "WAS", "BUE", "2010216", "2010216", "10:10", "20:20");
 		Vuelo vuelo3 = new Vuelo(codDeVuelo3, "TX", "BUE", "20111024", "20111025", "23:40", "09:15");
@@ -122,10 +122,10 @@ public class AsientosDisponiblesTest {
 		Asiento asiento9 = new Asiento(vuelo3, Clase.TURISTA, Ubicacion.CENTRO, Estado.DISPONIBLE);
 		vuelo3.agregarAsiento(asiento9);
 		//Agregar vuelos a aerolinea:
-		lanchita.agregarVuelo(vuelo1);
-		lanchita.agregarVuelo(vuelo2);
-		lanchita.agregarVuelo(vuelo3);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo2);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo3);
 		Assert.assertEquals("Se encontraron asientos en vuelos a NYC", 0, 
-				lanchita.asientosDisponibles("NYC", null, null, null, null, null).size());
+				aterrizarTramitesDeAsientos.asientosDisponibles("NYC", null, null, null, null, null).size());
 	}
 }

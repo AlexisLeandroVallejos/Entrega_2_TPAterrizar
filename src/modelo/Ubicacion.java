@@ -10,9 +10,9 @@ public enum Ubicacion {
 		VENTANA.descripcion = "Ventana";
 		CENTRO.descripcion = "Centro";
 		PASILLO.descripcion = "Pasillo";
-		VENTANA.precio = Aerolinea.asientoVentana;
-		CENTRO.precio = Aerolinea.asientoCentro;
-		PASILLO.precio = Aerolinea.asientoPasillo;
+		VENTANA.precio = AterrizarTramitesDeAsientos.asientoVentana;
+		CENTRO.precio = AterrizarTramitesDeAsientos.asientoCentro;
+		PASILLO.precio = AterrizarTramitesDeAsientos.asientoPasillo;
 
 	}
 

@@ -10,7 +10,7 @@ public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private int dni;
-	protected Aerolinea aerolinea;
+	protected AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos;
 	protected double dineroTotalGastado;
 	
 	private ArrayList<Asiento> asientosReservados = new ArrayList<Asiento>();
@@ -18,11 +18,11 @@ public abstract class Usuario {
 	
 	private ArrayList<ArrayList<String>> historicoBusquedas = new ArrayList<ArrayList<String>>();
 	
-	public Usuario(String nombre, String apellido, int dni, Aerolinea aerolinea) {
+	public Usuario(String nombre, String apellido, int dni, AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
-		this.aerolinea = aerolinea;
+		this.aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientos;
 	}
 	
 	public ArrayList<Asiento> getAsientosReservados() {
@@ -69,14 +69,14 @@ public abstract class Usuario {
 		ArrayList<String> criterios = new ArrayList<>(
 				Arrays.asList(origen, fechaSalida, horaSalida, destino, fechaLlegada, horaLlegada));
 		this.historicoBusquedas.add(criterios);
-			return aerolinea.asientosDisponibles(origen, fechaSalida, horaSalida,
+			return aterrizarTramitesDeAsientos.asientosDisponibles(origen, fechaSalida, horaSalida,
 					destino, fechaLlegada, horaLlegada);
 		
 	}
 	
 	public void comprar(Asiento asiento){
 		try{
-			asientosComprados.add(aerolinea.comprar(asiento, esUsuarioVIP(),this));
+			asientosComprados.add(aterrizarTramitesDeAsientos.comprar(asiento, esUsuarioVIP(),this));
 		}
 		catch (Exception ex){
 			throw ex;
@@ -91,7 +91,7 @@ public abstract class Usuario {
 
 	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar{
 		try{
-			asientosReservados.add(aerolinea.reservar(asiento, esUsuarioVIP(), this));
+			asientosReservados.add(aterrizarTramitesDeAsientos.reservar(asiento, esUsuarioVIP(), this));
 		}
 		catch (Exception ex){
 			throw ex;

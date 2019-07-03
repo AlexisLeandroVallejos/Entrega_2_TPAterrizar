@@ -46,11 +46,11 @@ public class Asiento{
 	}
 
 	public double impuestoAlPrecioAsiento() {
-		return precioAsiento() * Aerolinea.impuesto;
+		return precioAsiento() * AterrizarTramitesDeAsientos.impuesto;
 	}
 
 	public double precioTotalConRecargoAUsuarioNoEstandar() {
-		return precioTotalSinRecargo() + Aerolinea.recargoAUsuarioNoEstandar;
+		return precioTotalSinRecargo() + AterrizarTramitesDeAsientos.recargoAUsuarioNoEstandar;
 	}
 
 	public double precioTotalSinRecargo() {

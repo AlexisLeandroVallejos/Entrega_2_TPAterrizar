@@ -17,7 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import controller.AerolineaController;
+import controller.AterrizarTramitesDeAsientosController;
 import modelo.Usuario;
 import viewmodel.BuscarViewModel;
 import viewmodel.BusquedaViewTableModel;
@@ -39,7 +39,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 	private JLabel lblError1;
 	private JTable tableAsientos;
 	private Usuario user;
-	private AerolineaController controllerAero;
+	private AterrizarTramitesDeAsientosController controllerAero;
 	private BuscarViewModel vmodel;
 
 	/**

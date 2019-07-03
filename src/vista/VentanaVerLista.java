@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
-import controller.AerolineaController;
+import controller.AterrizarTramitesDeAsientosController;
 import modelo.Usuario;
 import modelo.UsuarioEstandar;
 import viewmodel.Consulta;

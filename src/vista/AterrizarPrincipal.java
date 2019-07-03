@@ -5,10 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import bd.UsuarioDataDummy;
-import controller.AerolineaController;
-import modelo.Aerolinea;
 import modelo.Usuario;
-import modelo.UsuarioEstandar;
 import java.awt.Label;
 import java.awt.Font;
 import javax.swing.JButton;
