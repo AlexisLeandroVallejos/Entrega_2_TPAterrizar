@@ -1,5 +1,8 @@
 package modelo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Asiento{
@@ -11,6 +14,8 @@ public class Asiento{
 
 	protected String codigoDeAsiento;
 	protected double precio;
+	private SimpleDateFormat formatterVuelo;
+	private SimpleDateFormat formatterVista;
 
 	public Asiento(Vuelo vuelo, Clase claseAsiento, Ubicacion ubicacionAsiento, Estado estadoAsiento) {
 		this.vuelo = vuelo;
@@ -18,6 +23,8 @@ public class Asiento{
 		this.ubicacionAsiento = ubicacionAsiento;
 		this.estadoAsiento = estadoAsiento;
 		this.codigoDeAsiento = setCodigoDeAsiento();
+		formatterVuelo = new SimpleDateFormat("yyyyMMdd");
+		formatterVista = new SimpleDateFormat("dd/MM/yyyy");
 	}
 
 	public double getPrecio() {
@@ -139,9 +146,18 @@ public class Asiento{
 	//Devuelve los datos formateados para la grilla.
 	public HashMap<String,String> getDatosParaLista()
 	{
+		;  
 		HashMap<String, String> datos = new HashMap<String, String>();
 		//("Salida"); 
-		datos.put("Salida", this.getVuelo().getFechaSalida() + " " + this.getVuelo().getHoraSalida());
+		
+		Date fecha = null;
+		try {
+			fecha = formatterVuelo.parse(this.getVuelo().getFechaSalida());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		datos.put("Salida",formatterVista.format(fecha) );
 		//("Aerolinea");
 		datos.put("Aerolinea", this.getAerolinea());
 		//("Vuelo");
