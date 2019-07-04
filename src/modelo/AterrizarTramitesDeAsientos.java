@@ -120,7 +120,7 @@ public class AterrizarTramitesDeAsientos {
 				.collect(Collectors.toList());
 		if (siguienteReserva.size() == 1) {
 			asientoExpirado.setEstadoAsiento(Estado.DISPONIBLE);
-			reservar(siguienteReserva.get(0).getAsiento().getCodigoDeAsiento(),
+			reservar(siguienteReserva.get(0).getAsiento(),
 					siguienteReserva.get(0).getUsuario().suscripto(), siguienteReserva.get(0).getUsuario());
 			asientosSobreReservados.remove(siguienteReserva.get(0));
 		}
@@ -262,53 +262,6 @@ public class AterrizarTramitesDeAsientos {
 
 	public void agregarVuelo(Vuelo vuelo) {
 		vuelos.add(vuelo);
-	}
-
-	// reservar tiene que tener el asiento directamente, mejorar codigo
-
-	public Asiento reservar(String codigoAsiento, boolean aceptaOfertas, Usuario usuario) {
-		try {
-			String codigoVuelo = codigoAsiento.split("-")[0];
-			ArrayList<Asiento> asientosEnEvaluacion = null;
-			for (Vuelo v : vuelos) {
-				if (v.getCodDeVuelo().equalsIgnoreCase(codigoVuelo)) {
-					if (aceptaOfertas) {
-						asientosEnEvaluacion = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream().filter(
-								vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
-								.collect(Collectors.toList());
-						if (asientosEnEvaluacion.size() == 1
-								&& asientosEnEvaluacion.get(0).getEstadoAsiento().estaReservado()) {
-							CombinacionAsientoUsuario reserva = new CombinacionAsientoUsuario(asientosEnEvaluacion.get(0), usuario);
-							sobreReservar(reserva);
-						} else if (asientosEnEvaluacion.size() == 1
-								&& asientosEnEvaluacion.get(0).getEstadoAsiento().estaDisponible()) {
-							asientosEnEvaluacion.get(0).setEstadoAsiento(Estado.RESERVADO);
-						} else {
-							throw new ExcepcionAsientoNoDisponible();
-						}
-					} else {
-						asientosEnEvaluacion = (ArrayList<Asiento>) v.obtenerTodosLosAsientos().stream().filter(
-								vueloAsiento -> vueloAsiento.getCodigoDeAsiento().equalsIgnoreCase(codigoAsiento))
-								.filter(vueloAsiento -> vueloAsiento.esSuperOferta() == false)
-								.collect(Collectors.toList());
-						if (asientosEnEvaluacion.size() == 1
-								&& asientosEnEvaluacion.get(0).getEstadoAsiento().estaReservado()) {
-							CombinacionAsientoUsuario reserva = new CombinacionAsientoUsuario(asientosEnEvaluacion.get(0), usuario);
-							sobreReservar(reserva);
-						} else if (asientosEnEvaluacion.size() == 1
-								&& asientosEnEvaluacion.get(0).getEstadoAsiento().estaDisponible()) {
-							asientosEnEvaluacion.get(0).setEstadoAsiento(Estado.RESERVADO);
-							
-						} else {
-							throw new ExcepcionAsientoNoDisponible();
-						}
-					}
-				}
-			}
-			return asientosEnEvaluacion.get(0);
-		} catch (Exception ex) {
-			throw ex;
-		}
 	}
 
 //el asiento se agrega a la lista, dentro tiene la informacion del usuario que lo sobrereservo
