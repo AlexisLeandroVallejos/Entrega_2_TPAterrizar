@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Vuelo {
-	
+	protected ArrayList<Asiento> asientos = new ArrayList<Asiento>();
 	private final String codigoDeVuelo;
 	private final String fechaSalida;
 	private final String fechaLlegada;
 	private final String horaSalida;
 	private final String horaLlegada;
 	private ArrayList<String> caracteristicasVuelo;
-	private ArrayList<Asiento> asientos = new ArrayList<Asiento>();
 	private String origen;
 	private String destino;
 
@@ -216,5 +215,26 @@ public class Vuelo {
 	public ArrayList<Asiento> getAsientos() {
 		return asientos;
 	}
-
+	
+	public List<Asiento> buscarAsientos(Clase[] clase, double precioMin, double precioMax, 
+			boolean mostrarReservados) {
+		return asientosObtenidos(mostrarReservados, precioMin, precioMax, clase);
+}
+	
+	public List<Asiento> obtenerAsientosSegun(boolean mostrarReservados){
+		if(mostrarReservados) {
+			return this.obtenerTodosLosAsientos();
+		}
+		else { //sino funciona poner condicion: orden != null aca.
+			return this.obtenerAsientosDisponibles();
+		}
+	}
+	
+	public List<Asiento> asientosObtenidos(boolean mostrarReservados, double precioMin, double precioMax, Clase[] clase){
+		return obtenerAsientosSegun(mostrarReservados).stream()
+					.filter(asiento -> precioMin == 0 || asiento.getPrecio() >= precioMin) 		
+					.filter(asiento -> precioMax == 0 || asiento.getPrecio() <= precioMax) 																
+					.filter(asiento -> clase == null || asiento.esClaseAsiento(clase))
+					.collect(Collectors.toList());
+	}
 }

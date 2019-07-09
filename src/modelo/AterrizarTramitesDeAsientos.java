@@ -81,12 +81,10 @@ public class AterrizarTramitesDeAsientos {
 	}
 
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino) {
-		List<Asiento> asientos = buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
-		List<Asiento> asientosOceanic = asientosDisponiblesParaOrigenYDestino(origen, fecha, destino);
-		asientos.addAll(asientosOceanic);
-		return asientos;
+		return buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
+		 
 	}
-
+/*
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
 			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
 		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
@@ -111,7 +109,23 @@ public class AterrizarTramitesDeAsientos {
 		}
 		return lista;
 	}
-
+*/
+	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
+			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
+		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
+		List<Asiento> lista = vuelos.stream()
+				.filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
+				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
+				.map(vuelo -> vuelo.buscarAsientos(clase, precioMin, precioMax, mostrarReservados))
+				.flatMap(asientos -> asientos.stream())
+				.collect(Collectors.toList());
+		if (orden != null) {
+			lista = orden.ordenarListaSegunCriterio(lista);
+		}
+		return lista;
+	}
+	
+	
 	public void transferenciaDeReserva(Asiento asientoExpirado) {
 		ArrayList<CombinacionAsientoUsuario> siguienteReserva = new ArrayList<CombinacionAsientoUsuario>();
 		siguienteReserva = (ArrayList<CombinacionAsientoUsuario>) asientosSobreReservados.stream()

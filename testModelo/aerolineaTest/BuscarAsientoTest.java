@@ -1,5 +1,7 @@
 package aerolineaTest;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -299,6 +301,31 @@ public class BuscarAsientoTest {
 		Clase claseEjecutiva = Clase.EJECUTIVO;
 		Clase [] clasesAsientos = new Clase[] {claseEjecutiva};
 		Assert.assertEquals("Se encontro el asiento ejecutivo", 0, 
+				aterrizarTramitesDeAsientos.buscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
+	}
+	
+	@Test
+	public void buscarAsiento_Trae2AsientosEjecutivosDeDiferentesAerolineas() {
+		//ahora hay vuelos de diferentes aerolineas como decia el enunciado!
+		//con esto se resuelve el issue #13
+		String codDeVuelo1 = "EC0344";
+		String codDeVuelo2 = "TGX2";
+		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
+		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
+		Vuelo vuelo2 = new Vuelo(codDeVuelo2, "BUE", "LA", "20110116", "20110316", "10:10", "20:20");
+		VueloOceanic vuelo1 = new VueloOceanic(codDeVuelo1, "BUE", "LA", "20110116", "20110117", "20:10", "14:20");
+		//AsientosDTO vuelo1
+		AsientoDTO asiento2 = new AsientoDTO(codDeVuelo1, 24, "16/01/2011", "20:10", 245.2, Clase.EJECUTIVO, Ubicacion.VENTANA);
+		vuelo1.agregarAsiento(asiento2);
+		//Asiento vuelo2
+		Asiento asiento4 = new Asiento(vuelo2, Clase.EJECUTIVO, Ubicacion.PASILLO, Estado.RESERVADO);
+		vuelo2.agregarAsiento(asiento4);
+		//Agregar vuelos a aerolinea:
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo1);
+		aterrizarTramitesDeAsientos.agregarVuelo(vuelo2);
+		Clase claseEjecutiva = Clase.EJECUTIVO;
+		Clase [] clasesAsientos = new Clase[] {claseEjecutiva};
+		Assert.assertEquals("No se encontro el asiento ejecutivo", 2, 
 				aterrizarTramitesDeAsientos.buscarAsientos("BUE","20110116" , "LA", clasesAsientos,0,0,true, null).size());
 	}
 	
