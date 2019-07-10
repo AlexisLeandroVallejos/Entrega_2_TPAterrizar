@@ -118,7 +118,10 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		btnComprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(vmodel.getAsientoElegido() != null) {
-					vmodel.Comprar(vmodel.getAsientoElegido().getCodigoDeAsiento());
+					String mensaje = vmodel.Comprar(user);
+					VentanaDeAviso vaviso = new VentanaDeAviso();
+					vaviso.setMensaje(mensaje);
+					vaviso.setVisible(true);
 				}
 			}
 		});
@@ -131,7 +134,10 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(vmodel.getAsientoElegido() != null) {
 					//eliminar el codigo de asiento y pasarle directamente el asiento eleigo a reservar
-					vmodel.Reservar(vmodel.getAsientoElegido().getCodigoDeAsiento());
+					String mensaje = vmodel.Reservar(user);
+					VentanaDeAviso vaviso = new VentanaDeAviso();
+					vaviso.setMensaje(mensaje);
+					vaviso.setVisible(true);
 				}
 			}
 		});

@@ -83,7 +83,6 @@ public abstract class Usuario {
 		}
 	}
 	
-	
 	public boolean esUsuarioVIP(){
 		return dineroTotalGastado >= 100000.0;
 	}

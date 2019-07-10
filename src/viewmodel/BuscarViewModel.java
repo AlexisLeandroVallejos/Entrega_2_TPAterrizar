@@ -6,6 +6,7 @@ import javax.swing.table.TableModel;
 
 import bd.AterrizarTramitesDeAsientosDataDummy;
 import modelo.AterrizarTramitesDeAsientos;
+import modelo.Usuario;
 import modelo.Asiento;
 
 public class BuscarViewModel {
@@ -61,13 +62,27 @@ public class BuscarViewModel {
 	    return "<html>" + orig.replaceAll("\n", "<br>");
 	}
 
-	public void Comprar(String codigoDeAsiento) {
+	public String Comprar(Usuario user) {
 		// TODO Auto-generated method stub
-		
+		try {
+			user.comprar((this.asientoElegido));
+			return "Compra Exitosa!! </br> Asiento: " + this.asientoElegido.getCodigoDeAsiento();
+		}
+		catch(Exception ex)
+		{
+			return ex.getMessage();
+		}
 	}
 
-	public void Reservar(String codigoDeAsiento) {
+	public String Reservar(Usuario user) {
 		// TODO Auto-generated method stub
-		
+		try {
+			user.comprar((this.asientoElegido));
+			return "Reserva Exitosa!! </br> Asiento: " + this.asientoElegido.getCodigoDeAsiento(); 
+		}
+		catch(Exception ex)
+		{
+			return ex.getMessage();
+		}
 	}
 }

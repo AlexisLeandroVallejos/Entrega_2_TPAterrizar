@@ -17,6 +17,7 @@ public class VentanaDeAviso extends JDialog {
 	 */
 	private static final long serialVersionUID = 6228803363342277564L;
 	private JPanel contentPane;
+	private JLabel lblAviso;
 
 	/**
 	 * Create the frame.
@@ -29,7 +30,7 @@ public class VentanaDeAviso extends JDialog {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblAviso = new JLabel("New label");
+		lblAviso = new JLabel("New label");
 		lblAviso.setVerticalAlignment(SwingConstants.TOP);
 		lblAviso.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblAviso.setBounds(10, 11, 386, 71);
@@ -44,6 +45,11 @@ public class VentanaDeAviso extends JDialog {
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnAceptar.setBounds(10, 93, 89, 23);
 		contentPane.add(btnAceptar);
+	}
+	
+	public void setMensaje(String mensaje)
+	{
+		this.lblAviso.setText(mensaje);
 	}
 
 }
