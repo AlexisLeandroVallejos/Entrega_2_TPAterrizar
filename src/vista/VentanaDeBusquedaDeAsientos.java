@@ -95,6 +95,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//TO DO: Agregar buscar
+				vmodel.setAsientoElegido(null);
 				String origen = textFieldOrigen.getText();
 				String destino = textFieldDestino.getText();
 				String fecha = textFieldFecha.getText();
@@ -102,8 +103,12 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 				if(error.isEmpty())
 				{
 					TableModel tm = vmodel.buscar(origen, destino, fecha);
-					
-					tableAsientos.setModel(tm);
+					if(tm != null) {
+						tableAsientos.setModel(tm);
+					}
+					else{
+						tableAsientos.setModel(new DefaultTableModel());
+					}
 				}else
 				{
 					lblError1.setText(error);
@@ -122,6 +127,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 					VentanaDeAviso vaviso = new VentanaDeAviso();
 					vaviso.setMensaje(mensaje);
 					vaviso.setVisible(true);
+					btnBuscar.doClick();
 				}
 			}
 		});
@@ -138,6 +144,7 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 					VentanaDeAviso vaviso = new VentanaDeAviso();
 					vaviso.setMensaje(mensaje);
 					vaviso.setVisible(true);
+					btnBuscar.doClick();
 				}
 			}
 		});
@@ -169,10 +176,12 @@ public class VentanaDeBusquedaDeAsientos extends JFrame {
 		{
 			public void valueChanged(ListSelectionEvent event)
 			{
-				
+				if(event.getFirstIndex() >= 0 && tableAsientos.getModel().getRowCount() > 0) {
+					
 					BusquedaViewTableModel tablem = (BusquedaViewTableModel)tableAsientos.getModel();
 					//Se setea el asiento elegido en model
 					vmodel.setAsientoElegido(tablem.getAsientoEnFila(event.getFirstIndex()));
+				}
 			}
 		}
 		);

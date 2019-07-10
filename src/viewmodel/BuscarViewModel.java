@@ -12,6 +12,7 @@ import modelo.Asiento;
 public class BuscarViewModel {
 
 	private Asiento asientoElegido = null;
+	AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 	
 	public Asiento getAsientoElegido() {
 		// TODO Auto-generated method stub
@@ -48,12 +49,16 @@ public class BuscarViewModel {
 	}
 
 	public BusquedaViewTableModel buscar(String origen, String destino, String fecha) {
-
-		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
-		AterrizarTramitesDeAsientosDataDummy aterrizarTramitesDeAsientosDD = new AterrizarTramitesDeAsientosDataDummy();
-		aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientosDD.obtenerAterrizarTramitesDeAsientosTest();
+		if(aterrizarTramitesDeAsientos.getVuelos().size() < 1)
+		{
+			AterrizarTramitesDeAsientosDataDummy aterrizarTramitesDeAsientosDD = new AterrizarTramitesDeAsientosDataDummy();
+			aterrizarTramitesDeAsientos = aterrizarTramitesDeAsientosDD.obtenerAterrizarTramitesDeAsientosTest();
+		}
+		BusquedaViewTableModel tm = null;
 		List<Asiento> listaBusqueda = aterrizarTramitesDeAsientos.buscarAsientos(origen, fecha, destino);
-		BusquedaViewTableModel tm = new BusquedaViewTableModel(listaBusqueda);
+		if(listaBusqueda.size() > 0) {
+			tm = new BusquedaViewTableModel(listaBusqueda);
+		}
 		return tm;
 	}
 	
