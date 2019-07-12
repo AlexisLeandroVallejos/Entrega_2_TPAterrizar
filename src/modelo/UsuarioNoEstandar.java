@@ -1,6 +1,7 @@
 package modelo;
 
-import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+import excepciones.ExcepcionUsuarioNoEstandarNoPuedeComprarSuperOferta;
+import excepciones.ExcepcionUsuarioNoEstandarNoPuedeReservar;
 
 public class UsuarioNoEstandar extends Usuario {
 
@@ -13,19 +14,15 @@ public class UsuarioNoEstandar extends Usuario {
 	@Override
 	//modificar el comprar para ponerle recargo
 	public void comprar(Asiento asiento){
-		try{
-			aterrizarTramitesDeAsientos.comprar(asiento, suscripto(), this);
+		if(asiento.esSuperOferta()) {
+			throw new ExcepcionUsuarioNoEstandarNoPuedeComprarSuperOferta();
 		}
-		catch (Exception ex){
-			throw ex;
-		}
+		aterrizarTramitesDeAsientos.comprar(asiento, suscripto(), this);
 	}
 
 	@Override
-	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar {
-			
-		throw new ExcepcionUsuarioNoStandarNoPuedeReservar();
-	
+	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoEstandarNoPuedeReservar {
+		throw new ExcepcionUsuarioNoEstandarNoPuedeReservar();
 	}
 	
 }

@@ -3,13 +3,13 @@ package usuarioTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+import excepciones.ExcepcionUsuarioNoEstandarNoPuedeReservar;
 import modelo.*;
 
 public class TransferenciaDeReservaTest {
 	
 	@Test
-	public void transferenciaDeReserva_seRealizaUnaTransferenciaDeReserva() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void transferenciaDeReserva_seRealizaUnaTransferenciaDeReserva() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";

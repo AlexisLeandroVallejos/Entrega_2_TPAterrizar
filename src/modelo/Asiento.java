@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import excepciones.ExcepcionAsientoNoDisponible;
+
 public class Asiento{
 	
 	protected Vuelo vuelo;
@@ -176,5 +178,49 @@ public class Asiento{
 		return false;
 	}
 	
+	public Asiento comprar() {
+		setEstadoAsiento(Estado.COMPRADO);
+		return this;
+	}
 
+	public Asiento comprarSiEstaDisponible() {
+		if(estadoAsiento.estaDisponible()) {
+			return comprar();
+		}
+		else {
+			throw new ExcepcionAsientoNoDisponible();
+		}
+	}
+	
+	private boolean validacionReservadoODisponible(boolean aceptaOfertas, Usuario usuario) {
+		return estadoAsiento.estaDisponible() || (estadoAsiento.estaReservado() && usuario.getAsientosReservados().contains(this));
+	}
+
+	public Asiento comprarSegun(boolean aceptaOfertas, Usuario usuario) {
+		if(validacionReservadoODisponible(aceptaOfertas, usuario)) {
+			return comprar();
+		}
+		else {
+			throw new ExcepcionAsientoNoDisponible();
+		}
+	}
+
+	public Asiento reservar() {
+		setEstadoAsiento(Estado.RESERVADO);
+		return this;
+	}
+
+	public Asiento sobreReservar(Usuario usuario, AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos) {
+		if(estadoAsiento.estaReservado()) {
+			CombinacionAsientoUsuario reserva = new CombinacionAsientoUsuario(this, usuario);
+			aterrizarTramitesDeAsientos.sobreReservar(reserva);
+		}
+		else if(estadoAsiento.estaDisponible()) {
+			reservar();
+		}
+		else {
+			throw new ExcepcionAsientoNoDisponible();
+		}
+		return this;
+	}
 }

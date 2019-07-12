@@ -2,9 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VueloOceanic extends Vuelo {
 
@@ -32,13 +30,6 @@ public class VueloOceanic extends Vuelo {
 			
 		}
 		return false;
-	}
-
-	public ArrayList<Asiento> obtenerTodosLosAsientos() {
-		ArrayList<Asiento> listaAsientos = asientos.stream()
-				.filter(asiento -> asiento.getEstadoAsiento().estaComprado() == false && esCodDeVuelo(asiento))// )
-				.collect(Collectors.toCollection(ArrayList<Asiento>::new));
-		return listaAsientos;
 	}
 	
 }

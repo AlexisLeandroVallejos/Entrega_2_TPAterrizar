@@ -1,12 +1,12 @@
 package excepciones;
 
-public class ExcepcionUsuarioNoStandarNoPuedeReservar extends Exception {
+public class ExcepcionUsuarioNoEstandarNoPuedeReservar extends RuntimeException {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2325496707022665812L;
-	public ExcepcionUsuarioNoStandarNoPuedeReservar(){
+	public ExcepcionUsuarioNoEstandarNoPuedeReservar(){
 		super("Usuario no puede reservar al no estar registrado");
 		
 	}

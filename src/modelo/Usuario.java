@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+import excepciones.ExcepcionUsuarioNoEstandarNoPuedeReservar;
 
 public abstract class Usuario {
 	private String nombre;
@@ -88,9 +88,9 @@ public abstract class Usuario {
 	}
 
 
-	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void reservar(Asiento asiento) throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		try{
-			asientosReservados.add(aterrizarTramitesDeAsientos.reservar(asiento, esUsuarioVIP(), this));
+			asientosReservados.add(aterrizarTramitesDeAsientos.reservar(asiento, this));
 		}
 		catch (Exception ex){
 			throw ex;

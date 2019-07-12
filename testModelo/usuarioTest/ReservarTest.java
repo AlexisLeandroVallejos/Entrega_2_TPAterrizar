@@ -3,13 +3,13 @@ package usuarioTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-import excepciones.ExcepcionUsuarioNoStandarNoPuedeReservar;
+import excepciones.ExcepcionUsuarioNoEstandarNoPuedeReservar;
 import modelo.*;
 
 public class ReservarTest {
 	
-	@Test(expected=ExcepcionUsuarioNoStandarNoPuedeReservar.class)
-	public void reservar_unUsuarioNoEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	@Test(expected=ExcepcionUsuarioNoEstandarNoPuedeReservar.class)
+	public void reservar_unUsuarioNoEstandarReservaUnAsiento() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioNoEstandar usuario = new UsuarioNoEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";
@@ -27,7 +27,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioEstandarReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void reservar_unUsuarioEstandarReservaUnAsiento() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";
@@ -46,7 +46,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioVIPReservaUnAsiento() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void reservar_unUsuarioVIPReservaUnAsiento() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		usuario.sumarADineroTotalGastado(100000);
@@ -66,7 +66,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioVIPReservaUnAsientoConsideradoSuperOferta() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void reservar_unUsuarioVIPReservaUnAsientoConsideradoSuperOferta() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		usuario.sumarADineroTotalGastado(100000);
@@ -86,7 +86,7 @@ public class ReservarTest {
 	}
 	
 	@Test
-	public void reservar_unUsuarioEstandarSobreReservaUnAsientoYaReservado() throws ExcepcionUsuarioNoStandarNoPuedeReservar{
+	public void reservar_unUsuarioEstandarSobreReservaUnAsientoYaReservado() throws ExcepcionUsuarioNoEstandarNoPuedeReservar{
 		AterrizarTramitesDeAsientos aterrizarTramitesDeAsientos = new AterrizarTramitesDeAsientos();
 		UsuarioEstandar usuario = new UsuarioEstandar("Roman","Perez", 24888654, aterrizarTramitesDeAsientos);
 		String codDeVuelo1 = "EC0344";

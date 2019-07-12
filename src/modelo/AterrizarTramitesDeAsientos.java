@@ -84,32 +84,7 @@ public class AterrizarTramitesDeAsientos {
 		return buscarAsientos(origen, fecha, destino, null, 0, 0, false, null);
 		 
 	}
-/*
-	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
-			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
-		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
 
-
-		
-		List<Asiento> lista = vuelos.stream().filter(vuelo -> vuelo.cumpleAlgunCriterio(criterios))
-				.filter(vuelo -> vuelo.fechaEntreSalidaLlegada(fecha))
-				// nuevos filtros
-				.map(vuelo -> ((mostrarReservados) ? vuelo.obtenerTodosLosAsientos()
-						: vuelo.obtenerAsientosDisponibles()))
-				.filter(asiento -> asiento.size() > 0).flatMap(Collection::stream)
-				.filter(asiento -> precioMin == 0 || asiento.getPrecio() >= precioMin) // asiento.precioAsiento()
-																							// no es el precioFinal!!!
-				.filter(asiento -> precioMax == 0 || asiento.getPrecio() <= precioMax) // asiento.precioAsiento()
-																							// no es el precioFinal!!!
-				.filter(asiento -> clase == null || asiento.esClaseAsiento(clase))
-				.collect(Collectors.toList());
-
-		if (orden != null) {
-			lista = orden.ordenarListaSegunCriterio(lista);
-		}
-		return lista;
-	}
-*/
 	public List<Asiento> buscarAsientos(String origen, String fecha, String destino, Clase[] clase, double precioMin,
 			double precioMax, boolean mostrarReservados, AsientoBusquedaOrden orden) {
 		ArrayList<String> criterios = new ArrayList<>(Arrays.asList(origen, destino));
@@ -134,8 +109,7 @@ public class AterrizarTramitesDeAsientos {
 				.collect(Collectors.toList());
 		if (siguienteReserva.size() == 1) {
 			asientoExpirado.setEstadoAsiento(Estado.DISPONIBLE);
-			reservar(siguienteReserva.get(0).getAsiento(),
-					siguienteReserva.get(0).getUsuario().suscripto(), siguienteReserva.get(0).getUsuario());
+			reservar(siguienteReserva.get(0).getAsiento(), siguienteReserva.get(0).getUsuario());
 			asientosSobreReservados.remove(siguienteReserva.get(0));
 		}
 	}
@@ -201,7 +175,7 @@ public class AterrizarTramitesDeAsientos {
 	public void setVuelos(ArrayList<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
-	
+	/*
 	public Asiento comprar(Asiento asiento) {
 		if(asiento.estadoAsiento.estaDisponible())
 		{
@@ -214,7 +188,11 @@ public class AterrizarTramitesDeAsientos {
 		}
 		//return this.comprar(asiento.codigoDeAsiento, false);
 	}
-
+*/
+	public Asiento comprar(Asiento asiento) {
+		return asiento.comprarSiEstaDisponible();
+	}
+	/*
 	public Asiento comprar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
 		if(asiento.estadoAsiento.estaDisponible() || 
 				(asiento.estadoAsiento.estaReservado()  && usuario.getAsientosReservados().contains(asiento)))
@@ -232,13 +210,21 @@ public class AterrizarTramitesDeAsientos {
 		}
 		//return this.comprar(asiento.codigoDeAsiento, false);
 	}
-	
+	*/
+	public Asiento comprar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
+		return asiento.comprarSegun(aceptaOfertas, usuario);
+	}
+	/*
 	public Asiento reservar(Asiento asiento) {
 		asiento.setEstadoAsiento(Estado.RESERVADO );
 		return asiento;
 		//return this.comprar(asiento.codigoDeAsiento, false);
 	}
-
+	*/
+	public Asiento reservar(Asiento asiento) {
+		return asiento.reservar();
+	}
+	/*
 	public Asiento reservar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
 		try {
 			if(asiento.estadoAsiento.estaDisponible())
@@ -260,7 +246,11 @@ public class AterrizarTramitesDeAsientos {
 		}
 		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
 	}
-
+*/
+	public Asiento reservar(Asiento asiento, Usuario usuario) {
+		return asiento.sobreReservar(usuario, this);
+	}
+	/*
 	public Asiento comprar(Asiento asiento, boolean aceptaOfertas) {
 		if(asiento.estadoAsiento.estaDisponible() )
 		{
@@ -272,6 +262,10 @@ public class AterrizarTramitesDeAsientos {
 			throw new ExcepcionAsientoNoDisponible();
 		}
 		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
+	}
+*/
+	public Asiento comprar(Asiento asiento, boolean aceptaOfertas) {
+		return asiento.comprarSiEstaDisponible();
 	}
 
 	public void agregarVuelo(Vuelo vuelo) {
