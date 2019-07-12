@@ -175,95 +175,23 @@ public class AterrizarTramitesDeAsientos {
 	public void setVuelos(ArrayList<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
-	/*
-	public Asiento comprar(Asiento asiento) {
-		if(asiento.estadoAsiento.estaDisponible())
-		{
-			asiento.setEstadoAsiento(Estado.COMPRADO );
-			return asiento;
-		}
-		else
-		{
-			throw new ExcepcionAsientoNoDisponible();
-		}
-		//return this.comprar(asiento.codigoDeAsiento, false);
-	}
-*/
+	
 	public Asiento comprar(Asiento asiento) {
 		return asiento.comprarSiEstaDisponible();
 	}
-	/*
-	public Asiento comprar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
-		if(asiento.estadoAsiento.estaDisponible() || 
-				(asiento.estadoAsiento.estaReservado()  && usuario.getAsientosReservados().contains(asiento)))
-		{
-			if(!asiento.esSuperOferta() || aceptaOfertas) 
-			{
-				asiento.setEstadoAsiento(Estado.COMPRADO );
-				return asiento;
-			}
-			throw new ExcepcionAsientoNoDisponible();
-		}
-		else
-		{
-			throw new ExcepcionAsientoNoDisponible();
-		}
-		//return this.comprar(asiento.codigoDeAsiento, false);
-	}
-	*/
+	
 	public Asiento comprar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
 		return asiento.comprarSegun(aceptaOfertas, usuario);
 	}
-	/*
-	public Asiento reservar(Asiento asiento) {
-		asiento.setEstadoAsiento(Estado.RESERVADO );
-		return asiento;
-		//return this.comprar(asiento.codigoDeAsiento, false);
-	}
-	*/
+	
 	public Asiento reservar(Asiento asiento) {
 		return asiento.reservar();
 	}
-	/*
-	public Asiento reservar(Asiento asiento, boolean aceptaOfertas, Usuario usuario) {
-		try {
-			if(asiento.estadoAsiento.estaDisponible())
-			{
-				asiento.setEstadoAsiento(Estado.RESERVADO );
-			}else if(asiento.estadoAsiento.estaReservado()) {
-				CombinacionAsientoUsuario reserva = new CombinacionAsientoUsuario(asiento, usuario);
-				sobreReservar(reserva);
-			}
-			else
-			{
-				throw new ExcepcionAsientoNoDisponible();
-			}
-			return asiento;
-		} catch (ExcepcionAsientoNoDisponible ex) {
-			throw ex;
-		} catch (Exception ex) {
-			throw new ExcepcionAsientoNoDisponible();
-		}
-		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
-	}
-*/
+
 	public Asiento reservar(Asiento asiento, Usuario usuario) {
 		return asiento.sobreReservar(usuario, this);
 	}
-	/*
-	public Asiento comprar(Asiento asiento, boolean aceptaOfertas) {
-		if(asiento.estadoAsiento.estaDisponible() )
-		{
-			asiento.setEstadoAsiento(Estado.COMPRADO );
-			return asiento;
-		}
-		else
-		{
-			throw new ExcepcionAsientoNoDisponible();
-		}
-		//return this.comprar(asiento.codigoDeAsiento, aceptaOfertas);
-	}
-*/
+	
 	public Asiento comprar(Asiento asiento, boolean aceptaOfertas) {
 		return asiento.comprarSiEstaDisponible();
 	}
